@@ -52,7 +52,7 @@ public class PanelFormulaire extends JPanel {
         dateNaissance.setFont(gras);
 
         //NULLABLE
-        numTelLabel = new JLabel("Numéro de téléphone* (0123456789)");
+        numTelLabel = new JLabel("Numéro de téléphone (0123456789)");
         numTelLabel.setHorizontalAlignment(SwingConstants.CENTER);
         numTelLabel.setFont(gras);
         numTel = new JTextField(10);
