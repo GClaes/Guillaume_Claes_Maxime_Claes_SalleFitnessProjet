@@ -17,7 +17,7 @@ public class PanelRecherche extends JPanel {
         this.categorie = categorie;
         String nomCategorie = (categorie == 1)?"candidat":(categorie == 2)?"coach":"responsable";
         setBounds(15,80,750,200);
-        titre = new JLabel("<html><h1>Recherche d'un %s </h1></html>");
+        titre = new JLabel("<html><h1>Recherche d'un "+nomCategorie+"</h1></html>");
         titre.setFont(new Font("Gras",Font.BOLD,30));
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         formulaire = new PanelFormulaireRecherche();

@@ -49,7 +49,7 @@ public class PanelInscription extends JPanel {
                 validé = false;
             }
 
-            if(!Pattern.matches("(0|\\+32|0032)[1-9][0-9]{8}",formulaire.getNumTel())){
+            if(formulaire.getNumTel().equals(" ") && !Pattern.matches("(0|\\+32|0032)[1-9][0-9]{8}",formulaire.getNumTel())){
                 //Afficher Erreur NumTel
                 validé = false;
             }
