@@ -1,130 +1,57 @@
-package Vue;
+package vue;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.*;
 
 public class PanelFormulaire extends JPanel {
-    private JLabel nomLabel, prénomLabel, numTelLabel,sexeLabel , experienceLabel, dateNaissanceLabel;
-    private JTextField nom, prénom, numTel;
-    private JComboBox sexe, experience;
-    private Font gras;
-    SpinnerDateModel dateModel;
-    JSpinner dateNaissance;
+    private LinkedHashMap<String, ElementFormulaire> composantes;
 
     public PanelFormulaire() {
         setLayout(new GridLayout(6, 2,25,25));
 
-
-        //INSTANCIATION
-        gras = new Font("Gras",Font.BOLD,20);
-
-        //NOM
-        nomLabel = new JLabel("Nom");
-        nomLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        nomLabel.setFont(gras);
-        nom = new JTextField(30);
-        nom.setFont(gras);
-
-        prénomLabel = new JLabel("Prénom");
-        prénomLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        prénomLabel.setFont(gras);
-        prénom = new JTextField(30);
-        prénom.setFont(gras);
-
-        //SEXE
-        sexeLabel = new JLabel("Sexe");
-        sexeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        sexeLabel.setFont(gras);
+        composantes = new LinkedHashMap<>();
+        composantes.put("nom",new ElementFormulaireJTextField("Nom", 30));
+        composantes.put("prenom", new ElementFormulaireJTextField("Prénom", 30));
         String[] valuesSexe = {"Homme","Femme"};
-        sexe = new JComboBox(valuesSexe);
-        sexe.setFont(gras);
-        sexe.setSelectedItem("Homme");
-
-        //DATE NAISSANCE
-        dateNaissanceLabel = new JLabel("Date de naissance");
-        dateNaissanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        dateNaissanceLabel.setFont(gras);
-        dateModel = new SpinnerDateModel(new Date(), null, null, Calendar.DAY_OF_MONTH);
-        dateNaissance = new JSpinner(dateModel);
-        dateNaissance.setEditor(new JSpinner.DateEditor(dateNaissance,"dd - MM - yyyy"));
-        dateNaissance.setFont(gras);
-
-        //NULLABLE
-        numTelLabel = new JLabel("Numéro de téléphone (0123456789)");
-        numTelLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        numTelLabel.setFont(gras);
-        numTel = new JTextField(10);
-        numTel.setFont(gras);
-
-        //EXPERIENCE
-        experienceLabel = new JLabel("Avez-vous de l'expérience dans les salles de sport?");
-        experienceLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        experienceLabel.setFont(gras);
+        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe));
+        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance"));
+        composantes.put("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10));
         String[] valuesExp = {"Non","Oui"};
-        experience = new JComboBox(valuesExp);
-        experience.setFont(gras);
-        experience.setSelectedItem("Non");
+        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp));
 
 
-        //AJOUTS
-        this.add(nomLabel);
-        this.add(nom);
-        this.add(prénomLabel);
-        this.add(prénom);
-        this.add(sexeLabel);
-        this.add(sexe);
-        this.add(dateNaissanceLabel);
-        this.add(dateNaissance);
-        this.add(numTelLabel);
-        this.add(numTel);
-        this.add(experienceLabel);
-        this.add(experience);
+        for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
+            add(entree.getValue().getLabel());
+            Component component = entree.getValue().getField();
+            component.setFont(new Font("gras", Font.BOLD, 20));
+            add(component);
+        }
 
     }
 
     public String getNom() {
-        return nom.getText();
+        return (String)composantes.get("nom").getValue();
     }
 
     public String getPrénom() {
-        return prénom.getText();
+        return (String)composantes.get("prenom").getValue();
     }
 
     public String getNumTel() {
-        return numTel.getText();
+        return (String)composantes.get("numTel").getValue();
     }
 
     public int getSexe() {
-        return sexe.getSelectedIndex();
+        return (int)composantes.get("sexe").getValue();
     }
 
     public int getExperience() {
-        return experience.getSelectedIndex();
+        return (int)composantes.get("experience").getValue();
     }
 
     public Date getDateNaissance() {
-        return (Date) dateNaissance.getValue();
+        return (Date)composantes.get("dateNaissance").getValue();
     }
 
-    public JLabel getNomLabel() {
-        return nomLabel;
-    }
-
-    public JLabel getPrénomLabel() {
-        return prénomLabel;
-    }
-
-    public JLabel getNumTelLabel() {
-        return numTelLabel;
-    }
-
-    public JLabel getDateNaissanceLabel() {
-        return dateNaissanceLabel;
-    }
-
-    public void setNomLabel(JLabel nomLabel) {
-        this.nomLabel = nomLabel;
-    }
 }

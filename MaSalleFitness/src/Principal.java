@@ -1,4 +1,4 @@
-import Vue.MenuWindow;
+import vue.MenuWindow;
 
 public class Principal {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Vue;
+package vue;
 
 import javax.swing.*;
 import java.awt.*;
@@ -34,7 +34,7 @@ public class PanelInscription extends JPanel {
             //VERIFICATION
             boolean validé = true;
             if(!Pattern.matches("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$",formulaire.getNom().toLowerCase())){
-                formulaire.setNomLabel(new JLabel("<html><h2> <font color='red'>Nom</font></h2></html>"));
+                //formulaire.setNomLabel(new JLabel("<html><h2> <font color='red'>Nom</font></h2></html>"));
                 //formulaire.getNomLabel();
                 validé = false;
             }

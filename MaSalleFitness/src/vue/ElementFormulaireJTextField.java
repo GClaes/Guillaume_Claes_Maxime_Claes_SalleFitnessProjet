@@ -1,14 +1,18 @@
 package vue;
 
 import javax.swing.*;
-import java.awt.*;
 
-public class ComposanteFormulaire extends Component {
-    private JLabel label;
-    private JTextField field;
+public class ElementFormulaireJTextField extends ElementFormulaire<JTextField> {
 
-    public ComposanteFormulaire(String nom, int tailleField) {
-        label = new JLabel(nom);
-        field = new JTextField(tailleField);
+    public ElementFormulaireJTextField(String nom, int tailleField) {
+        super(nom);
+        setField(new JTextField(tailleField));
     }
+
+    @Override
+    public Object getValue() {
+        return getField().getText();
+    }
+
+
 }
