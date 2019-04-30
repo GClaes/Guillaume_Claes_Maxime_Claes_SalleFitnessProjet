@@ -24,15 +24,15 @@ public class Candidat extends Personne {
     private final Integer AGE_MINIMUM = 16;
     private static Integer nbInscriptions = 0;
 
-    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, String maladiesChroniques, Date dateNaissance, Date dateInscription, boolean estDebutant, char sexe, Nutritionniste nutritionniste, Coach coach, Responsable responsable, Adresse adresse) throws Exception {
+    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, String maladiesChroniques, Date dateNaissance, boolean estDebutant, char sexe, Nutritionniste nutritionniste, Coach coach, Responsable responsable, Adresse adresse) throws Exception {
         super(nom, prenom);
         setNumInscrit();
-        this.nbHeuresCoaching = nbHeuresCoaching;
+        setNbHeuresCoaching(nbHeuresCoaching);
         this.maladiesChroniques = maladiesChroniques;
         setDateNaissance(dateNaissance);
-        this.dateInscription = dateInscription;
+        dateInscription = new Date();
         this.estDebutant = estDebutant;
-        this.sexe = sexe;
+        setSexe(sexe);
         this.nutritionniste = nutritionniste;
         this.coach = coach;
         this.responsable = responsable;
@@ -44,11 +44,25 @@ public class Candidat extends Personne {
         nbInscriptions++;
     }
 
+    public void setNbHeuresCoaching(Integer nbHeuresCoaching) throws NbHeuresCoachingException {
+        if (nbHeuresCoaching == null || nbHeuresCoaching < 0) {
+            throw new NbHeuresCoachingException(nbHeuresCoaching);
+        }
+        this.nbHeuresCoaching = nbHeuresCoaching;
+    }
+
     public void setDateNaissance(Date dateNaissance) throws DateNaissanceException {
         if (dateNaissance == null || age(dateNaissance) < AGE_MINIMUM) {
             throw new DateNaissanceException(dateNaissance);
         }
         this.dateNaissance = dateNaissance;
+    }
+
+    public void setSexe(char sexe) throws SexeException {
+        if (sexe == '\u0000' || sexe != 'H' && sexe != 'F') {
+            throw new SexeException(sexe);
+        }
+        this.sexe = sexe;
     }
 
     private int age(Date dateNaissance) {
@@ -79,7 +93,13 @@ public class Candidat extends Personne {
         return anneesDifference;
     }
 
-    public void setDateTestValide(Date dateTestValide) {
+    public void setDateTestValide(Date dateTestValide) throws DateTestValideException {
+        Date today = new Date();
 
+        if (dateTestValide == null || today.compareTo(dateTestValide) < 0) {
+            throw new DateTestValideException(dateTestValide);
+        }
+        this.dateTestValide = dateTestValide;
     }
+
 }
