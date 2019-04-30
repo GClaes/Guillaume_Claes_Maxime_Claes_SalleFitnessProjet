@@ -1,4 +1,4 @@
-package vue;
+package vue.panel;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,4 +1,7 @@
-package vue;
+package vue.panel;
+
+import vue.validateur.AndValidation;
+import vue.validateur.Validation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,23 +36,27 @@ public class PanelInscription extends JPanel {
         public void actionPerformed(ActionEvent e) {
             //VERIFICATION
             boolean validé = true;
-            if(!Pattern.matches("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$",formulaire.getNom().toLowerCase())){
+
+            if(!formulaire.nomValide()){
+                //TJRS APS FONCTIONNEL
                 //formulaire.setNomLabel(new JLabel("<html><h2> <font color='red'>Nom</font></h2></html>"));
+                //formulaire.getNom();
+                //PanelInscription.this.repaint();
                 //formulaire.getNomLabel();
                 validé = false;
             }
 
-            if(!Pattern.matches("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$",formulaire.getPrénom().toLowerCase())){
+            if(!formulaire.prénomValide()){
                 //AFFICHER ERREUR PRENOM
                 validé = false;
             }
 
-            if(formulaire.getDateNaissance() == null){ //A MODIFIER
+            //if(formulaire.dateNaissanceValide()){ //A MODIFIER
                 //Afficher ERREUR DATE
-                validé = false;
-            }
+              //  validé = false;
+            //}
 
-            if(formulaire.getNumTel().equals(" ") && !Pattern.matches("(0|\\+32|0032)[1-9][0-9]{8}",formulaire.getNumTel())){
+            if(!formulaire.numTelValide()){
                 //Afficher Erreur NumTel
                 validé = false;
             }

@@ -1,4 +1,13 @@
-package vue;
+package vue.panel;
+
+import vue.validateur.AndValidation;
+import vue.validateur.PasVideValidation;
+import vue.validateur.PatternValidation;
+import vue.element.ElementFormulaire;
+import vue.element.ElementFormulaireJComboBox;
+import vue.element.ElementFormulaireJSpinner;
+import vue.element.ElementFormulaireJTextField;
+import vue.validateur.nbValidation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +20,14 @@ public class PanelFormulaire extends JPanel {
         setLayout(new GridLayout(6, 2,25,25));
 
         composantes = new LinkedHashMap<>();
-        composantes.put("nom",new ElementFormulaireJTextField("Nom", 30));
-        composantes.put("prenom", new ElementFormulaireJTextField("Prénom", 30));
+        composantes.put("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+        composantes.put("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
         String[] valuesSexe = {"Homme","Femme"};
-        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe));
-        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance"));
-        composantes.put("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10));
+        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, null));
+        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance", null));
+        composantes.put("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new AndValidation(new PasVideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
         String[] valuesExp = {"Non","Oui"};
-        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp));
+        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,null));
 
 
         for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
@@ -30,16 +39,26 @@ public class PanelFormulaire extends JPanel {
 
     }
 
-    public String getNom() {
-        return (String)composantes.get("nom").getValue();
+    public void getNom() {
+        composantes.get("nom").setLabel(new JLabel("test"));
+    }
+    public boolean nomValide(){
+        return composantes.get("nom").valider();
     }
 
     public String getPrénom() {
         return (String)composantes.get("prenom").getValue();
     }
+    public boolean prénomValide(){
+        return composantes.get("prenom").valider();
+    }
+
 
     public String getNumTel() {
         return (String)composantes.get("numTel").getValue();
+    }
+    public boolean numTelValide(){
+        return composantes.get("numTel").valider();
     }
 
     public int getSexe() {
@@ -52,6 +71,9 @@ public class PanelFormulaire extends JPanel {
 
     public Date getDateNaissance() {
         return (Date)composantes.get("dateNaissance").getValue();
+    }
+    public boolean dateNaissanceValide(){
+        return composantes.get("dateNaissance").valider();
     }
 
 }

@@ -1,7 +1,7 @@
 package vue.validateur;
 
-public class PasVide implements Validation {
-    public PasVide() {
+public class PasVideValidation implements Validation {
+    public PasVideValidation() {
 
     }
 

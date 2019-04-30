@@ -4,10 +4,10 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ListenerInscription implements ActionListener {
+public class ListenerMenu implements ActionListener {
     private JFrame frame;
     private JPanel panel;
-    public ListenerInscription(JFrame frame, JPanel panel){
+    public ListenerMenu(JFrame frame, JPanel panel){
         this.frame = frame;
         this.panel = panel;
     }
