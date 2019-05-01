@@ -7,7 +7,7 @@ import java.util.GregorianCalendar;
 import model.exceptions.*;
 
 public class Candidat extends Personne {
-    private Integer numInscrit;
+    private Integer numInscription;
     private Integer nbHeuresCoaching;
     private String nom;
     private String prenom;
@@ -39,7 +39,7 @@ public class Candidat extends Personne {
     }
 
     public void setNumInscrit() {
-        this.numInscrit = nbInscriptions;
+        this.numInscription = nbInscriptions;
         nbInscriptions++;
     }
 
