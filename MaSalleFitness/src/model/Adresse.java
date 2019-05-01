@@ -2,10 +2,12 @@ package model;
 
 import model.exceptions.*;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
 public class Adresse {
-    private String hash;
+    private String code;
     private String localite;
     private String codePostal;
     private String rue;
@@ -15,12 +17,9 @@ public class Adresse {
     public Adresse(String localite, String codePostal, String rue, String numero) throws Exception {
         setLocalite(localite);
         setCodePostal(codePostal);
-        this.rue = rue;
-        this.numero = numero;
-    }
-
-    public void setHash(String hash) {
-        //Calcul du hash grace à l'adresse
+        setRue(rue);
+        setNumero(numero);
+        setCode();
     }
 
     public void setCodePostal(String codePostal) throws CodePostalException {
@@ -36,8 +35,44 @@ public class Adresse {
         if (localite == null) {
             throw new LocaliteException(localite);
         }
+        this.localite = localite;
     }
 
+    public void setRue(String rue) throws RueException {
+        if (rue == null) {
+            throw new RueException(rue);
+        }
+        this.rue = rue;
+    }
 
+    public void setNumero(String numero) throws NumeroException {
+        if (numero == null) {
+            throw new NumeroException(numero);
+        }
+        this.numero = numero;
+    }
+
+    public void setCode() {
+        MessageDigest m = null;
+        String adr = localite + codePostal + rue + numero;
+        byte[] adrByte = adr.getBytes();
+
+        try {
+            m = MessageDigest.getInstance("SHA-1");
+        } catch(NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        this.code = convertionTableauBytesEnHexa(m.digest(adrByte));
+    }
+
+    private String convertionTableauBytesEnHexa(byte[] b) {
+        String resultat = "";
+
+        for (int i = 0 ; i < b.length ; i++) {
+            resultat += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
+        }
+        return resultat;
+    }
 
 }
