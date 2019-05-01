@@ -102,4 +102,63 @@ public class Candidat extends Personne {
     }
 */
 
+    public Integer getNumInscription() {
+        return numInscription;
+    }
+
+    public Integer getNbHeuresCoaching() {
+        return nbHeuresCoaching;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getMaladiesChroniques() {
+        return maladiesChroniques;
+    }
+
+    public String getNumeroGSM() {
+        return numeroGSM;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public Date getDateTestValide() {
+        return dateTestValide;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public boolean getDebutant() {
+        return estDebutant;
+    }
+
+    public char getSexe() {
+        return sexe;
+    }
+
+    public Nutritionniste getNutritionniste() {
+        return nutritionniste;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
 }

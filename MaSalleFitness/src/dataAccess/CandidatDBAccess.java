@@ -22,15 +22,15 @@ public class CandidatDBAccess implements CandidatDataAccess {
             statement = connection.prepareStatement(requete);
 
             statement.setInt(1, candidat.getNumInscription());
-            statement.setString(2, Candidat.getNom());
-            statement.setString(3, Candidat.getPrenom());
-            sqlDate = candidat.getDateNaissance();
+            statement.setString(2, candidat.getNom());
+            statement.setString(3, candidat.getPrenom());
+            sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
             statement.setDate(4, sqlDate);
-            statement.setString(5, candidat.getSexe());
+            statement.setString(5, String.valueOf(candidat.getSexe()));
             statement.setString(6, candidat.getNumeroGSM());
-            sqlDate = candidat.getDateTestValide();
+            sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
             statement.setDate(7, sqlDate);
-            sqlDate = candidat.getDateInscription();
+            sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
             statement.setDate(8, sqlDate);
             statement.setInt(9, candidat.getNbHeuresCoaching());
             statement.setBoolean(10, candidat.getDebutant());

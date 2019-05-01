@@ -15,4 +15,7 @@ public class Nutritionniste extends Personne {
         this.avis = avis;
     }
 
+    public Integer getNumReference() {
+        return numReference;
+    }
 }

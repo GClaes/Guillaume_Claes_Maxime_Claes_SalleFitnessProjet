@@ -75,4 +75,7 @@ public class Adresse {
         return resultat;
     }
 
+    public String getCode() {
+        return code;
+    }
 }
