@@ -28,28 +28,28 @@ public class Adresse {
         if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992) {
             throw new CodePostalException(codePostal);
         }
-        this.codePostal = codePostal;
+        this.codePostal = codePostal.toLowerCase();
     }
 
     public void setLocalite(String localite) throws LocaliteException {
         if (localite == null) {
             throw new LocaliteException(localite);
         }
-        this.localite = localite;
+        this.localite = localite.toLowerCase();
     }
 
     public void setRue(String rue) throws RueException {
         if (rue == null) {
             throw new RueException(rue);
         }
-        this.rue = rue;
+        this.rue = rue.toLowerCase();
     }
 
     public void setNumero(String numero) throws NumeroException {
         if (numero == null) {
             throw new NumeroException(numero);
         }
-        this.numero = numero;
+        this.numero = numero.toLowerCase();
     }
 
     public void setCode() {
