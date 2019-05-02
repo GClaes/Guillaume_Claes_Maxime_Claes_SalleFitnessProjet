@@ -12,11 +12,11 @@ public class Coach extends Personne {
     private Date dateDebutCoaching;
     private ArrayList<Candidat> candidats = new ArrayList <>();
 
-    public Coach(Integer matricule, Integer salaireHoraire, String nom, String prenom, String recompenses, Date dateDebutCoaching) throws Exception {
+    public Coach(Integer matricule, String nom, String prenom, String recompenses, Integer salaireHoraire, Date dateDebutCoaching) {
         super(nom, prenom);
         this.matricule = matricule;
-        this.salaireHoraire = salaireHoraire;
         this.recompenses = recompenses;
+        this.salaireHoraire = salaireHoraire;
         this.dateDebutCoaching = dateDebutCoaching;
     }
 

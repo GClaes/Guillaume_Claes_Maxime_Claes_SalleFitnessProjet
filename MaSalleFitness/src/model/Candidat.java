@@ -18,23 +18,23 @@ public class Candidat extends Personne {
     private Date dateInscription;
     private boolean estDebutant;
     private char sexe;
-    private Nutritionniste nutritionniste;
     private Coach coach;
     private Responsable responsable;
+    private Nutritionniste nutritionniste;
     private Adresse adresse;
     private final Integer AGE_MINIMUM = 16;
     private static Integer nbInscriptions = 0;
 
-    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, Date dateNaissance, char sexe, Nutritionniste nutritionniste, Coach coach, Responsable responsable, Adresse adresse) throws Exception {
+    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, Date dateNaissance, char sexe, Coach coach, Responsable responsable, Nutritionniste nutritionniste, Adresse adresse) {
         super(nom, prenom);
         setNumInscrit();
         setNbHeuresCoaching(nbHeuresCoaching);
         setDateNaissance(dateNaissance);
         setSexe(sexe);
         dateInscription = new Date();
-        this.nutritionniste = nutritionniste;
         this.coach = coach;
         this.responsable = responsable;
+        this.nutritionniste = nutritionniste;
         this.adresse = adresse;
     }
 
@@ -43,21 +43,21 @@ public class Candidat extends Personne {
         nbInscriptions++;
     }
 
-    public void setNbHeuresCoaching(Integer nbHeuresCoaching) throws NbHeuresCoachingException {
+    public void setNbHeuresCoaching(Integer nbHeuresCoaching) {
         if (nbHeuresCoaching == null || nbHeuresCoaching < 0) {
             throw new NbHeuresCoachingException(nbHeuresCoaching);
         }
         this.nbHeuresCoaching = nbHeuresCoaching;
     }
 
-    public void setDateNaissance(Date dateNaissance) throws DateNaissanceException {
+    public void setDateNaissance(Date dateNaissance) {
         if (dateNaissance == null || age(dateNaissance) < AGE_MINIMUM) {
             throw new DateNaissanceException(dateNaissance);
         }
         this.dateNaissance = dateNaissance;
     }
 
-    public void setSexe(char sexe) throws SexeException {
+    public void setSexe(char sexe) {
         if (sexe == '\u0000' || sexe != 'H' && sexe != 'F') {
             throw new SexeException(sexe);
         }
@@ -146,16 +146,16 @@ public class Candidat extends Personne {
         return sexe;
     }
 
-    public Nutritionniste getNutritionniste() {
-        return nutritionniste;
-    }
-
     public Coach getCoach() {
         return coach;
     }
 
     public Responsable getResponsable() {
         return responsable;
+    }
+
+    public Nutritionniste getNutritionniste() {
+        return nutritionniste;
     }
 
     public Adresse getAdresse() {

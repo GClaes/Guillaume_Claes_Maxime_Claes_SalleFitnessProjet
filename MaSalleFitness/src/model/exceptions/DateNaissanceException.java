@@ -2,7 +2,7 @@ package model.exceptions;
 
 import java.util.Date;
 
-public class DateNaissanceException extends Exception {
+public class DateNaissanceException extends IllegalArgumentException {
     private Date dateNaissanceErronee;
 
     public DateNaissanceException(Date dateNaissanceErronee) {

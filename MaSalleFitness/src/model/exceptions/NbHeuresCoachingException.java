@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class NbHeuresCoachingException extends Exception {
+public class NbHeuresCoachingException extends IllegalArgumentException {
     private Integer nbHeuresCoachingErrone;
 
     public NbHeuresCoachingException(Integer nbHeuresCoachingErrone) {

@@ -14,12 +14,12 @@ public class Adresse {
     private String numero;
     private ArrayList<Candidat> candidats = new ArrayList <>();
 
-    public Adresse(String localite, String codePostal, String rue, String numero) throws Exception {
+    public Adresse(String localite, String codePostal, String rue, String numero) {
         setLocalite(localite);
         setCodePostal(codePostal);
         setRue(rue);
         setNumero(numero);
-        setCode();
+        this.code = genereCode();
     }
 
     public void setCodePostal(String codePostal) throws CodePostalException {
@@ -52,7 +52,7 @@ public class Adresse {
         this.numero = numero.toLowerCase();
     }
 
-    public void setCode() {
+    public String genereCode() {
         MessageDigest m = null;
         String adr = localite + codePostal + rue + numero;
         byte[] adrByte = adr.getBytes();
@@ -63,7 +63,7 @@ public class Adresse {
             e.printStackTrace();
         }
 
-        this.code = convertionTableauBytesEnHexa(m.digest(adrByte));
+        return convertionTableauBytesEnHexa(m.digest(adrByte));
     }
 
     private String convertionTableauBytesEnHexa(byte[] b) {
@@ -73,6 +73,12 @@ public class Adresse {
             resultat += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
         }
         return resultat;
+    }
+
+    public void setCode(String code) {
+        if (this.code == null) {
+            this.code = code;
+        }
     }
 
     public String getCode() {

@@ -4,6 +4,6 @@ import dataAccess.exceptions.AjoutCandidatException;
 import model.Candidat;
 
 public interface CandidatDataAccess {
-    void ajoutCandidat(Candidat candidat) throws AjoutCandidatException;
-
+    void modifierCandidat(Candidat candidat) throws AjoutCandidatException;
+    Candidat rechercheCandidat(int numeroInscription) throws Exception;
 }
