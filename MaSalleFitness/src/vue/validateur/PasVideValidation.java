@@ -7,6 +7,6 @@ public class PasVideValidation implements Validation {
 
     @Override
     public boolean valider(Object o) {
-        return o != null && (String)o != " ";
+        return o != null && !o.equals("");
     }
 }

@@ -13,6 +13,6 @@ public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox>{
 
     @Override
     public Object getValue() {
-        return getField().getSelectedItem();
+        return getField().getSelectedIndex();
     }
 }

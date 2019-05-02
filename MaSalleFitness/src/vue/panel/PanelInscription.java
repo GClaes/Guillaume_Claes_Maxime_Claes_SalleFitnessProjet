@@ -1,93 +1,102 @@
 package vue.panel;
 
-import vue.validateur.AndValidation;
-import vue.validateur.Validation;
+import model.Adresse;
+import model.Candidat;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.regex.*;
+import java.util.Date;
 
 public class PanelInscription extends JPanel {
     private JLabel titre;
-    private JButton envoyer;
+    private JButton suivant;
     private PanelFormulaire formulaire;
+
+    private PanelInscription2 panelInscription2;
 
     public PanelInscription(){
 
-        this.setBounds(10,80,200,400);
-        titre = new JLabel("<html><h1>Inscription nouveau candidat</h1></html>");
+        setBounds(10,80,200,400);
+        titre = new JLabel("<html><h1>Inscription nouveau candidat [1/3]</h1></html>");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         formulaire = new PanelFormulaire();
-        envoyer = new JButton("Envoyer");
-        envoyer.setFont(new Font("Gras",Font.BOLD,20));
-        EnvoyerListener envoyerListener = new EnvoyerListener();
-        envoyer.addActionListener(envoyerListener);
+        suivant = new JButton("Suivant");
+        suivant.setFont(new Font("Gras",Font.BOLD,20));
+        suivant.addActionListener(new SuivantListener());
 
 
-        this.setLayout(new BorderLayout());
-        this.add(titre, BorderLayout.NORTH);
-        this.add(envoyer, BorderLayout.SOUTH);
-        this.add(formulaire, BorderLayout.CENTER);
+        setLayout(new BorderLayout());
+        add(titre, BorderLayout.NORTH);
+        add(suivant, BorderLayout.SOUTH);
+        add(formulaire, BorderLayout.CENTER);
 
     }
-    private class EnvoyerListener implements ActionListener{
+    private class SuivantListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             //VERIFICATION
             boolean validé = true;
 
             if(!formulaire.nomValide()){
-                //TJRS APS FONCTIONNEL
-                //formulaire.setNomLabel(new JLabel("<html><h2> <font color='red'>Nom</font></h2></html>"));
-                //formulaire.getNom();
-                //PanelInscription.this.repaint();
-                //formulaire.getNomLabel();
                 validé = false;
             }
-
             if(!formulaire.prénomValide()){
-                //AFFICHER ERREUR PRENOM
                 validé = false;
             }
 
             //if(formulaire.dateNaissanceValide()){ //A MODIFIER
-                //Afficher ERREUR DATE
               //  validé = false;
             //}
 
             if(!formulaire.numTelValide()){
-                //Afficher Erreur NumTel
                 validé = false;
             }
 
             if(!validé){
-                titre = new JLabel("<html><h1>Inscription nouveau candidat</h1>" +
-                        "<br><h3><font color='red'>Veuillez remplir/corriger les champs en rouge!</font></h3></html>");
-                titre.repaint();
+
             }
             else{
-                PanelInscription.this.removeAll();
-                JLabel texteEnvoi = new JLabel("<html><h2>Candidature envoyée avec succès!</h2></html>");
-                JButton ok = new JButton("Ok");
-                ok.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        PanelInscription.this.removeAll();
-                        PanelInscription.this.add(new PanelMenu());
-                        PanelInscription.this.repaint();
-                        PanelInscription.this.revalidate();
+                //TEMPORAIRE
+                String nom = formulaire.getNom();
+                String prénom = formulaire.getPrénom();
+                Date dateNaissance = formulaire.getDateNaissance();
+                String numTel = formulaire.getNumTel();
+                int sexe = formulaire.getSexe();
+                int experience = formulaire.getExperience();
+                //
 
-                    }
-                });
-                texteEnvoi.setBounds(150, 80, 500, 150);
-                ok.setBounds(350, 500, 100, 40);
-                texteEnvoi.setHorizontalAlignment(SwingConstants.CENTER);
-                PanelInscription.this.add(texteEnvoi);
-                PanelInscription.this.add(ok);
+                panelInscription2 = new PanelInscription2();
+                PanelInscription.this.removeAll();
+                PanelInscription.this.add(panelInscription2);
                 PanelInscription.this.repaint();
+                PanelInscription.this.revalidate();
+
+
+                Adresse adresse = panelInscription2.getAdresse();
+                int nbHeures = panelInscription2.getNbHeures();
+                String maladies = panelInscription2.getMaladies();
             }
-            //AFFICHER
+
         }
+
+    }
+    public Candidat getCandidat(){
+        try {
+            return new Candidat(
+                    panelInscription2.getNbHeures(),
+                    formulaire.getNom(),
+                    formulaire.getPrénom(),
+                    panelInscription2.getMaladies(),
+                    formulaire.getDateNaissance(),
+                    formulaire.getExperience() == 0,
+                    formulaire.getSexe() == 0 ? 'M' : 'F',
+                    null, null, null,
+                    panelInscription2.getAdresse()
+            );
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 }

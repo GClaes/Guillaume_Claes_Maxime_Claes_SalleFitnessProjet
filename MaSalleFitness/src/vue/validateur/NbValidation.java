@@ -1,9 +1,9 @@
 package vue.validateur;
 
-public class nbValidation implements Validation {
+public class NbValidation implements Validation {
     private int nb;
 
-    public nbValidation(int nb) {
+    public NbValidation(int nb) {
         this.nb = nb;
     }
 
