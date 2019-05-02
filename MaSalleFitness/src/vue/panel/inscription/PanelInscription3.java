@@ -1,7 +1,8 @@
-package vue.panel;
+package vue.panel.inscription;
+
+import vue.panel.PanelMenu;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,25 +21,30 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            PanelInscription3.this.removeAll();
-            JLabel texteEnvoi = new JLabel("<html><h2>Candidature envoyée avec succès!</h2></html>");
-            JButton ok = new JButton("Ok");
-            ok.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    PanelInscription3.this.removeAll();
-                    PanelInscription3.this.add(new PanelMenu());
-                    PanelInscription3.this.repaint();
-                    PanelInscription3.this.revalidate();
+            if(!getFormulaire().validation()){
+                System.out.println("Erreur fin");
+            }
+            else {
+                PanelInscription3.this.removeAll();
+                JLabel texteEnvoi = new JLabel("<html><h2>Candidature envoyée avec succès!</h2></html>");
+                JButton ok = new JButton("Ok");
+                ok.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        PanelInscription3.this.removeAll();
+                        PanelInscription3.this.add(new PanelMenu());
+                        PanelInscription3.this.repaint();
+                        PanelInscription3.this.revalidate();
 
-                }
-            });
-            texteEnvoi.setBounds(150, 80, 500, 150);
-            ok.setBounds(350, 500, 100, 40);
-            texteEnvoi.setHorizontalAlignment(SwingConstants.CENTER);
-            PanelInscription3.this.add(texteEnvoi);
-            PanelInscription3.this.add(ok);
-            PanelInscription3.this.repaint();
+                    }
+                });
+                texteEnvoi.setBounds(150, 80, 500, 150);
+                ok.setBounds(350, 500, 100, 40);
+                texteEnvoi.setHorizontalAlignment(SwingConstants.CENTER);
+                PanelInscription3.this.add(texteEnvoi);
+                PanelInscription3.this.add(ok);
+                PanelInscription3.this.repaint();
+            }
         }
     }
 

@@ -1,4 +1,4 @@
-package vue.panel;
+package vue.panel.inscription;
 
 import vue.validateur.*;
 import vue.element.ElementFormulaire;
@@ -10,23 +10,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class PanelFormulaire extends JPanel {
-    private LinkedHashMap<String, ElementFormulaire> composantes;
+public class PanelFormulaire extends PanelFormulaireBase {
 
     public PanelFormulaire() {
         setLayout(new GridLayout(6, 2,25,25));
 
-        composantes = new LinkedHashMap<>();
-        composantes.put("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
-        composantes.put("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+        setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+        setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
         String[] valuesSexe = {"Homme","Femme"};
-        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, new PasVideValidation()));
-        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance", new PasVideValidation()));
-        composantes.put("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
+        setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, new PasVideValidation()));
+        setComposantes("dateNaissance", new ElementFormulaireJSpinner("DateNaissance", new PasVideValidation()));
+        setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
         String[] valuesExp = {"Non","Oui"};
-        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
+        setComposantes("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
 
-        for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
+        for(Map.Entry<String,ElementFormulaire> entree : getComposantes().entrySet()){
             add(entree.getValue().getLabel());
             Component component = entree.getValue().getField();
             component.setFont(new Font("gras", Font.BOLD, 20));
@@ -34,51 +32,30 @@ public class PanelFormulaire extends JPanel {
         }
 
     }
-    public boolean validation(){
-        for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
-            if(!entree.getValue().valider()) {
-                //A MODIFIER
-                return false;
-            }
-        }
-        return true;
-    }
 
     public String getNom() {
-        return (String)composantes.get("nom").getValue();
-    }
-    public boolean nomValide(){
-        return composantes.get("nom").valider();
+        return (String)getComposantes().get("nom").getValue();
     }
 
     public String getPrénom() {
-        return (String)composantes.get("prenom").getValue();
-    }
-    public boolean prénomValide(){
-        return composantes.get("prenom").valider();
+        return (String)getComposantes().get("prenom").getValue();
     }
 
 
     public String getNumTel() {
-        return (String)composantes.get("numTel").getValue();
-    }
-    public boolean numTelValide(){
-        return composantes.get("numTel").valider();
+        return (String)getComposantes().get("numTel").getValue();
     }
 
     public int getSexe() {
-        return (int)composantes.get("sexe").getValue();
+        return (int)getComposantes().get("sexe").getValue();
     }
 
     public int getExperience() {
-        return (int)composantes.get("experience").getValue();
+        return (int)getComposantes().get("experience").getValue();
     }
 
     public Date getDateNaissance() {
-        return (Date)composantes.get("dateNaissance").getValue();
-    }
-    public boolean dateNaissanceValide(){
-        return composantes.get("dateNaissance").valider();
+        return (Date)getComposantes().get("dateNaissance").getValue();
     }
 
 }

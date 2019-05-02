@@ -6,9 +6,9 @@ import javax.swing.*;
 
 public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox>{
 
-    public ElementFormulaireJComboBox(String nom, String []valuesSexe, Validation validation) {
+    public ElementFormulaireJComboBox(String nom, String []values, Validation validation) {
         super(nom, validation);
-        setField(new JComboBox(valuesSexe));
+        setField(new JComboBox(values));
     }
 
     @Override

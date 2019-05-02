@@ -3,10 +3,9 @@ package vue;
 import vue.element.ElementMenu;
 import vue.element.ElementMenuItem;
 import vue.listener.ListenerMenu;
-import vue.panel.PanelInfo;
-import vue.panel.PanelInscription;
-import vue.panel.PanelMenu;
-import vue.panel.PanelRecherche;
+import vue.panel.*;
+import vue.panel.inscription.PanelInscription;
+
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -58,7 +57,6 @@ public class MenuWindow extends JFrame {
         menuBar.add(rechercheMenu);
         menuBar.add(afficherListeMenu);
         menuBar.add(optionMenu);
-
 
 
         //Affichage fond d'écran

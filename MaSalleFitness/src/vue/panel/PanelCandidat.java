@@ -1,5 +1,7 @@
 package vue.panel;
 
+import vue.panel.inscription.PanelInscription;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

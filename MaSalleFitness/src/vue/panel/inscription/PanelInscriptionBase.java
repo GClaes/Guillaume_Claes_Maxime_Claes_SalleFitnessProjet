@@ -1,4 +1,4 @@
-package vue.panel;
+package vue.panel.inscription;
 
 import javax.swing.*;
 import java.awt.*;

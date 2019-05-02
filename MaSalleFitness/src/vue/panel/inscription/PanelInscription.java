@@ -1,10 +1,8 @@
-package vue.panel;
+package vue.panel.inscription;
 
 import model.Adresse;
-import model.Candidat;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -25,25 +23,8 @@ public class PanelInscription extends PanelInscriptionBase<PanelFormulaire> {
     private class SuivantListener implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             //VERIFICATION
-            boolean validé = true;
-
-            if(!getFormulaire().nomValide()){
-                validé = false;
-            }
-            if(!getFormulaire().prénomValide()){
-                validé = false;
-            }
-
-            //if(getFormulaire().dateNaissanceValide()){ //A MODIFIER
-              //  validé = false;
-            //}
-
-            if(!getFormulaire().numTelValide()){
-                validé = false;
-            }
-
-            if(!validé){
-
+            if(!getFormulaire().validation()){
+                System.out.println("erreur");
             }
             else{
                 //TEMPORAIRE
