@@ -20,11 +20,11 @@ public class PanelFormulaire extends JPanel {
         composantes.put("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
         composantes.put("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
         String[] valuesSexe = {"Homme","Femme"};
-        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, null));
-        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance", null));
+        composantes.put("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, new PasVideValidation()));
+        composantes.put("dateNaissance", new ElementFormulaireJSpinner("DateNaissance", new PasVideValidation()));
         composantes.put("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
         String[] valuesExp = {"Non","Oui"};
-        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,null));
+        composantes.put("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
 
         for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
             add(entree.getValue().getLabel());
@@ -33,6 +33,15 @@ public class PanelFormulaire extends JPanel {
             add(component);
         }
 
+    }
+    public boolean validation(){
+        for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
+            if(!entree.getValue().valider()) {
+                //A MODIFIER
+                return false;
+            }
+        }
+        return true;
     }
 
     public String getNom() {

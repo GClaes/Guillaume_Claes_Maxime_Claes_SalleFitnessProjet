@@ -34,16 +34,32 @@ public class PanelFormulaire2 extends JPanel {
     public String getLocalite() {
         return (String)composantes.get("localite").getValue();
     }
+    public boolean localiteValide(){
+        return composantes.get("localite").valider();
+    }
+
     public String getNumero() {
         return (String)composantes.get("num").getValue();
     }
+    public boolean numeroValide(){
+        return composantes.get("num").valider();
+    }
+
 
     public String getRue() {
         return (String)composantes.get("rue").getValue();
     }
+    public boolean rueValide(){
+        return composantes.get("rue").valider();
+    }
+
 
     public String getCodePostal() {
         return (String)composantes.get("codePostal").getValue();
     }
+    public boolean codePostalValide(){
+        return composantes.get("codePostal").valider();
+    }
+
 
 }

@@ -16,7 +16,7 @@ public class PanelFormulaire3 extends JPanel {
         composantes = new LinkedHashMap<>();
 
         //AMELIROER VALIDATEURS
-        composantes.put("nbHeures", new ElementFormulaireJTextField("Nombre d'heures de coaching désirées", 2, new AndValidation(new PasVideValidation(), new NbValidation(1))));
+        composantes.put("nbHeures", new ElementFormulaireJTextField("Nombre d'heures de coaching désiré", 2, new AndValidation(new PasVideValidation(), new NbValidation(1))));
         composantes.put("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
 
         for (Map.Entry<String, ElementFormulaire> entree : composantes.entrySet()) {

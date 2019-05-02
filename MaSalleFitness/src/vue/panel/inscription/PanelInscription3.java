@@ -6,24 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class PanelInscription3 extends JPanel {
+public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
     private JLabel titre;
     private PanelFormulaire3 formulaire;
     private JButton envoyer;
 
     public PanelInscription3(){
-        setBounds(10,80,200,400);
-        titre = new JLabel("<html><h1>Inscription nouveau candidat [3/3]</h1></html>");
-        titre.setHorizontalAlignment(SwingConstants.CENTER);
-        formulaire = new PanelFormulaire3();
-        envoyer = new JButton("Suivant");
-        envoyer.addActionListener(new EnvoyerListener());
-        envoyer.setFont(new Font("Gras",Font.BOLD,20));
-
-        setLayout(new BorderLayout());
-        add(titre, BorderLayout.NORTH);
-        add(envoyer, BorderLayout.SOUTH);
-        add(formulaire, BorderLayout.CENTER);
+        super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Envoyer",new PanelFormulaire3());
+        setListener(new EnvoyerListener());
     }
 
     private class EnvoyerListener implements ActionListener{
