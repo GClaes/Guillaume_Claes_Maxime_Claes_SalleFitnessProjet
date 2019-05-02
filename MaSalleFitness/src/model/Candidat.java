@@ -7,11 +7,12 @@ import java.util.GregorianCalendar;
 import model.exceptions.*;
 
 public class Candidat extends Personne {
-    private Integer numInscrit;
+    private Integer numInscription;
     private Integer nbHeuresCoaching;
     private String nom;
     private String prenom;
     private String maladiesChroniques;
+    private String numeroGSM;
     private Date dateNaissance;
     private Date dateTestValide;
     private Date dateInscription;
@@ -24,15 +25,13 @@ public class Candidat extends Personne {
     private final Integer AGE_MINIMUM = 16;
     private static Integer nbInscriptions = 0;
 
-    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, String maladiesChroniques, Date dateNaissance, boolean estDebutant, char sexe, Nutritionniste nutritionniste, Coach coach, Responsable responsable, Adresse adresse) throws Exception {
+    public Candidat(Integer nbHeuresCoaching, String nom, String prenom, Date dateNaissance, char sexe, Nutritionniste nutritionniste, Coach coach, Responsable responsable, Adresse adresse) throws Exception {
         super(nom, prenom);
         setNumInscrit();
         setNbHeuresCoaching(nbHeuresCoaching);
-        this.maladiesChroniques = maladiesChroniques;
         setDateNaissance(dateNaissance);
-        dateInscription = new Date();
-        this.estDebutant = estDebutant;
         setSexe(sexe);
+        dateInscription = new Date();
         this.nutritionniste = nutritionniste;
         this.coach = coach;
         this.responsable = responsable;
@@ -40,7 +39,7 @@ public class Candidat extends Personne {
     }
 
     public void setNumInscrit() {
-        this.numInscrit = nbInscriptions;
+        this.numInscription = nbInscriptions;
         nbInscriptions++;
     }
 
@@ -92,7 +91,7 @@ public class Candidat extends Personne {
 
         return anneesDifference;
     }
-
+/*
     public void setDateTestValide(Date dateTestValide) throws DateTestValideException {
         Date today = new Date();
 
@@ -101,5 +100,65 @@ public class Candidat extends Personne {
         }
         this.dateTestValide = dateTestValide;
     }
+*/
 
+    public Integer getNumInscription() {
+        return numInscription;
+    }
+
+    public Integer getNbHeuresCoaching() {
+        return nbHeuresCoaching;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getMaladiesChroniques() {
+        return maladiesChroniques;
+    }
+
+    public String getNumeroGSM() {
+        return numeroGSM;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public Date getDateTestValide() {
+        return dateTestValide;
+    }
+
+    public Date getDateInscription() {
+        return dateInscription;
+    }
+
+    public boolean getDebutant() {
+        return estDebutant;
+    }
+
+    public char getSexe() {
+        return sexe;
+    }
+
+    public Nutritionniste getNutritionniste() {
+        return nutritionniste;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public Responsable getResponsable() {
+        return responsable;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
 }

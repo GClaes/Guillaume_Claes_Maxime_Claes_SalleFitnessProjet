@@ -20,4 +20,7 @@ public class Coach extends Personne {
         this.dateDebutCoaching = dateDebutCoaching;
     }
 
+    public Integer getMatricule() {
+        return matricule;
+    }
 }

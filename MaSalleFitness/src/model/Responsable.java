@@ -13,4 +13,7 @@ public class Responsable extends Personne {
         this.numeroTravailleur = numeroTravailleur;
     }
 
+    public Integer getNumeroTravailleur() {
+        return numeroTravailleur;
+    }
 }
