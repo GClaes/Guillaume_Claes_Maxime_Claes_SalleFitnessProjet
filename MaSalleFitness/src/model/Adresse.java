@@ -19,7 +19,7 @@ public class Adresse {
         setCodePostal(codePostal);
         setRue(rue);
         setNumero(numero);
-        this.code = genereCode();
+        genereCode();
     }
 
     public void setCodePostal(String codePostal) throws CodePostalException {
@@ -52,7 +52,7 @@ public class Adresse {
         this.numero = numero.toLowerCase();
     }
 
-    public String genereCode() {
+    public void genereCode() {
         MessageDigest m = null;
         String adr = localite + codePostal + rue + numero;
         byte[] adrByte = adr.getBytes();
@@ -63,7 +63,7 @@ public class Adresse {
             e.printStackTrace();
         }
 
-        return convertionTableauBytesEnHexa(m.digest(adrByte));
+        this.code = convertionTableauBytesEnHexa(m.digest(adrByte));
     }
 
     private String convertionTableauBytesEnHexa(byte[] b) {
@@ -73,12 +73,6 @@ public class Adresse {
             resultat += Integer.toString((b[i] & 0xff) + 0x100, 16).substring(1);
         }
         return resultat;
-    }
-
-    public void setCode(String code) {
-        if (this.code == null) {
-            this.code = code;
-        }
     }
 
     public String getCode() {

@@ -44,7 +44,7 @@ public class Candidat extends Personne {
     }
 
     public void setNbHeuresCoaching(Integer nbHeuresCoaching) {
-        if (nbHeuresCoaching == null || nbHeuresCoaching < 0) {
+        if (nbHeuresCoaching == null || nbHeuresCoaching < 1) {
             throw new NbHeuresCoachingException(nbHeuresCoaching);
         }
         this.nbHeuresCoaching = nbHeuresCoaching;
@@ -91,8 +91,29 @@ public class Candidat extends Personne {
 
         return anneesDifference;
     }
-/*
-    public void setDateTestValide(Date dateTestValide) throws DateTestValideException {
+
+    public void setMaladiesChroniques(String maladiesChroniques) {      //Mettre une longueur pour la validation
+        this.maladiesChroniques = maladiesChroniques;
+    }
+
+    public void setNumeroGSM(String numeroGSM) {
+        if (numeroGSM.charAt(0) != '0') {
+            throw new NumeroGSMException(numeroGSM);
+        } else {
+            if (numeroGSM.charAt(1) == '4') {
+                if (numeroGSM.length() != 10) {
+                    throw new NumeroGSMException(numeroGSM);
+                }
+            } else {
+                if (numeroGSM.length() != '9') {
+                    throw new NumeroGSMException(numeroGSM);
+                }
+            }
+        }
+        this.numeroGSM = numeroGSM;
+    }
+
+    public void setDateTestValide(Date dateTestValide) {
         Date today = new Date();
 
         if (dateTestValide == null || today.compareTo(dateTestValide) < 0) {
@@ -100,7 +121,10 @@ public class Candidat extends Personne {
         }
         this.dateTestValide = dateTestValide;
     }
-*/
+
+    public void setEstDebutant(boolean estDebutant) {
+        this.estDebutant = estDebutant;
+    }
 
     public Integer getNumInscription() {
         return numInscription;
