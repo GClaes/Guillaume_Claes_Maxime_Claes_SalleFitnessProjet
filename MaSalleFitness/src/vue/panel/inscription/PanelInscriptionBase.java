@@ -28,7 +28,7 @@ public abstract class PanelInscriptionBase<T extends JPanel> extends JPanel {
 
     }
 
-    public void setListener(ActionListener listener){
+    protected void setListener(ActionListener listener){
         bouton.addActionListener(listener);
     }
 

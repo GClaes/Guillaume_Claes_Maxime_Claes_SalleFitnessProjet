@@ -15,7 +15,7 @@ public class PanelMenu extends JPanel {
     }
     public void paintComponent(Graphics g){
         dessinerFond(g);
-        dessinerEntête(g);
+        dessinerEntete(g);
     }
 
     public void dessinerFond(Graphics g){
@@ -26,7 +26,7 @@ public class PanelMenu extends JPanel {
         }
         g.drawImage(img,0,0,imo);
     }
-    public void dessinerEntête(Graphics g){
+    public void dessinerEntete(Graphics g){
         try {
             img = ImageIO.read(new File("Entete.png"));
         }catch(IOException e){

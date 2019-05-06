@@ -3,6 +3,7 @@ package vue.panel.inscription;
 import vue.element.ElementFormulaire;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -11,6 +12,15 @@ public abstract class PanelFormulaireBase extends JPanel {
 
     public PanelFormulaireBase() {
         composantes = new LinkedHashMap<>();
+
+    }
+    public void initList(){
+        for(Map.Entry<String,ElementFormulaire> entree : getComposantes().entrySet()){
+            add(entree.getValue().getLabel());
+            Component component = entree.getValue().getField();
+            component.setFont(new Font("gras", Font.BOLD, 20));
+            add(component);
+        }
     }
 
     public boolean validation(){

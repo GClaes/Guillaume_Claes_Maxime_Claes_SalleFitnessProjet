@@ -15,10 +15,17 @@ public class ElementFormulaireJSpinnerDate extends ElementFormulaire<JSpinner> {
         setField(date);
     }
 
+    public ElementFormulaireJSpinnerDate(String text, Validation validation, Date valeurInit) {
+        this(text, validation);
+        setValue(valeurInit);
+    }
+
     @Override
     public Object getValue() {
         return getField().getValue();
     }
-
+    private void setValue(Date value){
+        getField().setValue(value);
+    }
 
 }

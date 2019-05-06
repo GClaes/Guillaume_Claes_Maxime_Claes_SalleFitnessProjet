@@ -1,5 +1,6 @@
 package vue.panel.inscription;
 
+import model.Adresse;
 import vue.element.ElementFormulaire;
 import vue.element.ElementFormulaireJTextField;
 import vue.validateur.AndValidation;
@@ -19,12 +20,7 @@ public class PanelFormulaire2 extends PanelFormulaireBase {
         setComposantes("codePostal", new ElementFormulaireJTextField("Code postal", 255, new AndValidation(new PasVideValidation(), new PatternValidation("[0-9]{4}"))));
         setComposantes("localite", new ElementFormulaireJTextField("Localité", 255, new AndValidation(new PasVideValidation(),new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
 
-        for(Map.Entry<String,ElementFormulaire> entree : getComposantes().entrySet()){
-            add(entree.getValue().getLabel());
-            Component component = entree.getValue().getField();
-            component.setFont(new Font("gras", Font.BOLD, 20));
-            add(component);
-        }
+        initList();
     }
 
     public String getLocalite() {
@@ -45,5 +41,13 @@ public class PanelFormulaire2 extends PanelFormulaireBase {
         return (String)getComposantes().get("codePostal").getValue();
     }
 
+    public Adresse getAdresse(){
+        try {
+            return new Adresse(getLocalite(), getCodePostal(), getRue(), getNumero());
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

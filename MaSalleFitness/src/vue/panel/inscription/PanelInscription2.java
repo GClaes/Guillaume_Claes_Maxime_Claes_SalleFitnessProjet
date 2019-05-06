@@ -2,41 +2,32 @@ package vue.panel.inscription;
 
 import model.Adresse;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelInscription2 extends PanelInscriptionBase<PanelFormulaire2> {
-    private JLabel titre;
-    private PanelFormulaire2 formulaire;
-    private JButton suivant;
+    private PersonalData data;
 
 
     private PanelInscription3 panelInscription3;
-    public PanelInscription2(){
+    public PanelInscription2(PersonalData data){
         super("<html><h1>Inscription nouveau candidat [2/3]</h1></html>","Suivant", new PanelFormulaire2());
         setListener(new SuivantListener());
+        this.data = data;
     }
     private class SuivantListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             if(getFormulaire().validation()){
-                panelInscription3 = new PanelInscription3();
+                data.setAdresse(getFormulaire().getAdresse());
+
+                panelInscription3 = new PanelInscription3(data);
                 PanelInscription2.this.removeAll();
                 PanelInscription2.this.add(panelInscription3);
                 PanelInscription2.this.repaint();
                 PanelInscription2.this.revalidate();
             }
         }
-    }
-    public Adresse getAdresse(){
-        try{
-            return new Adresse(formulaire.getLocalite(), formulaire.getCodePostal(), formulaire.getRue(), formulaire.getNumero());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return null;
     }
 }

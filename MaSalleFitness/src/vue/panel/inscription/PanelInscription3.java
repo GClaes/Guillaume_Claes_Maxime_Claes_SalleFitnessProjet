@@ -1,21 +1,20 @@
 package vue.panel.inscription;
 
+import model.Candidat;
 import vue.panel.PanelMenu;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
-    private JLabel titre;
-    private PanelFormulaire3 formulaire;
-    private JButton envoyer;
+    private PersonalData data;
 
-    public PanelInscription3(){
+    public PanelInscription3(PersonalData data){
         super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Envoyer",new PanelFormulaire3());
         setListener(new EnvoyerListener());
+        this.data = data;
     }
 
     private class EnvoyerListener implements ActionListener{
@@ -23,6 +22,26 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(getFormulaire().validation()){
+                PanelFormulaire3 formulaire = getFormulaire();
+                data.setNbHeuresCoaching(formulaire.getNbHeures());
+                data.setMaladiesChroniques(formulaire.getMaladies());
+                data.setResponsable(null);
+                data.setCoach(null);
+                data.setNutri(null);
+
+                try {
+                    Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
+                            data.getNom(), data.getPrenom(), data.getDateNaissance(),
+                            data.getSexe(), data.getNutri(), data.getCoach(), data.getResponsable(), data.getAdresse());
+                    //candidat.setNumTel(data.getNumeroGSM());
+                    //candidat.setEstDebutant(data.getEstDebutant());
+                    //candidat.setMaladies(data.getMaladiesChriniques());
+                }catch (Exception d){
+                    d.printStackTrace();
+                }
+
+
+
                 PanelInscription3.this.removeAll();
                 JLabel texteEnvoi = new JLabel("<html><h2>Candidature envoyée avec succès!</h2></html>");
                 JButton ok = new JButton("Ok");

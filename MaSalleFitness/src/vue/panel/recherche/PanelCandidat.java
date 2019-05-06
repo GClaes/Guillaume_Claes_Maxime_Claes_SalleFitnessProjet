@@ -1,6 +1,7 @@
-package vue.panel;
+package vue.panel.recherche;
 
-import vue.panel.inscription.PanelInscription;
+import vue.panel.PanelMenu;
+import vue.panel.modification.PanelModification;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,17 +26,17 @@ public class PanelCandidat extends JPanel {
         listeBouttonsCandidat.getRetour().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //PanelCandidat.this.removeAll();
-                //PanelCandidat.this.add(new PanelMenu());
-                //PanelCandidat.this.repaint();
-                //PanelCandidat.this.revalidate();
+                PanelCandidat.this.removeAll();
+                PanelCandidat.this.add(new PanelMenu());
+                PanelCandidat.this.repaint();
+                PanelCandidat.this.revalidate();
             }
         });
         listeBouttonsCandidat.getModifier().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PanelCandidat.this.removeAll();
-                PanelCandidat.this.add(new PanelInscription());
+                PanelCandidat.this.add(new PanelModification());
                 PanelCandidat.this.repaint();
                 PanelCandidat.this.revalidate();
             }

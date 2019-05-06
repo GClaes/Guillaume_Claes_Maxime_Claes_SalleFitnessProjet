@@ -1,7 +1,7 @@
 package vue.panel.inscription;
 
+import utilitaires.DateUtilitaire;
 import vue.validateur.*;
-import vue.element.ElementFormulaire;
 import vue.element.ElementFormulaireJComboBox;
 import vue.element.ElementFormulaireJSpinnerDate;
 import vue.element.ElementFormulaireJTextField;
@@ -18,18 +18,31 @@ public class PanelFormulaire extends PanelFormulaireBase {
         setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
         String[] valuesSexe = {"Homme","Femme"};
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, new PasVideValidation()));
-        setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance", new PasVideValidation()));
+        setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance", new AgeValidation()));
         setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
         String[] valuesExp = {"Non","Oui"};
         setComposantes("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
 
-        for(Map.Entry<String,ElementFormulaire> entree : getComposantes().entrySet()){
-            add(entree.getValue().getLabel());
-            Component component = entree.getValue().getField();
-            component.setFont(new Font("gras", Font.BOLD, 20));
-            add(component);
-        }
+        initList();
 
+    }
+    public String getNom(){
+        return (String)getComposantes().get("nom").getValue();
+    }
+    public String getPrénom(){
+        return (String)getComposantes().get("prenom").getValue();
+    }
+    public char getSexe(){
+        return (int)getComposantes().get("sexe").getValue()==0?'H':'F';
+    }
+    public Date getDateNaissance(){
+        return (Date)getComposantes().get("dateNaissance").getValue();
+    }
+    public String getNumTel(){
+        return (String)getComposantes().get("numTel").getValue();
+    }
+    public boolean getExp(){
+        return (int)getComposantes().get("experience").getValue()==1;
     }
 
 }

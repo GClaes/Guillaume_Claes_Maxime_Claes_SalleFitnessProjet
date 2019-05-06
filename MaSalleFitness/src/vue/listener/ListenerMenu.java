@@ -14,9 +14,8 @@ public class ListenerMenu implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        System.out.println("ping");
+        panel.revalidate();
         frame.setContentPane(panel);
-        //panel.repaint();
         frame.repaint();
         frame.revalidate();
         frame.setVisible(true);
