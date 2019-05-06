@@ -9,7 +9,7 @@ public class Nutritionniste extends Personne {
     private String avis;
     private ArrayList <Candidat> candidats = new ArrayList <>();
 
-    public Nutritionniste(Integer numReference, String nom, String prenom, String avis) throws Exception {
+    public Nutritionniste(Integer numReference, String nom, String prenom, String avis) {
         super(nom, prenom);
         this.numReference = numReference;
         this.avis = avis;

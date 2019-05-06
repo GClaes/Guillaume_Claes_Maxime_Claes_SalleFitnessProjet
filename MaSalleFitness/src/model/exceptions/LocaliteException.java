@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class LocaliteException extends Exception {
+public class LocaliteException extends IllegalArgumentException {
     private String localiteErrone;
 
     public LocaliteException(String localiteErrone) {

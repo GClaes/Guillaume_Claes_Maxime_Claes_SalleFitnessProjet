@@ -8,7 +8,7 @@ public class Responsable extends Personne {
     private String prenom;
     private ArrayList<Candidat> candidats = new ArrayList <>();
 
-    public Responsable(Integer matricule, String nom, String prenom) throws Exception {
+    public Responsable(Integer numeroTravailleur, String nom, String prenom) {
         super(nom, prenom);
         this.numeroTravailleur = numeroTravailleur;
     }

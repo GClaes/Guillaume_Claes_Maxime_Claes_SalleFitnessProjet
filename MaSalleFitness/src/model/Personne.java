@@ -6,12 +6,12 @@ public abstract class Personne {
     private String nom;
     private String prenom;
 
-    public Personne(String nom, String prenom) throws Exception {
+    public Personne(String nom, String prenom) {
         setNom(nom);
         setPrenom(prenom);
     }
 
-    public void setNom(String nom) throws NomException {
+    public void setNom(String nom) {
         nom = nom.trim();
 
         if (nom == null || nom.length() == 0) {
@@ -20,7 +20,7 @@ public abstract class Personne {
         this.nom = nom;
     }
 
-    public void setPrenom(String prenom) throws PrenomException {
+    public void setPrenom(String prenom) {
         prenom = prenom.trim();
 
         if (prenom == null || nom.length() == 0) {

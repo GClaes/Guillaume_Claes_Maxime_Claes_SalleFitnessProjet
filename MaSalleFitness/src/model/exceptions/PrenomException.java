@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class PrenomException extends Exception {
+public class PrenomException extends IllegalArgumentException {
     private String prenomErrone;
 
     public PrenomException(String prenomErrone) {

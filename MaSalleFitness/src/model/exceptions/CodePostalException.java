@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class CodePostalException extends Exception {
+public class CodePostalException extends IllegalArgumentException {
     private String codePostalErrone;
 
     public CodePostalException(String codePostalErrone) {

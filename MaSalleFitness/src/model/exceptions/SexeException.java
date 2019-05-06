@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class SexeException extends Exception {
+public class SexeException extends IllegalArgumentException {
     private char sexeErrone;
 
     public SexeException(char sexeErrone) {

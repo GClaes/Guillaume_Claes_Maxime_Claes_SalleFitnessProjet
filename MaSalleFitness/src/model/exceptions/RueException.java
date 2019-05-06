@@ -1,6 +1,6 @@
 package model.exceptions;
 
-public class RueException extends Exception {
+public class RueException extends IllegalArgumentException {
     private String rueErronee;
 
     public RueException(String rueErronee) {
