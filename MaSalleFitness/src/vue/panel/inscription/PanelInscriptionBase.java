@@ -9,6 +9,7 @@ public abstract class PanelInscriptionBase<T extends JPanel> extends JPanel {
     private JButton bouton;
     private T formulaire;
 
+
     public PanelInscriptionBase(String label, String textBouton, T formulaire) {
         setBounds(10,80,200,400);
         titre = new JLabel(label);
@@ -27,12 +28,13 @@ public abstract class PanelInscriptionBase<T extends JPanel> extends JPanel {
 
     }
 
-    public void setListener(ActionListener listener){
+    protected void setListener(ActionListener listener){
         bouton.addActionListener(listener);
     }
 
     public T getFormulaire() {
         return formulaire;
     }
+
 }
 

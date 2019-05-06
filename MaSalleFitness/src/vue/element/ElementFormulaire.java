@@ -33,7 +33,6 @@ public abstract class ElementFormulaire<T extends  JComponent> extends JComponen
     public void setLabel(JLabel nvLabel){
         label = nvLabel;
     }
-
     public boolean valider(){
         return validation.valider(getValue());
     }

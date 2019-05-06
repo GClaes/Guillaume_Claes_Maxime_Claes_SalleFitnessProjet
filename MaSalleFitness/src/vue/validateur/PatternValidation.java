@@ -7,11 +7,9 @@ public class PatternValidation implements Validation {
     public PatternValidation(String pattern){
         this.pattern = pattern;
     }
+
     @Override
     public boolean valider(Object o) {
-        if(!Pattern.matches(pattern, (String)o)){
-            return false;
-        }
-        return true;
+        return(Pattern.matches(pattern, (String)o));
     }
 }

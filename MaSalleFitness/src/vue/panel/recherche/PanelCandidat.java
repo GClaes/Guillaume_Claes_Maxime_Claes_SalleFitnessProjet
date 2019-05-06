@@ -1,6 +1,7 @@
-package vue.panel;
+package vue.panel.recherche;
 
-import vue.panel.inscription.PanelInscription;
+import vue.panel.PanelMenu;
+import vue.panel.modification.PanelModification;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,7 +36,7 @@ public class PanelCandidat extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PanelCandidat.this.removeAll();
-                PanelCandidat.this.add(new PanelInscription());
+                PanelCandidat.this.add(new PanelModification());
                 PanelCandidat.this.repaint();
                 PanelCandidat.this.revalidate();
             }
