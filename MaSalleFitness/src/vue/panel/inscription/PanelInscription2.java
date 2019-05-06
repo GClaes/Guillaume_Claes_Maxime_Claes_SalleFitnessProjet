@@ -3,6 +3,7 @@ package vue.panel.inscription;
 import model.Adresse;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,17 +22,13 @@ public class PanelInscription2 extends PanelInscriptionBase<PanelFormulaire2> {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(!getFormulaire().validation()){
-                System.out.println("Erreur Adresse");
-            }
-            else {
+            if(getFormulaire().validation()){
                 panelInscription3 = new PanelInscription3();
                 PanelInscription2.this.removeAll();
                 PanelInscription2.this.add(panelInscription3);
                 PanelInscription2.this.repaint();
                 PanelInscription2.this.revalidate();
             }
-
         }
     }
     public Adresse getAdresse(){
@@ -41,11 +38,5 @@ public class PanelInscription2 extends PanelInscriptionBase<PanelFormulaire2> {
             e.printStackTrace();
         }
         return null;
-    }
-    public int getNbHeures(){
-        return panelInscription3.getNbHeures();
-    }
-    public String getMaladies(){
-        return panelInscription3.getMaladies();
     }
 }

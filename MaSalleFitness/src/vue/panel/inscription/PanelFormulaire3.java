@@ -1,12 +1,11 @@
 package vue.panel.inscription;
 
 import vue.element.ElementFormulaire;
+import vue.element.ElementFormulaireJSpinnerNb;
 import vue.element.ElementFormulaireJTextField;
 import vue.validateur.*;
 
-import javax.swing.*;
 import java.awt.*;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PanelFormulaire3 extends PanelFormulaireBase {
@@ -14,10 +13,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         setLayout(new GridLayout(2, 2, 50, 100));
 
         //AMELIROER VALIDATEURS
-        setComposantes("nbHeures", new ElementFormulaireJTextField("Nombre d'heures de coaching désiré", 2,
-                new AndValidation(new PasVideValidation(), new AndValidation(
-                        new NbValidation(1, '>'),new AndValidation(
-                                new PatternValidation("[0-9]*"),new NbValidation(25,'<'))))));
+        setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
 
         for (Map.Entry<String, ElementFormulaire> entree : getComposantes().entrySet()) {

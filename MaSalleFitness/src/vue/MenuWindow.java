@@ -8,10 +8,14 @@ import vue.panel.inscription.PanelInscription;
 
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MenuWindow extends JFrame {
+    JMenuBar menuBar;
+    JMenu inscriptionMenu;
+    JMenuItem inscripCandidat, modifCandidat,supprCandidat;
 
     public MenuWindow(){
         //CREATION FRAME
@@ -21,13 +25,14 @@ public class MenuWindow extends JFrame {
         setResizable(false);
 
         //CREATION MENU
-        JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
-        JMenu inscriptionMenu = new ElementMenu("Inscription");
-        JMenuItem inscripCandidat = new ElementMenuItem("Inscrire un nouveau candidat",inscriptionMenu, new ListenerMenu(this, new PanelInscription()));
-        JMenuItem modifCandidat = new ElementMenuItem("Modifier un candidat",inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
-        JMenuItem supprCandidat = new ElementMenuItem("Supprimer un candidat", inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
+        inscriptionMenu = new ElementMenu("Inscription");
+        inscripCandidat = new ElementMenuItem("Inscrire un nouveau candidat",inscriptionMenu, new ListenerMenu(this, new PanelInscription()));
+        modifCandidat = new ElementMenuItem("Modifier un candidat",inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
+
+        supprCandidat = new ElementMenuItem("Supprimer un candidat", inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
 
 
         JMenu rechercheMenu = new ElementMenu("Recherche");

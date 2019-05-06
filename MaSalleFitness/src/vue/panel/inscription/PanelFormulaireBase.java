@@ -14,13 +14,19 @@ public abstract class PanelFormulaireBase extends JPanel {
     }
 
     public boolean validation(){
+        boolean valide = true;
+        StringBuilder texte = new StringBuilder();
+        texte.append("Veuillez remplir ces champs d'une façon valide:\n");
         for(Map.Entry<String,ElementFormulaire> entree : composantes.entrySet()){
             if(!entree.getValue().valider()) {
-                //A MODIFIER
-                return false;
+                texte.append(entree.getValue().getLabel().getText()+'\n');
+                valide = false;
             }
         }
-        return true;
+        if(!valide){
+            JOptionPane.showMessageDialog(null,texte.toString(),"Erreur lors de l'inscription",JOptionPane.ERROR_MESSAGE);
+        }
+        return valide;
     }
     public LinkedHashMap<String, ElementFormulaire> getComposantes() {
         return composantes;
@@ -29,4 +35,5 @@ public abstract class PanelFormulaireBase extends JPanel {
     public void setComposantes(String cle, ElementFormulaire entree) {
         composantes.put(cle, entree);
     }
+
 }

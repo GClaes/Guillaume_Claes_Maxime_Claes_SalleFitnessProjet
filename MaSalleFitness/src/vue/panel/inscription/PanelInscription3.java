@@ -3,6 +3,7 @@ package vue.panel.inscription;
 import vue.panel.PanelMenu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,10 +22,7 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(!getFormulaire().validation()){
-                System.out.println("Erreur fin");
-            }
-            else {
+            if(getFormulaire().validation()){
                 PanelInscription3.this.removeAll();
                 JLabel texteEnvoi = new JLabel("<html><h2>Candidature envoyée avec succès!</h2></html>");
                 JButton ok = new JButton("Ok");
@@ -46,12 +44,5 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 PanelInscription3.this.repaint();
             }
         }
-    }
-
-    public int getNbHeures(){
-        return formulaire.getNbHeures();
-    }
-    public String getMaladies(){
-        return formulaire.getMaladies();
     }
 }

@@ -1,6 +1,7 @@
 package vue.listener;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,7 +14,11 @@ public class ListenerMenu implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
+        System.out.println("ping");
         frame.setContentPane(panel);
+        //panel.repaint();
         frame.repaint();
+        frame.revalidate();
+        frame.setVisible(true);
     }
 }
