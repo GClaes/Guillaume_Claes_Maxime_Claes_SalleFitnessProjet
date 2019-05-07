@@ -22,7 +22,7 @@ public class Adresse {
         genereCode();
     }
 
-    public void setCodePostal(String codePostal) throws CodePostalException {
+    public void setCodePostal(String codePostal) {
         Integer codePostalCast = Integer.parseInt(codePostal);
 
         if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992) {
@@ -31,21 +31,21 @@ public class Adresse {
         this.codePostal = codePostal.toLowerCase();
     }
 
-    public void setLocalite(String localite) throws LocaliteException {
+    public void setLocalite(String localite) {
         if (localite == null) {
             throw new LocaliteException(localite);
         }
         this.localite = localite.toLowerCase();
     }
 
-    public void setRue(String rue) throws RueException {
+    public void setRue(String rue) {
         if (rue == null) {
             throw new RueException(rue);
         }
         this.rue = rue.toLowerCase();
     }
 
-    public void setNumero(String numero) throws NumeroException {
+    public void setNumero(String numero) {
         if (numero == null) {
             throw new NumeroException(numero);
         }
