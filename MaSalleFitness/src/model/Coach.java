@@ -6,8 +6,6 @@ import java.util.Date;
 public class Coach extends Personne {
     private Integer matricule;
     private Integer salaireHoraire;
-    private String nom;
-    private String prenom;
     private String recompenses;
     private Date dateDebutCoaching;
     private ArrayList<Candidat> candidats = new ArrayList <>();
@@ -26,14 +24,6 @@ public class Coach extends Personne {
 
     public Integer getSalaireHoraire() {
         return salaireHoraire;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
     }
 
     public String getRecompenses() {

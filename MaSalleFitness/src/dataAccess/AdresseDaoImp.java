@@ -52,7 +52,6 @@ public class AdresseDaoImp implements AdresseDao {
             throw new RechercherAdresseException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
@@ -87,7 +86,6 @@ public class AdresseDaoImp implements AdresseDao {
             throw new AjouterAdresseException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
@@ -112,7 +110,6 @@ public class AdresseDaoImp implements AdresseDao {
             throw new SupprimerAdresseException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {

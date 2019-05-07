@@ -77,7 +77,6 @@ public class CandidatDaoImp implements CandidatDao {
             throw new RechercherException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
@@ -120,7 +119,6 @@ public class CandidatDaoImp implements CandidatDao {
             throw new ListingException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
@@ -175,7 +173,6 @@ public class CandidatDaoImp implements CandidatDao {
             throw new AjouterCandidatException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
@@ -219,7 +216,6 @@ public class CandidatDaoImp implements CandidatDao {
             throw new SupprimerCandidatException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {

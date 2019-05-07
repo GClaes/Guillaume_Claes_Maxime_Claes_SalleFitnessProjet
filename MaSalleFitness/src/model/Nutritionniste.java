@@ -4,8 +4,6 @@ import java.util.ArrayList;
 
 public class Nutritionniste extends Personne {
     private Integer numReference;
-    private String nom;
-    private String prenom;
     private String avis;
     private ArrayList <Candidat> candidats = new ArrayList <>();
 
@@ -17,14 +15,6 @@ public class Nutritionniste extends Personne {
 
     public Integer getNumReference() {
         return numReference;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
     }
 
     public String getAvis() {

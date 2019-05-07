@@ -3,10 +3,7 @@ package dataAccess;
 import dataAccess.exceptions.ListingException;
 import model.Responsable;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class ResponsableDaoImp implements ResponsableDao {
@@ -26,7 +23,7 @@ public class ResponsableDaoImp implements ResponsableDao {
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "select matricule, nom, prenom from responsable";
+            requete = "select matricule, nom, prenom from responsable resp";
             statement = connection.prepareStatement(requete);
             res = statement.executeQuery();
 
@@ -37,7 +34,6 @@ public class ResponsableDaoImp implements ResponsableDao {
             throw new ListingException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {

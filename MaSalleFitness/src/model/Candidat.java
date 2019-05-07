@@ -9,8 +9,6 @@ import model.exceptions.*;
 public class Candidat extends Personne {
     private Integer numInscription;
     private Integer nbHeuresCoaching;
-    private String nom;
-    private String prenom;
     private String maladiesChroniques;
     private String numeroGSM;
     private Date dateNaissance;
@@ -133,14 +131,6 @@ public class Candidat extends Personne {
 
     public Integer getNbHeuresCoaching() {
         return nbHeuresCoaching;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
     }
 
     public String getMaladiesChroniques() {
