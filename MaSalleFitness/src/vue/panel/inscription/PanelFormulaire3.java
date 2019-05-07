@@ -1,5 +1,7 @@
 package vue.panel.inscription;
 
+import dataAccess.CoachDao;
+import dataAccess.CoachDaoImp;
 import model.Coach;
 import vue.element.ElementFormulaire;
 import vue.element.ElementFormulaireJComboBox;
@@ -8,6 +10,7 @@ import vue.element.ElementFormulaireJTextField;
 import vue.validateur.*;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Map;
 
 public class PanelFormulaire3 extends PanelFormulaireBase {
@@ -17,12 +20,26 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         //AMELIROER VALIDATEURS
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
-        String[]valuesCoach = {"Coach1 /20 heures restante(s)", "Coach2", "Coach3"};
+
+        CoachDaoImp coachDaoImp = new CoachDaoImp();
+        ArrayList<Coach>listeCoach;
+        try {
+            listeCoach = coachDaoImp.listingCoach();
+        }catch (Exception i){
+            //A CHANGER
+            i.printStackTrace();
+            listeCoach = null;
+        }
+        String[]valuesCoach;
+        for(Coach coach : listeCoach){
+            valuesCoach[i] = coach.g
+        }
         setComposantes("coach", new ElementFormulaireJComboBox("Coach",valuesCoach,new PasVideValidation()));
         String[]valuesNutritionniste = {"Nutri1", "Nutri2", "Nutri3"};
         setComposantes("nutri", new ElementFormulaireJComboBox("Coach",valuesNutritionniste,new PasVideValidation()));
         String[]valuesResponsable = {"Responsable 1", "Responsable 2", "Responsable 3"};
         setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",valuesResponsable,new PasVideValidation()));
+
 
 
         initList();
