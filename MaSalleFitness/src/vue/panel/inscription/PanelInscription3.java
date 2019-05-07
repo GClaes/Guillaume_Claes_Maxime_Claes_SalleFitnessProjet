@@ -1,5 +1,7 @@
 package vue.panel.inscription;
 
+import business.CandidatService;
+import business.CandidatServiceImp;
 import model.Candidat;
 import vue.panel.PanelMenu;
 
@@ -25,18 +27,12 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 PanelFormulaire3 formulaire = getFormulaire();
                 data.setNbHeuresCoaching(formulaire.getNbHeures());
                 data.setMaladiesChroniques(formulaire.getMaladies());
-                data.setResponsable(null);
-                data.setCoach(null);
-                data.setNutri(null);
+                data.setResponsable(formulaire.getResponsable());
+                data.setCoach(formulaire.getCoach());
+                data.setNutri(formulaire.getNutri());
 
-                Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
-                    data.getNom(), data.getPrenom(), data.getDateNaissance(),
-                    data.getSexe(), data.getCoach(), data.getResponsable(),data.getNutri(),  data.getAdresse());
-                candidat.setNumeroGSM(data.getNumeroGSM());
-                candidat.setEstDebutant(data.getEstDebutant());
-                candidat.setMaladiesChroniques(data.getMaladiesChroniques());
-
-
+                //CREATION CANDIDAT
+                creerCandidat(data);
 
 
                 PanelInscription3.this.removeAll();
@@ -60,5 +56,16 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 PanelInscription3.this.repaint();
             }
         }
+    }
+    public void creerCandidat(PersonalData data){
+        Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
+                data.getNom(), data.getPrenom(), data.getDateNaissance(),
+                data.getSexe(), data.getCoach(), data.getResponsable(),data.getNutri(),  data.getAdresse());
+        candidat.setNumeroGSM(data.getNumeroGSM());
+        candidat.setEstDebutant(data.getEstDebutant());
+        candidat.setMaladiesChroniques(data.getMaladiesChroniques());
+
+        CandidatService candidatService = new CandidatServiceImp();
+        candidatService.ajoutCandidat(candidat);
     }
 }

@@ -29,7 +29,7 @@ public class PanelFormulaire extends PanelFormulaireBase {
     public String getNom(){
         return (String)getComposantes().get("nom").getValue();
     }
-    public String getPrénom(){
+    public String getPrenom(){
         return (String)getComposantes().get("prenom").getValue();
     }
     public char getSexe(){

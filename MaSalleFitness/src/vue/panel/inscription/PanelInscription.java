@@ -19,7 +19,7 @@ public class PanelInscription extends PanelInscriptionBase<PanelFormulaire> {
             if(getFormulaire().validation()){
                 PanelFormulaire formulaire = getFormulaire();
                 PersonalData data = new PersonalData(formulaire.getNom(),
-                        formulaire.getPrénom(),
+                        formulaire.getPrenom(),
                         formulaire.getDateNaissance(),
                         formulaire.getSexe(),
                         formulaire.getExp(),

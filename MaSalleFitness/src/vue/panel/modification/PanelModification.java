@@ -1,5 +1,8 @@
 package vue.panel.modification;
 
+import business.CandidatService;
+import business.CandidatServiceImp;
+import model.Candidat;
 import vue.panel.PanelMenu;
 import vue.panel.inscription.PanelInscriptionBase;
 
@@ -9,8 +12,8 @@ import java.awt.event.ActionListener;
 
 public class PanelModification extends PanelInscriptionBase<PanelModificationFormulaire> {
 
-    public PanelModification() {
-        super("<html><h1>Modification d'un candidat</h1></html>", "Valider", new PanelModificationFormulaire());
+    public PanelModification(Candidat candidat) {
+        super("<html><h1>Modification d'un candidat</h1></html>", "Valider", new PanelModificationFormulaire(candidat));
         setListener(new ValiderListener());
     }
 
@@ -19,6 +22,10 @@ public class PanelModification extends PanelInscriptionBase<PanelModificationFor
         @Override
         public void actionPerformed(ActionEvent e) {
             if(getFormulaire().validation()){
+                PanelModificationFormulaire formulaire = getFormulaire();
+                creerCandidat(formulaire);
+
+
                 PanelModification.this.removeAll();
                 JLabel texteEnvoi = new JLabel("<html><h1>Candidature modifiée avec succès!</h1></html>");
                 JButton ok = new JButton("Ok");
@@ -40,5 +47,18 @@ public class PanelModification extends PanelInscriptionBase<PanelModificationFor
                 PanelModification.this.repaint();
             }
         }
+    }
+    public void creerCandidat(PanelModificationFormulaire formulaire){
+
+        Candidat candidat = new Candidat(formulaire.getNbHeures(),
+                formulaire.getNom(), formulaire.getPrenom(), formulaire.getDateNaissance(),
+                formulaire.getSexe(), formulaire.getCoach(), formulaire.getResponsable(),formulaire.getNutri(),
+                formulaire.getAdresse());
+        candidat.setNumeroGSM(formulaire.getNumero());
+        candidat.setEstDebutant(formulaire.getExp());
+        candidat.setMaladiesChroniques(formulaire.getMaladies());
+
+        CandidatService candidatService = new CandidatServiceImp();
+        candidatService.ajoutCandidat(candidat);
     }
 }

@@ -1,9 +1,10 @@
 package vue.panel.inscription;
 
-import dataAccess.CoachDao;
-import dataAccess.CoachDaoImp;
+import business.*;
+import model.Candidat;
 import model.Coach;
-import vue.element.ElementFormulaire;
+import model.Nutritionniste;
+import model.Responsable;
 import vue.element.ElementFormulaireJComboBox;
 import vue.element.ElementFormulaireJSpinnerNb;
 import vue.element.ElementFormulaireJTextField;
@@ -11,7 +12,6 @@ import vue.validateur.*;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Map;
 
 public class PanelFormulaire3 extends PanelFormulaireBase {
     public PanelFormulaire3() {
@@ -21,24 +21,10 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
 
-        CoachDaoImp coachDaoImp = new CoachDaoImp();
-        ArrayList<Coach>listeCoach;
-        try {
-            listeCoach = coachDaoImp.listingCoach();
-        }catch (Exception i){
-            //A CHANGER
-            i.printStackTrace();
-            listeCoach = null;
-        }
-        String[]valuesCoach;
-        for(Coach coach : listeCoach){
-            valuesCoach[i] = coach.g
-        }
-        setComposantes("coach", new ElementFormulaireJComboBox("Coach",valuesCoach,new PasVideValidation()));
-        String[]valuesNutritionniste = {"Nutri1", "Nutri2", "Nutri3"};
-        setComposantes("nutri", new ElementFormulaireJComboBox("Coach",valuesNutritionniste,new PasVideValidation()));
+        setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
+        setComposantes("nutri", new ElementFormulaireJComboBox("Coach",afficherListeNutritionnistes(),new PasVideValidation()));
         String[]valuesResponsable = {"Responsable 1", "Responsable 2", "Responsable 3"};
-        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",valuesResponsable,new PasVideValidation()));
+        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
 
 
 
@@ -51,16 +37,52 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     public String getMaladies(){
         return (String)getComposantes().get("maladie").getValue();
     }
-    public int getCoach(){
-        //A MODIF
-        return (int)getComposantes().get("coach").getValue();
+    public Coach getCoach(){
+        return (Coach)getComposantes().get("coach").getValue();
     }
-    public int getNutri(){
-        //A MODIF
-        return (int)getComposantes().get("nutri").getValue();
+    public Nutritionniste getNutri(){
+        return (Nutritionniste)getComposantes().get("nutri").getValue();
     }
-    public int getResponsable(){
-        //A MODIF
-        return(int)getComposantes().get("responsable").getValue();
+    public Responsable getResponsable(){
+        return(Responsable)getComposantes().get("responsable").getValue();
+    }
+
+    public String[] afficherListeCoachs(){
+        CoachService coachService = new CoachServiceImp();
+        ArrayList<Coach>listeCoachs = coachService.listingCoach();
+        String[]valuesCoach = new String[listeCoachs.size()];
+        int position = 0;
+        for(Coach coach : listeCoachs){
+            int nbHeures = 0;
+            for(Candidat candidat : coach.getCandidats()){
+                nbHeures+= candidat.getNbHeuresCoaching();
+            }
+            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+nbHeures+"/20 heures dispos";
+            position++;
+        }
+        return valuesCoach;
+    }
+
+    public String[] afficherListeNutritionnistes(){
+        NutritionnisteService nutritionnisteService = new NutritionnisteServiceImp();
+        ArrayList<Nutritionniste>listeNutritionnistes = nutritionnisteService.listingNutritionniste();
+        String[]valuesNutri = new String[listeNutritionnistes.size()];
+        int position = 0;
+        for(Nutritionniste nutri : listeNutritionnistes){
+            valuesNutri[position] = nutri.getPrenom()+" "+nutri.getNom();
+            position++;
+        }
+        return valuesNutri;
+    }
+    public String[] afficherListeResponsables(){
+        ResponsableService responsableService = new ResponsableServiceImp();
+        ArrayList<Responsable>listeResponsables = responsableService.listingResponsable();
+        String[]valuesResp = new String[listeResponsables.size()];
+        int position = 0;
+        for(Responsable responsable: listeResponsables){
+            valuesResp[position] = responsable.getPrenom()+" "+responsable.getNom();
+            position++;
+        }
+        return valuesResp;
     }
 }

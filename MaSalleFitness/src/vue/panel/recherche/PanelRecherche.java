@@ -1,5 +1,8 @@
 package vue.panel.recherche;
 
+import business.CandidatService;
+import business.CandidatServiceImp;
+import model.Candidat;
 import vue.panel.inscription.PanelInscriptionBase;
 
 import javax.swing.*;
@@ -19,10 +22,17 @@ public class PanelRecherche extends PanelInscriptionBase<PanelFormulaireRecherch
                 switch(PanelRecherche.this.categorie){
                     case 1 :
                         if(getFormulaire().validation()) {
-                            PanelRecherche.this.removeAll();
-                            PanelRecherche.this.add(new PanelCandidat());
-                            PanelRecherche.this.repaint();
-                            PanelRecherche.this.revalidate();
+                            CandidatService candidatService = new CandidatServiceImp();
+                            Candidat candidat = candidatService.rechercherCandidat(getFormulaire().getId());
+                            if(candidat == null){
+                                JOptionPane.showMessageDialog(null,"Le candidat recherché n'existe pas, veuillez entrer un identifiant correct","Erreur lors de la recherche",JOptionPane.ERROR_MESSAGE);
+                            }
+                            else {
+                                PanelRecherche.this.removeAll();
+                                PanelRecherche.this.add(new PanelCandidat(candidat));
+                                PanelRecherche.this.repaint();
+                                PanelRecherche.this.revalidate();
+                            }
                         }
                     break;
                     case 2 : System.out.println("Recherche coach");

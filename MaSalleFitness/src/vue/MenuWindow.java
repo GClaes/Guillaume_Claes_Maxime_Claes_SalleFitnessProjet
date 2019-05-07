@@ -5,6 +5,7 @@ import vue.element.ElementMenuItem;
 import vue.listener.ListenerMenu;
 import vue.panel.*;
 import vue.panel.inscription.PanelInscription;
+import vue.panel.listing.PanelListing;
 import vue.panel.recherche.PanelRecherche;
 
 
@@ -46,12 +47,7 @@ public class MenuWindow extends JFrame {
         responsableRecherche = new ElementMenuItem("Rechercher un responsable", rechercheMenu, new ListenerMenu(this,new PanelRecherche(3)));
 
         afficherListeMenu = new ElementMenu("Afficher");
-        afficherListCandidat = new ElementMenuItem("Afficher la liste des candidats", afficherListeMenu, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        afficherListCandidat = new ElementMenuItem("Afficher la liste des candidats", afficherListeMenu, new ListenerMenu(this, new PanelListing()));
 
         optionMenu = new ElementMenu("Options");
         info = new ElementMenuItem("Infos",optionMenu, new ListenerMenu(this,new PanelInfo()));
