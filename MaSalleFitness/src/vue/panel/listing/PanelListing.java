@@ -1,7 +1,7 @@
 package vue.panel.listing;
 
+import vue.panel.PanelMenu;
 import vue.panel.inscription.PanelInscriptionBase;
-import vue.panel.listing.PanelListingFormulaire;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +12,10 @@ public class PanelListing extends PanelInscriptionBase<PanelListingFormulaire> {
         setListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                PanelListing.this.removeAll();
+                PanelListing.this.add(new PanelMenu());
+                PanelListing.this.repaint();
+                PanelListing.this.revalidate();
             }
         });
 

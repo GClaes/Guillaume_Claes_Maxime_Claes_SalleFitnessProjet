@@ -49,7 +49,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
 
     public String[] afficherListeCoachs(){
         CoachService coachService = new CoachServiceImp();
-        ArrayList<Coach>listeCoachs = coachService.listingCoach();
+        ArrayList<Coach>listeCoachs = coachService.listingCoachs();
         String[]valuesCoach = new String[listeCoachs.size()];
         int position = 0;
         for(Coach coach : listeCoachs){
@@ -65,7 +65,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
 
     public String[] afficherListeNutritionnistes(){
         NutritionnisteService nutritionnisteService = new NutritionnisteServiceImp();
-        ArrayList<Nutritionniste>listeNutritionnistes = nutritionnisteService.listingNutritionniste();
+        ArrayList<Nutritionniste>listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
         String[]valuesNutri = new String[listeNutritionnistes.size()];
         int position = 0;
         for(Nutritionniste nutri : listeNutritionnistes){
@@ -76,7 +76,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     }
     public String[] afficherListeResponsables(){
         ResponsableService responsableService = new ResponsableServiceImp();
-        ArrayList<Responsable>listeResponsables = responsableService.listingResponsable();
+        ArrayList<Responsable>listeResponsables = responsableService.listingResponsables();
         String[]valuesResp = new String[listeResponsables.size()];
         int position = 0;
         for(Responsable responsable: listeResponsables){
