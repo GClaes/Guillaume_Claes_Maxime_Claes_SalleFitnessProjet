@@ -32,7 +32,7 @@ public class PanelFormulaire extends PanelFormulaireBase {
         return (String)getComposantes().get("prenom").getValue();
     }
     public char getSexe(){
-        return (int)getComposantes().get("sexe").getValue()==0?'H':'F';
+        return (int)getComposantes().get("sexe").getValue()==0?'h':'f';
     }
     public Date getDateNaissance(){
         return (Date)getComposantes().get("dateNaissance").getValue();

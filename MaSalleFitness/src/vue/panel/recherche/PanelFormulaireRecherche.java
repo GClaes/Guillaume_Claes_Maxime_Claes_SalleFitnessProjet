@@ -13,7 +13,7 @@ public class PanelFormulaireRecherche extends PanelFormulaireBase {
     public PanelFormulaireRecherche(){
         setLayout(new GridLayout(1,2,25,25));
 
-        setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new EstEntierValidation(),new PasVideValidation())));
+        setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new PasVideValidation(),new PatternValidation("d+"))));
         initList();
     }
     public int getId(){
