@@ -20,10 +20,8 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         //AMELIROER VALIDATEURS
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
-
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
         setComposantes("nutri", new ElementFormulaireJComboBox("Coach",afficherListeNutritionnistes(),new PasVideValidation()));
-        String[]valuesResponsable = {"Responsable 1", "Responsable 2", "Responsable 3"};
         setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
 
 
