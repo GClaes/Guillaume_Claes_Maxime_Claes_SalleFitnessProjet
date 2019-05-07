@@ -14,14 +14,26 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class PanelFormulaire3 extends PanelFormulaireBase {
+    private ArrayList<Coach>listeCoachs;
+    private ArrayList<Nutritionniste>listeNutritionnistes;
+    private ArrayList<Responsable>listeResponsables;
     public PanelFormulaire3() {
+        CoachService coachService = new CoachServiceImp();
+        listeCoachs = coachService.listingCoachs();
+        NutritionnisteService nutritionnisteService = new NutritionnisteServiceImp();
+        listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
+        ResponsableService responsableService = new ResponsableServiceImp();
+        listeResponsables = responsableService.listingResponsables();
+
+
         setLayout(new GridLayout(5, 2, 50, 75));
 
         //AMELIROER VALIDATEURS
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
+
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
-        setComposantes("nutri", new ElementFormulaireJComboBox("Coach",afficherListeNutritionnistes(),new PasVideValidation()));
+        setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
         setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
 
 
@@ -35,19 +47,21 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     public String getMaladies(){
         return (String)getComposantes().get("maladie").getValue();
     }
+
     public Coach getCoach(){
-        return (Coach)getComposantes().get("coach").getValue();
+        int indice = (int)getComposantes().get("coach").getValue();
+        return listeCoachs.get(indice);
     }
     public Nutritionniste getNutri(){
-        return (Nutritionniste)getComposantes().get("nutri").getValue();
+        int indice = (int)getComposantes().get("nutri").getValue();
+        return listeNutritionnistes.get(indice);
     }
     public Responsable getResponsable(){
-        return(Responsable)getComposantes().get("responsable").getValue();
+        int indice = (int)getComposantes().get("responsable").getValue();
+        return listeResponsables.get(indice);
     }
 
     public String[] afficherListeCoachs(){
-        CoachService coachService = new CoachServiceImp();
-        ArrayList<Coach>listeCoachs = coachService.listingCoachs();
         String[]valuesCoach = new String[listeCoachs.size()];
         int position = 0;
         for(Coach coach : listeCoachs){
@@ -55,15 +69,13 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
             for(Candidat candidat : coach.getCandidats()){
                 nbHeures+= candidat.getNbHeuresCoaching();
             }
-            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+nbHeures+"/20 heures dispos";
+            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+(20-nbHeures)+"/20 heure(s) dispo(s)";
             position++;
         }
         return valuesCoach;
     }
 
     public String[] afficherListeNutritionnistes(){
-        NutritionnisteService nutritionnisteService = new NutritionnisteServiceImp();
-        ArrayList<Nutritionniste>listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
         String[]valuesNutri = new String[listeNutritionnistes.size()];
         int position = 0;
         for(Nutritionniste nutri : listeNutritionnistes){
@@ -73,8 +85,6 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         return valuesNutri;
     }
     public String[] afficherListeResponsables(){
-        ResponsableService responsableService = new ResponsableServiceImp();
-        ArrayList<Responsable>listeResponsables = responsableService.listingResponsables();
         String[]valuesResp = new String[listeResponsables.size()];
         int position = 0;
         for(Responsable responsable: listeResponsables){
