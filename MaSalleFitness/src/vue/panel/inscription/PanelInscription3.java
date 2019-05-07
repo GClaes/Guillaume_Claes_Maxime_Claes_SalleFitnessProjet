@@ -29,16 +29,13 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 data.setCoach(null);
                 data.setNutri(null);
 
-                try {
-                    Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
-                            data.getNom(), data.getPrenom(), data.getDateNaissance(),
-                            data.getSexe(), data.getNutri(), data.getCoach(), data.getResponsable(), data.getAdresse());
-                    //candidat.setNumTel(data.getNumeroGSM());
-                    //candidat.setEstDebutant(data.getEstDebutant());
-                    //candidat.setMaladies(data.getMaladiesChriniques());
-                }catch (Exception d){
-                    d.printStackTrace();
-                }
+                Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
+                    data.getNom(), data.getPrenom(), data.getDateNaissance(),
+                    data.getSexe(), data.getCoach(), data.getResponsable(),data.getNutri(),  data.getAdresse());
+                candidat.setNumeroGSM(data.getNumeroGSM());
+                candidat.setEstDebutant(data.getEstDebutant());
+                candidat.setMaladiesChroniques(data.getMaladiesChroniques());
+
 
 
 
