@@ -1,5 +1,8 @@
 package dataAccess;
 
-public interface AdresseDao {
+import model.Adresse;
 
+public interface AdresseDao {
+    boolean adresseExiste(String codeHash);
+    void ajouterAdresse(Adresse adresse);
 }
