@@ -3,10 +3,7 @@ package dataAccess;
 import dataAccess.exceptions.RechercherException;
 import model.Nutritionniste;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class NutritionnisteDaoImp implements NutritionnisteDao {
@@ -26,7 +23,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "select * from nutritionniste";
+            requete = "select * from nutritionniste nutri";
             statement = connection.prepareStatement(requete);
             res = statement.executeQuery();
 
@@ -37,7 +34,6 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
             throw new RechercherException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {

@@ -1,12 +1,10 @@
 package dataAccess;
 
+import dataAccess.exceptions.ListingException;
 import dataAccess.exceptions.RechercherException;
 import model.Coach;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class CoachDaoImp implements CoachDao {
@@ -27,7 +25,7 @@ public class CoachDaoImp implements CoachDao {
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "select * from coach";
+            requete = "select * from coach co";
             statement = connection.prepareStatement(requete);
             res = statement.executeQuery();
 
@@ -35,14 +33,13 @@ public class CoachDaoImp implements CoachDao {
                 coachs.add(rowMapper.map(res));
             }
         } catch (SQLException e) {
-            throw new RechercherException(e);
+            throw new ListingException(e);
         } finally {
             try {
-                connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercherException(e);
+                throw new ListingException(e);
             }
         }
 
