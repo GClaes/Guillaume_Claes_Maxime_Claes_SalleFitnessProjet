@@ -13,12 +13,12 @@ public class ResponsableDaoImp implements ResponsableDao {
     public static RowMapper<Responsable> rowMapper = new RowMapper<Responsable>() {
         @Override
         public Responsable map(ResultSet res) throws SQLException {
-            return new Responsable(res.getInt("matricule"), res.getString("nom"), res.getString("prenom"));
+            return new Responsable(res.getInt("resp.matricule"), res.getString("resp.nom"), res.getString("resp.prenom"));
         }
     };
 
     public ArrayList<Responsable> listingResponsables() {
-        ArrayList<Responsable> responsables = null;
+        ArrayList<Responsable> responsables = new ArrayList<Responsable>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;

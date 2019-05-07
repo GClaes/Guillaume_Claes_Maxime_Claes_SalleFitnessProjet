@@ -13,13 +13,13 @@ public class CoachDaoImp implements CoachDao {
     public static RowMapper<Coach> rowMapper = new RowMapper<Coach>() {
         @Override
         public Coach map(ResultSet res) throws SQLException {
-            java.util.Date utilDate = res.getTimestamp("date_debut_coaching");
-            return new Coach(res.getInt("matricule"), res.getString("nom"), res.getString("prenom"), res.getString("recompenses"), res.getInt("salaire_horaire"), utilDate);  //getDouble pour le salaireHoraire
+            java.util.Date utilDate = res.getTimestamp("co.date_debut_coaching");
+            return new Coach(res.getInt("co.matricule"), res.getString("co.nom"), res.getString("co.prenom"), res.getString("co.recompenses"), res.getInt("co.salaire_horaire"), utilDate);  //getDouble pour le salaireHoraire
         }
     };
 
     public ArrayList<Coach> listingCoach() {
-        ArrayList<Coach> coachs = null;
+        ArrayList<Coach> coachs = new ArrayList<Coach>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;

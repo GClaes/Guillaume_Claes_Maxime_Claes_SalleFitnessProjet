@@ -21,19 +21,27 @@ public class CandidatDaoImp implements CandidatDao {
             Nutritionniste nutritionniste = NutritionnisteDaoImp.rowMapper.map(res);
             Adresse adresse = AdresseDaoImp.rowMapper.map(res);
 
-            int numInscription = res.getInt("num_inscrit");
-            String nom = res.getString("nom");
-            String prenom = res.getString("prenom");
-            java.util.Date dateNaissance = res.getTimestamp("date_naissance");
-            char sexe = res.getString("sexe").charAt(0);
-            String numeroGSM = res.getString("num_gsm");
-            java.util.Date dateTestValide = res.getTimestamp("date_test_valide");
-            java.util.Date dateInscription = res.getTimestamp("date_inscription");
-            int nbHeuresCoaching = res.getInt("nb_heures_coaching");
-            boolean estDebutant = res.getBoolean("debutant");
-            String maladiesChroniques = res.getString("maladies_chroniques");
+            int numInscription = res.getInt("candi.num_inscrit");
+            String nom = res.getString("candi.nom");
+            String prenom = res.getString("candi.prenom");
+            java.util.Date dateNaissance = res.getTimestamp("candi.date_naissance");
+            char sexe = res.getString("candi.sexe").charAt(0);
+            String numeroGSM = res.getString("candi.num_gsm");
+            java.util.Date dateTestValide = res.getTimestamp("candi.date_test_valide");
+            java.util.Date dateInscription = res.getTimestamp("candi.date_inscription");
+            int nbHeuresCoaching = res.getInt("candi.nb_heures_coaching");
+            boolean estDebutant = res.getBoolean("candi.debutant");
+            String maladiesChroniques = res.getString("candi.maladies_chroniques");
 
-            return new Candidat(nbHeuresCoaching, nom, prenom, dateNaissance, sexe, coach, responsable, nutritionniste, adresse);
+            Candidat candidat = new Candidat(nbHeuresCoaching, nom, prenom, dateNaissance, sexe, coach, responsable, nutritionniste, adresse);
+            candidat.setNumInscrit(numInscription);
+            candidat.setMaladiesChroniques(maladiesChroniques);
+            candidat.setNumeroGSM(numeroGSM);
+            candidat.setDateTestValide(dateTestValide);
+            candidat.setDateInscription(dateInscription);
+            candidat.setEstDebutant(estDebutant);
+
+            return candidat;
         }
     };
 
@@ -81,7 +89,7 @@ public class CandidatDaoImp implements CandidatDao {
     }
 
     public ArrayList<Candidat> listingCandidats() {
-        ArrayList<Candidat> candidats = null;
+        ArrayList<Candidat> candidats = new ArrayList<Candidat>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;
