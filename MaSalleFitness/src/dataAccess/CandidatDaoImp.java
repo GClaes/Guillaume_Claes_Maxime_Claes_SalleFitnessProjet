@@ -1,8 +1,8 @@
 package dataAccess;
 
-import dataAccess.exceptions.AjoutCandidatException;
-import dataAccess.exceptions.RechercheException;
-import dataAccess.exceptions.SuppressionCandidatException;
+import dataAccess.exceptions.AjouterCandidatException;
+import dataAccess.exceptions.RechercherException;
+import dataAccess.exceptions.SupprimerCandidatException;
 import model.*;
 
 import java.sql.Connection;
@@ -65,14 +65,14 @@ public class CandidatDaoImp implements CandidatDao {
             res.next();
             candidat = rowMapper.map(res);
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 
@@ -108,14 +108,14 @@ public class CandidatDaoImp implements CandidatDao {
             }
 
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 
@@ -129,7 +129,7 @@ public class CandidatDaoImp implements CandidatDao {
         String requete;
         java.sql.Date sqlDate;
         AdresseDao adresseDao = new AdresseDaoImp();
-        
+
         try {
             connection = SingletonConnection.getInstance();
             requete = "insert into candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
@@ -163,14 +163,14 @@ public class CandidatDaoImp implements CandidatDao {
 
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new AjoutCandidatException(e);
+            throw new AjouterCandidatException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new AjoutCandidatException(e);
+                throw new AjouterCandidatException(e);
             }
         }
     }
@@ -180,23 +180,41 @@ public class CandidatDaoImp implements CandidatDao {
         PreparedStatement statement = null;
         ResultSet res = null;
         String requete;
+        AdresseDao adresseDao = new AdresseDaoImp();
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "delete from candidat where num_inscrit = ?";
 
+            requete = "select adresse_code_hash from candidat where num_inscrit = ?";
+            statement = connection.prepareStatement(requete);
+            statement.setInt(1, numeroInscription);
+            res = statement.executeQuery();
+            res.next();
+            String code_hash = res.getString(1);
+
+            requete = "delete from candidat where num_inscrit = ?";
             statement = connection.prepareStatement(requete);
             statement.setInt(1, numeroInscription);
             statement.executeUpdate();
+
+            requete = "select count(*) from candidat where adresse_code_hash = ?";
+            statement = connection.prepareStatement(requete);
+            statement.setString(1, code_hash);
+            res = statement.executeQuery();
+            res.next();
+
+            if (res.getInt(1) == 0) {
+                adresseDao.supprimerAdresse(code_hash);
+            }
         } catch (SQLException e) {
-            throw new SuppressionCandidatException(e);
+            throw new SupprimerCandidatException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new SuppressionCandidatException(e);
+                throw new SupprimerCandidatException(e);
             }
         }
     }

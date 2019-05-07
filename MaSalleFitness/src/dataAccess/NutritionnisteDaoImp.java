@@ -1,6 +1,6 @@
 package dataAccess;
 
-import dataAccess.exceptions.RechercheException;
+import dataAccess.exceptions.RechercherException;
 import model.Nutritionniste;
 
 import java.sql.Connection;
@@ -34,14 +34,14 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
                 nutritionnistes.add(rowMapper.map(res));
             }
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 
