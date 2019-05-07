@@ -1,7 +1,6 @@
 package dataAccess;
 
-import dataAccess.exceptions.ConnectionException;
-import dataAccess.exceptions.RechercheException;
+import dataAccess.exceptions.RechercherException;
 import model.Coach;
 
 import java.sql.Connection;
@@ -19,7 +18,7 @@ public class CoachDaoImp implements CoachDao {
         }
     };
 
-    public ArrayList<Coach> listingCoach() throws Exception {
+    public ArrayList<Coach> listingCoach() {
         ArrayList<Coach> coachs = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -36,14 +35,14 @@ public class CoachDaoImp implements CoachDao {
                 coachs.add(rowMapper.map(res));
             }
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 

@@ -1,7 +1,8 @@
 package dataAccess;
 
-import dataAccess.exceptions.AjoutCandidatException;
-import dataAccess.exceptions.RechercheException;
+import dataAccess.exceptions.AjouterCandidatException;
+import dataAccess.exceptions.RechercherException;
+import dataAccess.exceptions.SupprimerCandidatException;
 import model.*;
 
 import java.sql.Connection;
@@ -35,7 +36,7 @@ public class CandidatDaoImp implements CandidatDao {
         }
     };
 
-    public Candidat rechercherCandidat(int numeroInscription) throws Exception {
+    public Candidat rechercherCandidat(int numeroInscription) {
         Candidat candidat = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -64,21 +65,21 @@ public class CandidatDaoImp implements CandidatDao {
             res.next();
             candidat = rowMapper.map(res);
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 
         return candidat;
     }
 
-    public ArrayList<Candidat> listingCandidats() throws Exception {
+    public ArrayList<Candidat> listingCandidats() {
         ArrayList<Candidat> candidats = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -107,30 +108,31 @@ public class CandidatDaoImp implements CandidatDao {
             }
 
         } catch (SQLException e) {
-            throw new RechercheException(e);
+            throw new RechercherException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercheException(e);
+                throw new RechercherException(e);
             }
         }
 
         return candidats;
     }
 
-    public void ajoutCandidat(Candidat candidat) throws Exception {
+    public void ajoutCandidat(Candidat candidat) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;
         String requete;
         java.sql.Date sqlDate;
+        AdresseDao adresseDao = new AdresseDaoImp();
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "INSERT INTO candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
+            requete = "insert into candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
                     "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
                     "responsable_matricule, nutritionnistre_num_reference, adresse_code_hash) " +
                     "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
@@ -155,42 +157,64 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setInt(13, candidat.getNutritionniste().getNumReference());
             statement.setString(14, candidat.getAdresse().getCode());
 
+            if (adresseDao.adresseExiste(candidat.getAdresse().getCode())) {
+                adresseDao.ajouterAdresse(candidat.getAdresse());
+            }
+
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new AjoutCandidatException(e);
+            throw new AjouterCandidatException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new AjoutCandidatException(e);
+                throw new AjouterCandidatException(e);
             }
         }
     }
 
-    public void supprimerCandidat(int numeroInscription) throws Exception {
+    public void supprimerCandidat(int numeroInscription) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;
         String requete;
+        AdresseDao adresseDao = new AdresseDaoImp();
 
         try {
             connection = SingletonConnection.getInstance();
-            requete = "delete from candidat where num_inscrit = ?";
 
+            requete = "select adresse_code_hash from candidat where num_inscrit = ?";
+            statement = connection.prepareStatement(requete);
+            statement.setInt(1, numeroInscription);
+            res = statement.executeQuery();
+            res.next();
+            String code_hash = res.getString(1);
+
+            requete = "delete from candidat where num_inscrit = ?";
             statement = connection.prepareStatement(requete);
             statement.setInt(1, numeroInscription);
             statement.executeUpdate();
+
+            requete = "select count(*) from candidat where adresse_code_hash = ?";
+            statement = connection.prepareStatement(requete);
+            statement.setString(1, code_hash);
+            res = statement.executeQuery();
+            res.next();
+
+            if (res.getInt(1) == 0) {
+                adresseDao.supprimerAdresse(code_hash);
+            }
         } catch (SQLException e) {
-            throw new AjoutCandidatException(e);
+            throw new SupprimerCandidatException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new AjoutCandidatException(e);
+                throw new SupprimerCandidatException(e);
             }
         }
     }

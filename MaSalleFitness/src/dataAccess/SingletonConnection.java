@@ -7,7 +7,7 @@ import java.sql.*;
 public class SingletonConnection {
     private static Connection uniqueConnection;
 
-    public static Connection getInstance() throws ConnectionException {
+    public static Connection getInstance() {
         if (uniqueConnection == null) {
             try {
                 uniqueConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sallefitness?useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
