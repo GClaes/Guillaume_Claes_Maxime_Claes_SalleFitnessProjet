@@ -18,4 +18,20 @@ public class Nutritionniste extends Personne {
     public Integer getNumReference() {
         return numReference;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getAvis() {
+        return avis;
+    }
+
+    public ArrayList<Candidat> getCandidats() {
+        return candidats;
+    }
 }

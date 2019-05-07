@@ -16,4 +16,16 @@ public class Responsable extends Personne {
     public Integer getNumeroTravailleur() {
         return numeroTravailleur;
     }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public ArrayList<Candidat> getCandidats() {
+        return candidats;
+    }
 }
