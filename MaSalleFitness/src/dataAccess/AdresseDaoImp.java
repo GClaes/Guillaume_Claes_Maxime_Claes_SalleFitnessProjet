@@ -15,12 +15,12 @@ public class AdresseDaoImp implements AdresseDao {
     public static RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
         @Override
         public Adresse map(ResultSet res) throws SQLException {
-            Adresse adresse = new Adresse(res.getString("localite"), res.getString("code_postal"), res.getString("rue"), res.getString("numero"));
+            Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"), res.getString("adr.rue"), res.getString("adr.numero"));
 
             try {
                 Field field = Adresse.class.getDeclaredField("code");
                 field.setAccessible(true);
-                field.set(adresse, res.getString("code_hash"));
+                field.set(adresse, res.getString("adr.code_hash"));
             } catch (NoSuchFieldException e) {
                 throw new RuntimeException();
             } catch (IllegalAccessException e) {

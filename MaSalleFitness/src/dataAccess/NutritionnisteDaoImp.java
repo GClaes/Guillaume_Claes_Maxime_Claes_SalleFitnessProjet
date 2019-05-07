@@ -13,12 +13,12 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
     public static RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
         @Override
         public Nutritionniste map(ResultSet res) throws SQLException {
-            return new Nutritionniste(res.getInt("num_reference"), res.getString("nom"), res.getString("prenom"), res.getString("avis"));
+            return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"), res.getString("nutri.prenom"), res.getString("nutri.avis"));
         }
     };
 
     public ArrayList<Nutritionniste> listingNutritionnistes() {
-        ArrayList<Nutritionniste> nutritionnistes = null;
+        ArrayList<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;

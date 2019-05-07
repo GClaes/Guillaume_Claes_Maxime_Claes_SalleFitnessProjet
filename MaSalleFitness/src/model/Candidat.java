@@ -23,11 +23,9 @@ public class Candidat extends Personne {
     private Nutritionniste nutritionniste;
     private Adresse adresse;
     private final Integer AGE_MINIMUM = 16;
-    private static Integer nbInscriptions = 0;
 
     public Candidat(Integer nbHeuresCoaching, String nom, String prenom, Date dateNaissance, char sexe, Coach coach, Responsable responsable, Nutritionniste nutritionniste, Adresse adresse) {
         super(nom, prenom);
-        setNumInscrit();
         setNbHeuresCoaching(nbHeuresCoaching);
         setDateNaissance(dateNaissance);
         setSexe(sexe);
@@ -38,9 +36,8 @@ public class Candidat extends Personne {
         this.adresse = adresse;
     }
 
-    public void setNumInscrit() {
-        this.numInscription = nbInscriptions;
-        nbInscriptions++;
+    public void setNumInscrit(int numero) {
+        this.numInscription = numero;
     }
 
     public void setNbHeuresCoaching(Integer nbHeuresCoaching) {
@@ -58,7 +55,7 @@ public class Candidat extends Personne {
     }
 
     public void setSexe(char sexe) {
-        if (sexe == '\u0000' || sexe != 'H' && sexe != 'F') {
+        if (sexe == '\u0000' || sexe != 'h' && sexe != 'f' && sexe != 'H' && sexe != 'F') {     //Minu maj
             throw new SexeException(sexe);
         }
         this.sexe = sexe;
@@ -116,10 +113,14 @@ public class Candidat extends Personne {
     public void setDateTestValide(Date dateTestValide) {
         Date today = new Date();
 
-        if (dateTestValide == null || today.compareTo(dateTestValide) < 0) {
+        if (dateTestValide != null && today.compareTo(dateTestValide) < 0) {      //Pas de validation de null car la db l'utilise et peut etre null dans la db
             throw new DateTestValideException(dateTestValide);
         }
         this.dateTestValide = dateTestValide;
+    }
+
+    public void setDateInscription(Date dateInscription) {
+        this.dateInscription = dateInscription;
     }
 
     public void setEstDebutant(boolean estDebutant) {
