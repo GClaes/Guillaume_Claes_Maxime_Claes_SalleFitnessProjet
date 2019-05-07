@@ -1,6 +1,5 @@
 package vue.panel.inscription;
 
-import utilitaires.DateUtilitaire;
 import vue.validateur.*;
 import vue.element.ElementFormulaireJComboBox;
 import vue.element.ElementFormulaireJSpinnerDate;
@@ -42,7 +41,7 @@ public class PanelFormulaire extends PanelFormulaireBase {
         return (String)getComposantes().get("numTel").getValue();
     }
     public boolean getExp(){
-        return (int)getComposantes().get("experience").getValue()==1;
+        return (int)getComposantes().get("experience").getValue()==0;
     }
 
 }
