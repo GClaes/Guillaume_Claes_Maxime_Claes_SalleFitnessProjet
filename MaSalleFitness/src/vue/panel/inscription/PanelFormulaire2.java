@@ -1,14 +1,12 @@
 package vue.panel.inscription;
 
 import model.Adresse;
-import vue.element.ElementFormulaire;
 import vue.element.ElementFormulaireJTextField;
 import vue.validateur.AndValidation;
 import vue.validateur.PasVideValidation;
 import vue.validateur.PatternValidation;
 
 import java.awt.*;
-import java.util.Map;
 
 public class PanelFormulaire2 extends PanelFormulaireBase {
     public PanelFormulaire2() {

@@ -7,7 +7,6 @@ import vue.validateur.*;
 
 import java.awt.*;
 import java.util.Date;
-import java.util.Map;
 
 
 public class PanelModificationFormulaire extends PanelFormulaireBase {
@@ -23,7 +22,7 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
         String[] valuesSexe = {"Homme","Femme"};
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe,
                 new PasVideValidation(),
-                candidat.getSexe()==0?'H':'F'));
+                candidat.getSexe()=='h'?0:1));
         setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance",
                 new PasVideValidation(),
                 candidat.getDateNaissance()));
@@ -62,7 +61,7 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
         return (String)getComposantes().get("prenom").getValue();
     }
     public char getSexe(){
-        return (int)getComposantes().get("sexe").getValue()==0?'H':'F';
+        return (int)getComposantes().get("sexe").getValue()==0?'h':'f';
     }
     public Date getDateNaissance(){
         return (Date)getComposantes().get("dateNaissance").getValue();
@@ -71,7 +70,7 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
         return (String)getComposantes().get("numTel").getValue();
     }
     public boolean getExp(){
-        return (int)getComposantes().get("experience").getValue()==1;
+        return (int)getComposantes().get("experience").getValue()==0;
     }
     public String getLocalite() {
         return (String)getComposantes().get("localite").getValue();
@@ -92,12 +91,7 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
     }
 
     public Adresse getAdresse(){
-        try {
-            return new Adresse(getLocalite(), getCodePostal(), getRue(), getNumero());
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return null;
+        return new Adresse(getLocalite(), getCodePostal(), getRue(), getNumero());
     }
     public int getNbHeures(){
         return (int)getComposantes().get("nbHeures").getValue();

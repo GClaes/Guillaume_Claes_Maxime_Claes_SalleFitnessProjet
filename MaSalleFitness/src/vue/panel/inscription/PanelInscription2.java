@@ -1,7 +1,5 @@
 package vue.panel.inscription;
 
-import model.Adresse;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

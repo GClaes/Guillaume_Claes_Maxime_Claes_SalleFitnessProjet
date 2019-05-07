@@ -21,7 +21,7 @@ public class PanelInscription extends PanelInscriptionBase<PanelFormulaire> {
                 PersonalData data = new PersonalData(formulaire.getNom(),
                         formulaire.getPrenom(),
                         formulaire.getDateNaissance(),
-                        formulaire.getSexe(),
+                        formulaire.getSexe()==0?'h':'f',
                         formulaire.getExp(),
                         formulaire.getNumTel());
 
