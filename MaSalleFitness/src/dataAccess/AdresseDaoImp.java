@@ -65,7 +65,6 @@ public class AdresseDaoImp implements AdresseDao {
     public void ajouterAdresse(Adresse adresse) {
         Connection connection = null;
         PreparedStatement statement = null;
-        ResultSet res = null;
         String requete;
 
         try {
@@ -87,7 +86,6 @@ public class AdresseDaoImp implements AdresseDao {
         } finally {
             try {
                 statement.close();
-                res.close();
             } catch (SQLException e) {
                 throw new AjouterAdresseException(e);
             }
@@ -97,7 +95,6 @@ public class AdresseDaoImp implements AdresseDao {
     public void supprimerAdresse(String id) {
         Connection connection = null;
         PreparedStatement statement = null;
-        ResultSet res = null;
         String requete;
 
         try {
@@ -111,7 +108,6 @@ public class AdresseDaoImp implements AdresseDao {
         } finally {
             try {
                 statement.close();
-                res.close();
             } catch (SQLException e) {
                 throw new SupprimerAdresseException(e);
             }

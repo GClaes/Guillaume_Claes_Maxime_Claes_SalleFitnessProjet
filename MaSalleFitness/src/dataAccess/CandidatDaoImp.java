@@ -132,16 +132,16 @@ public class CandidatDaoImp implements CandidatDao {
     public void ajoutCandidat(Candidat candidat) {
         Connection connection = null;
         PreparedStatement statement = null;
-        ResultSet res = null;
         String requete;
         java.sql.Date sqlDate;
         AdresseDao adresseDao = new AdresseDaoImp();
 
         try {
+
             connection = SingletonConnection.getInstance();
             requete = "insert into candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
                     "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
-                    "responsable_matricule, nutritionnistre_num_reference, adresse_code_hash) " +
+                    "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
                     "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
 
             statement = connection.prepareStatement(requete);
@@ -152,8 +152,12 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setDate(3, sqlDate);
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());
-            sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
-            statement.setDate(6, sqlDate);
+
+            if (candidat.getDateTestValide() != null) {
+                sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
+                statement.setDate(6, sqlDate);
+            }
+
             sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
             statement.setDate(7, sqlDate);
             statement.setInt(8, candidat.getNbHeuresCoaching());
@@ -164,7 +168,7 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setInt(13, candidat.getNutritionniste().getNumReference());
             statement.setString(14, candidat.getAdresse().getCode());
 
-            if (adresseDao.adresseExiste(candidat.getAdresse().getCode())) {
+            if (!adresseDao.adresseExiste(candidat.getAdresse().getCode())) {
                 adresseDao.ajouterAdresse(candidat.getAdresse());
             }
 
@@ -174,7 +178,6 @@ public class CandidatDaoImp implements CandidatDao {
         } finally {
             try {
                 statement.close();
-                res.close();
             } catch (SQLException e) {
                 throw new AjouterCandidatException(e);
             }
