@@ -78,4 +78,24 @@ public class Adresse {
     public String getCode() {
         return code;
     }
+
+    public String getLocalite() {
+        return localite;
+    }
+
+    public String getCodePostal() {
+        return codePostal;
+    }
+
+    public String getRue() {
+        return rue;
+    }
+
+    public String getNumero() {
+        return numero;
+    }
+
+    public ArrayList<Candidat> getCandidats() {
+        return candidats;
+    }
 }

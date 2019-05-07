@@ -23,4 +23,28 @@ public class Coach extends Personne {
     public Integer getMatricule() {
         return matricule;
     }
+
+    public Integer getSalaireHoraire() {
+        return salaireHoraire;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getRecompenses() {
+        return recompenses;
+    }
+
+    public Date getDateDebutCoaching() {
+        return dateDebutCoaching;
+    }
+
+    public ArrayList<Candidat> getCandidats() {
+        return candidats;
+    }
 }
