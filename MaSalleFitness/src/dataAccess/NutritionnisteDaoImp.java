@@ -17,7 +17,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
         }
     };
 
-    public ArrayList<Nutritionniste> listingNutritionniste() {
+    public ArrayList<Nutritionniste> listingNutritionnistes() {
         ArrayList<Nutritionniste> nutritionnistes = null;
         Connection connection = null;
         PreparedStatement statement = null;

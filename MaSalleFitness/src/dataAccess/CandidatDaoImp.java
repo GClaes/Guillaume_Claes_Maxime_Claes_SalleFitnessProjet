@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.exceptions.AjouterCandidatException;
+import dataAccess.exceptions.ListingException;
 import dataAccess.exceptions.RechercherException;
 import dataAccess.exceptions.SupprimerCandidatException;
 import model.*;
@@ -108,14 +109,14 @@ public class CandidatDaoImp implements CandidatDao {
             }
 
         } catch (SQLException e) {
-            throw new RechercherException(e);
+            throw new ListingException(e);
         } finally {
             try {
                 connection.close();
                 statement.close();
                 res.close();
             } catch (SQLException e) {
-                throw new RechercherException(e);
+                throw new ListingException(e);
             }
         }
 

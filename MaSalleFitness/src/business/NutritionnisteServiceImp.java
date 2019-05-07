@@ -13,8 +13,8 @@ public class NutritionnisteServiceImp implements NutritionnisteService {
         setNutritionnisteDao(new NutritionnisteDaoImp());
     }
 
-    public ArrayList<Nutritionniste> listingNutritionniste() {
-        return nutritionnisteDao.listingNutritionniste();
+    public ArrayList<Nutritionniste> listingNutritionnistes() {
+        return nutritionnisteDao.listingNutritionnistes();
     }
 
     public void setNutritionnisteDao(NutritionnisteDao nutritionnisteDao) {
