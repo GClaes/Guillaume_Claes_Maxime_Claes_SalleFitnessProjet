@@ -1,6 +1,5 @@
 package dataAccess;
 
-import dataAccess.exceptions.ConnectionException;
 import dataAccess.exceptions.RechercheException;
 import model.Coach;
 
@@ -19,7 +18,7 @@ public class CoachDaoImp implements CoachDao {
         }
     };
 
-    public ArrayList<Coach> listingCoach() throws Exception {
+    public ArrayList<Coach> listingCoach() {
         ArrayList<Coach> coachs = null;
         Connection connection = null;
         PreparedStatement statement = null;

@@ -35,7 +35,7 @@ public class CandidatDaoImp implements CandidatDao {
         }
     };
 
-    public Candidat rechercherCandidat(int numeroInscription) throws Exception {
+    public Candidat rechercherCandidat(int numeroInscription) {
         Candidat candidat = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -78,7 +78,7 @@ public class CandidatDaoImp implements CandidatDao {
         return candidat;
     }
 
-    public ArrayList<Candidat> listingCandidats() throws Exception {
+    public ArrayList<Candidat> listingCandidats() {
         ArrayList<Candidat> candidats = null;
         Connection connection = null;
         PreparedStatement statement = null;
@@ -121,7 +121,7 @@ public class CandidatDaoImp implements CandidatDao {
         return candidats;
     }
 
-    public void ajoutCandidat(Candidat candidat) throws Exception {
+    public void ajoutCandidat(Candidat candidat) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;
@@ -169,7 +169,7 @@ public class CandidatDaoImp implements CandidatDao {
         }
     }
 
-    public void supprimerCandidat(int numeroInscription) throws Exception {
+    public void supprimerCandidat(int numeroInscription) {
         Connection connection = null;
         PreparedStatement statement = null;
         ResultSet res = null;

@@ -17,7 +17,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
         }
     };
 
-    public ArrayList<Nutritionniste> listingNutritionniste() throws Exception {
+    public ArrayList<Nutritionniste> listingNutritionniste() {
         ArrayList<Nutritionniste> nutritionnistes = null;
         Connection connection = null;
         PreparedStatement statement = null;
