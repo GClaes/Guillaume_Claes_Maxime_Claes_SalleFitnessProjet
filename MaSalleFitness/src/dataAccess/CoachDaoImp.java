@@ -32,6 +32,8 @@ public class CoachDaoImp implements CoachDao {
             while(res.next()) {
                 coachs.add(rowMapper.map(res));
             }
+
+            return coachs;
         } catch (SQLException e) {
             throw new ListingException(e);
         } finally {
@@ -42,8 +44,6 @@ public class CoachDaoImp implements CoachDao {
                 throw new ListingException(e);
             }
         }
-
-        return coachs;
     }
 
     public int nbHeuresCoachingUtilisees(int matriculeCoach) {
@@ -51,7 +51,7 @@ public class CoachDaoImp implements CoachDao {
         PreparedStatement statement = null;
         ResultSet res = null;
         String requete;
-        int nbHeuresCoaching = 0;
+        int nbHeuresCoaching = -1;
 
         if (coachExiste(matriculeCoach)) {
             try {
@@ -96,6 +96,8 @@ public class CoachDaoImp implements CoachDao {
 
             res.next();
             existe = res.getInt(1) == 1;
+
+            return existe;
         } catch (SQLException e) {
             throw new ListingException(e);
         } finally {
@@ -106,7 +108,35 @@ public class CoachDaoImp implements CoachDao {
                 throw new ListingException(e);
             }
         }
+    }
 
-        return existe;
+    public Coach obtentionCoach(int matriculeCoach) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet res = null;
+        String requete;
+        Coach coach;
+
+        try {
+            connection = SingletonConnection.getInstance();
+            requete = "select * from coach where matricule = ?";
+            statement = connection.prepareStatement(requete);
+            statement.setInt(1, matriculeCoach);
+            res = statement.executeQuery();
+
+            res.next();
+            coach = rowMapper.map(res);
+
+            return coach;
+        } catch (SQLException e) {
+            throw new ListingException(e);
+        } finally {
+            try {
+                statement.close();
+                res.close();
+            } catch (SQLException e) {
+                throw new ListingException(e);
+            }
+        }
     }
 }

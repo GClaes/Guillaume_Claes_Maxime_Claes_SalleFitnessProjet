@@ -25,6 +25,13 @@ public class CoachServiceImp implements CoachService {
         return coachDao.coachExiste(matriculeCoach);
     }
 
+    public double calculSalaireHebdomadaire(int matriculeCoach) {
+        int nbHeuresCoachingHebdo = nbHeuresCoachingUtilisees(matriculeCoach);
+        Coach coach = coachDao.obtentionCoach(matriculeCoach);
+        
+        return coach.getSalaireHoraire() * nbHeuresCoachingHebdo;
+    }
+
     public void setCoachDao(CoachDao coachDao) {
         this.coachDao = coachDao;
     }
