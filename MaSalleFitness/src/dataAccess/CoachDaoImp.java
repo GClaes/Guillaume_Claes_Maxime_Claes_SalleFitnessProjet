@@ -52,8 +52,8 @@ public class CoachDaoImp implements CoachDao {
      */
     public int nbHeuresCoaching(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co\n" +
-                "where candi.coach_matricule = co.matricule\n" +
+        String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co " +
+                "where candi.coach_matricule = co.matricule " +
                 "and co.matricule = ?";
         int nbHeuresCoaching = -1;
 
@@ -119,26 +119,30 @@ public class CoachDaoImp implements CoachDao {
      */
     public ArrayList<Coach> coachsParCandidatsParResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from responsable resp, candidat candi, coach co\n" +
-                "where candi.responsable_matricule = resp.matricule\n" +
-                "and candi.coach_matricule = co.matricule\n" +
+        String requete = "select * " +
+                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
+                "where candi.coach_matricule = co.matricule " +
+                "and candi.responsable_matricule = resp.matricule " +
+                "and candi.nutritionniste_num_reference = nutri.num_reference " +
+                "and candi.adresse_code_hash = adr.code_hash " +
                 "and resp.matricule = ?";
+
         ArrayList<Coach> coachs = new ArrayList<Coach>();
-        Coach coach;
-        Candidat candidat;
+        Coach coachAjout;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setInt(1, responsableMatricule);
 
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
-                    coach = rowMapper.map(rs);
+                    coachAjout = rowMapper.map(rs);
 
-                    if (!coachs.contains(coach)) {
-                        coach.ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
-                        coachs.add(coach);
+                    int indice = contientCoach(coachs, coachAjout);
+                    if (indice == -1) {
+                        coachAjout.ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
+                        coachs.add(coachAjout);
                     } else {
-                        coachs.get(coachs.indexOf(coach)).ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
+                        coachs.get(indice).ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
                     }
                 }
                 return coachs;
@@ -146,6 +150,21 @@ public class CoachDaoImp implements CoachDao {
         } catch (SQLException e) {
             throw new CoachsParCandidatsParResponsableException(e);
         }
+    }
+
+    /**
+     *
+     * @param coachs
+     * @param coachRech
+     * @return l'index du coach, ou -1 si la liste ne contient pas l'élément
+     */
+    private int contientCoach(ArrayList<Coach> coachs, Coach coachRech) {
+        for (int i = 0 ; i < coachs.size() ; i++) {
+            if (coachs.get(i).getMatricule() == coachRech.getMatricule()) {
+                return i;
+            }
+        }
+        return -1;
     }
 
 }

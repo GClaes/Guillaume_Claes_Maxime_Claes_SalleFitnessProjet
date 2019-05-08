@@ -56,13 +56,7 @@ public class CandidatDaoImp implements CandidatDao {
 
     public Candidat rechercherCandidat(int numeroInscription) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
-                "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
-                "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
-                "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
-                "resp.matricule, resp.nom, resp.prenom, " +
-                "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
-                "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
+        String requete = "select *" +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
                 "where candi.coach_matricule = co.matricule " +
                 "and candi.responsable_matricule = resp.matricule " +
@@ -86,18 +80,12 @@ public class CandidatDaoImp implements CandidatDao {
 
     public ArrayList<Candidat> listingCandidats() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
-                "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
-                "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
-                "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
-                "resp.matricule, resp.nom, resp.prenom, " +
-                "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
-                "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
+        String requete = "select *" +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
                 "where candi.coach_matricule = co.matricule " +
                 "and candi.responsable_matricule = resp.matricule " +
                 "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                "and candi.adresse_code_hash = adr.code_hash ";;
+                "and candi.adresse_code_hash = adr.code_hash";
         ArrayList<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
