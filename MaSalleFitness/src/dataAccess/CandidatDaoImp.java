@@ -62,8 +62,10 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setInt(1, numeroInscription);
 
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
-                return rowMapper.map(rs);
+                if (rs.next()) {
+                    return rowMapper.map(rs);
+                }
+                return null;
             }
         } catch (SQLException e) {
             throw new RechercherCandidatException(e);
