@@ -18,11 +18,18 @@ public class CoachServiceImp implements CoachService {
     }
 
     public int nbHeuresCoachingUtilisees(int matriculeCoach) {
-        return coachDao.nbHeuresCoachingUtilisees(matriculeCoach);
+        return coachDao.nbHeuresCoaching(matriculeCoach);
     }
 
     public boolean coachExiste(int matriculeCoach) {
         return coachDao.coachExiste(matriculeCoach);
+    }
+
+    public double calculSalaireHebdomadaire(int matriculeCoach) {
+        int nbHeuresCoachingHebdo = nbHeuresCoachingUtilisees(matriculeCoach);
+        Coach coach = coachDao.obtentionCoach(matriculeCoach);
+
+        return coach.getSalaireHoraire() * nbHeuresCoachingHebdo;
     }
 
     public void setCoachDao(CoachDao coachDao) {

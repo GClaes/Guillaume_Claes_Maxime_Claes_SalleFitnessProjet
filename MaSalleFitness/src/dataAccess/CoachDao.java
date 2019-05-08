@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public interface CoachDao {
     ArrayList<Coach> listingCoach();
-    int nbHeuresCoachingUtilisees(int matriculeCoach);
+    int nbHeuresCoaching(int matriculeCoach);
     boolean coachExiste(int matriculeCoach);
+    Coach obtentionCoach(int matriculeCoach);
 }

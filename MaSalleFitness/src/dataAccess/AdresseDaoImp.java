@@ -1,8 +1,6 @@
 package dataAccess;
 
-import dataAccess.exceptions.AjouterAdresseException;
-import dataAccess.exceptions.RechercherAdresseException;
-import dataAccess.exceptions.SupprimerAdresseException;
+import dataAccess.exceptions.*;
 import model.Adresse;
 
 import java.lang.reflect.Field;
@@ -31,87 +29,64 @@ public class AdresseDaoImp implements AdresseDao {
         }
     };
 
-    public boolean adresseExiste(String id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
-        boolean existe;
+    public boolean adresseExiste(String codeHash) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select count(*) from adresse where code_hash = ?";
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "select count(*) from adresse where code_hash = ?";
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setString(1, codeHash);
 
-            statement = connection.prepareStatement(requete);
-            statement.setString(1, id);
-            res = statement.executeQuery();
-
-            res.next();
-            existe = res.getInt(1) >= 1;
-        } catch (SQLException e) {
-            throw new RechercherAdresseException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
-            } catch (SQLException e) {
-                throw new RechercherAdresseException(e);
+            try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
+                return rs.getInt(1) >= 1;
             }
+        } catch (SQLException e) {
+            throw new AdresseExisteException(e);
         }
-
-        return existe;
     }
 
     public void ajouterAdresse(Adresse adresse) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        String requete;
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "insert into adresse (code_hash, localite, code_postal, rue, numero) " +
+                "values (?, ?, ?, ?, ?)";
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "insert into adresse (code_hash, localite, code_postal, rue, numero) " +
-                    "values (?, ?, ?, ?, ?)";
-
-            statement = connection.prepareStatement(requete);
-
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, adresse.getCode());
             statement.setString(2, adresse.getLocalite());
             statement.setString(3, adresse.getCodePostal());
             statement.setString(4, adresse.getRue());
             statement.setString(5, adresse.getNumero());
-
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new AjouterAdresseException(e);
-        } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                throw new AjouterAdresseException(e);
-            }
         }
     }
 
-    public void supprimerAdresse(String id) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        String requete;
+    public boolean supprimerAdresse(String codeHash) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "delete from adresse where code_hash = ?";
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "delete from adresse where code_hash = ?";
-            statement = connection.prepareStatement(requete);
-            statement.setString(1, id);
-            statement.executeUpdate();
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setString(1, codeHash);
+            return statement.executeUpdate() == 1;
         } catch (SQLException e) {
             throw new SupprimerAdresseException(e);
-        } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                throw new SupprimerAdresseException(e);
-            }
         }
     }
 
+    public boolean adresseUtilisee(String codeHash) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select count(*) from candidat where adresse_code_hash = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setString(1, codeHash);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
+                return rs.getInt(1) >= 1;
+            }
+        } catch (SQLException e) {
+            throw new AdresseUtiliseeException(e);
+        }
+    }
 }

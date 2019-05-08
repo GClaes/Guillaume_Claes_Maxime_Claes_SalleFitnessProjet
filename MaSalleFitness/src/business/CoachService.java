@@ -8,4 +8,5 @@ public interface CoachService {
     ArrayList<Coach> listingCoachs();
     int nbHeuresCoachingUtilisees(int matriculeCoach);
     boolean coachExiste(int matriculeCoach);
+    double calculSalaireHebdomadaire(int matriculeCoach);
 }

@@ -15,32 +15,19 @@ public class ResponsableDaoImp implements ResponsableDao {
     };
 
     public ArrayList<Responsable> listingResponsables() {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select matricule, nom, prenom from responsable resp";
         ArrayList<Responsable> responsables = new ArrayList<Responsable>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "select matricule, nom, prenom from responsable resp";
-            statement = connection.prepareStatement(requete);
-            res = statement.executeQuery();
-
-            while(res.next()) {
-                responsables.add(rowMapper.map(res));
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            try (ResultSet rs = statement.executeQuery()) {
+                while(rs.next()) {
+                    responsables.add(rowMapper.map(rs));
+                }
+                return responsables;
             }
         } catch (SQLException e) {
             throw new ListingException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
-            } catch (SQLException e) {
-                throw new ListingException(e);
-            }
         }
-
-        return responsables;
     }
 }

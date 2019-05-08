@@ -22,7 +22,7 @@ public class CandidatServiceImp implements CandidatService {
     }
 
     public void ajoutCandidat(Candidat candidat) {
-        candidatDao.ajoutCandidat(candidat);
+        candidatDao.ajouterCandidat(candidat);
     }
 
     public void supprimerCandidat(int numeroInscription) {

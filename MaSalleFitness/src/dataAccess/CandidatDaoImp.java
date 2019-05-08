@@ -1,9 +1,6 @@
 package dataAccess;
 
-import dataAccess.exceptions.AjouterCandidatException;
-import dataAccess.exceptions.ListingException;
-import dataAccess.exceptions.RechercherException;
-import dataAccess.exceptions.SupprimerCandidatException;
+import dataAccess.exceptions.*;
 import model.*;
 
 import java.sql.Connection;
@@ -13,7 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CandidatDaoImp implements CandidatDao {
-     private RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
+    private RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
             Coach coach = CoachDaoImp.rowMapper.map(res);
@@ -46,106 +43,75 @@ public class CandidatDaoImp implements CandidatDao {
     };
 
     public Candidat rechercherCandidat(int numeroInscription) {
-        Candidat candidat = null;
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
+                "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
+                "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
+                "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
+                "resp.matricule, resp.nom, resp.prenom, " +
+                "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
+                "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
+                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
+                "where candi.coach_matricule = co.matricule " +
+                "and candi.responsable_matricule = resp.matricule " +
+                "and candi.nutritionniste_num_reference = nutri.num_reference " +
+                "and candi.adresse_code_hash = adr.code_hash " +
+                "and candi.num_inscrit = ?";
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
-                    "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
-                    "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
-                    "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
-                    "resp.matricule, resp.nom, resp.prenom, " +
-                    "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
-                    "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
-                    "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
-                    "where candi.coach_matricule = co.matricule " +
-                    "and candi.responsable_matricule = resp.matricule " +
-                    "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                    "and candi.adresse_code_hash = adr.code_hash " +
-                    "and candi.num_inscrit = ?";
-            statement = connection.prepareStatement(requete);
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
             statement.setInt(1, numeroInscription);
-            res = statement.executeQuery();
 
-            res.next();
-            candidat = rowMapper.map(res);
-        } catch (SQLException e) {
-            throw new RechercherException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
-            } catch (SQLException e) {
-                throw new RechercherException(e);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rowMapper.map(rs);
+                }
+                return null;
             }
+        } catch (SQLException e) {
+            throw new RechercherCandidatException(e);
         }
-
-        return candidat;
     }
 
     public ArrayList<Candidat> listingCandidats() {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
+                "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
+                "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
+                "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
+                "resp.matricule, resp.nom, resp.prenom, " +
+                "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
+                "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
+                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
+                "where candi.coach_matricule = co.matricule " +
+                "and candi.responsable_matricule = resp.matricule " +
+                "and candi.nutritionniste_num_reference = nutri.num_reference " +
+                "and candi.adresse_code_hash = adr.code_hash ";;
         ArrayList<Candidat> candidats = new ArrayList<Candidat>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "select candi.num_inscrit, candi.nom, candi.prenom, candi.date_naissance, " +
-                    "candi.sexe, candi.num_gsm, candi.date_test_valide, candi.date_inscription, " +
-                    "candi.nb_heures_coaching, candi.debutant, candi.maladies_chroniques, " +
-                    "co.matricule, co.nom, co.prenom, co.date_debut_coaching, co.salaire_horaire, co.recompenses, " +
-                    "resp.matricule, resp.nom, resp.prenom, " +
-                    "nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis, " +
-                    "adr.code_hash, adr.localite, adr.code_postal, adr.rue, adr.numero " +
-                    "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
-                    "where candi.coach_matricule = co.matricule " +
-                    "and candi.responsable_matricule = resp.matricule " +
-                    "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                    "and candi.adresse_code_hash = adr.code_hash ";
-            statement = connection.prepareStatement(requete);
-            res = statement.executeQuery();
-
-            while(res.next()) {
-                candidats.add(rowMapper.map(res));
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    candidats.add(rowMapper.map(rs));
+                }
+                return candidats;
             }
+
 
         } catch (SQLException e) {
             throw new ListingException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
-            } catch (SQLException e) {
-                throw new ListingException(e);
-            }
         }
-
-        return candidats;
     }
 
-    public void ajoutCandidat(Candidat candidat) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        String requete;
-        java.sql.Date sqlDate;
+    public void ajouterCandidat(Candidat candidat) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "insert into candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
+                "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
+                "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
+                "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
         AdresseDao adresseDao = new AdresseDaoImp();
+        java.sql.Date sqlDate;
 
-        try {
-
-            connection = SingletonConnection.getInstance();
-            requete = "insert into candidat (nom, prenom, date_naissance, sexe, num_gsm, date_test_valide, " +
-                    "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
-                    "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
-                    "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
-
-            statement = connection.prepareStatement(requete);
-
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
             sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
@@ -175,55 +141,27 @@ public class CandidatDaoImp implements CandidatDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new AjouterCandidatException(e);
-        } finally {
-            try {
-                statement.close();
-            } catch (SQLException e) {
-                throw new AjouterCandidatException(e);
-            }
         }
     }
 
     public void supprimerCandidat(int numeroInscription) {
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "delete from candidat where num_inscrit = ?";
         AdresseDao adresseDao = new AdresseDaoImp();
 
-        try {
-            connection = SingletonConnection.getInstance();
+        Candidat candidat = rechercherCandidat(numeroInscription);
+        if (candidat != null) {
+            try (PreparedStatement statement = connection.prepareStatement(requete)) {
+                statement.setInt(1, numeroInscription);
+                statement.executeUpdate();
 
-            requete = "select adresse_code_hash from candidat where num_inscrit = ?";
-            statement = connection.prepareStatement(requete);
-            statement.setInt(1, numeroInscription);
-            res = statement.executeQuery();
-            res.next();
-            String code_hash = res.getString(1);
-
-            requete = "delete from candidat where num_inscrit = ?";
-            statement = connection.prepareStatement(requete);
-            statement.setInt(1, numeroInscription);
-            statement.executeUpdate();
-
-            requete = "select count(*) from candidat where adresse_code_hash = ?";
-            statement = connection.prepareStatement(requete);
-            statement.setString(1, code_hash);
-            res = statement.executeQuery();
-            res.next();
-
-            if (res.getInt(1) == 0) {
-                adresseDao.supprimerAdresse(code_hash);
-            }
-        } catch (SQLException e) {
-            throw new SupprimerCandidatException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
+                if (!adresseDao.adresseUtilisee(candidat.getAdresse().getCode())) {
+                    adresseDao.supprimerAdresse(candidat.getAdresse().getCode());
+                }
             } catch (SQLException e) {
                 throw new SupprimerCandidatException(e);
             }
         }
     }
+
 }
