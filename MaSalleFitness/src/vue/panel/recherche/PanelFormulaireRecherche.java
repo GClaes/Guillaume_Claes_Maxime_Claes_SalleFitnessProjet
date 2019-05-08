@@ -9,7 +9,6 @@ import java.awt.*;
 
 public class PanelFormulaireRecherche extends PanelFormulaireBase {
 
-
     public PanelFormulaireRecherche(){
         setLayout(new GridLayout(1,2,25,25));
 
