@@ -53,7 +53,7 @@ public class Candidat extends Personne {
     }
 
     public void setSexe(char sexe) {
-        if (sexe == '\u0000' || sexe != 'h' && sexe != 'f' && sexe != 'H' && sexe != 'F') {     //Minu maj
+        if (sexe == '\0' || sexe != 'h' && sexe != 'f' && sexe != 'H' && sexe != 'F') {
             throw new SexeException(sexe);
         }
         this.sexe = sexe;
@@ -92,16 +92,18 @@ public class Candidat extends Personne {
     }
 
     public void setNumeroGSM(String numeroGSM) {
-        if (numeroGSM.charAt(0) != '0') {
-            throw new NumeroGSMException(numeroGSM);
-        } else {
-            if (numeroGSM.charAt(1) == '4') {
-                if (numeroGSM.length() != 10) {
-                    throw new NumeroGSMException(numeroGSM);
-                }
+        if (numeroGSM != null) {
+            if (numeroGSM.charAt(0) != '0') {
+                throw new NumeroGSMException(numeroGSM);
             } else {
-                if (numeroGSM.length() != '9') {
-                    throw new NumeroGSMException(numeroGSM);
+                if (numeroGSM.charAt(1) == '4') {
+                    if (numeroGSM.length() != 10) {
+                        throw new NumeroGSMException(numeroGSM);
+                    }
+                } else {
+                    if (numeroGSM.length() != '9') {
+                        throw new NumeroGSMException(numeroGSM);
+                    }
                 }
             }
         }
