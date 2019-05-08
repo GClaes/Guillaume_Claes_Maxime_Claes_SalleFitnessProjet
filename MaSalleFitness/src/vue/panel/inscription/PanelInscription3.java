@@ -15,14 +15,10 @@ import java.awt.event.ActionListener;
 
 public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
     private PersonalData data;
-    private JFrame frame;
-    private Container cont;
 
-    public PanelInscription3(PersonalData data, JFrame frame){
+    public PanelInscription3(PersonalData data){
         super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Envoyer",new PanelFormulaire3());
         setListener(new EnvoyerListener());
-        this.frame = frame;
-        cont=frame.getContentPane();
         this.data = data;
     }
 
@@ -49,15 +45,10 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        cont.removeAll();
-                        cont.add(new PanelMenu());
-                        cont.repaint();
-                        cont.revalidate();
-
-                        //PanelInscription3.this.removeAll();
-                        //PanelInscription3.this.add(new PanelMenu());
-                        //PanelInscription3.this.repaint();
-                        //PanelInscription3.this.revalidate();
+                        PanelInscription3.this.removeAll();
+                        PanelInscription3.this.add(new PanelMenu());
+                        PanelInscription3.this.repaint();
+                        PanelInscription3.this.revalidate();
 
                     }
                 });

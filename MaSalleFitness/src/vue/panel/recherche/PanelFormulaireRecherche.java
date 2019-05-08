@@ -16,6 +16,6 @@ public class PanelFormulaireRecherche extends PanelFormulaireBase {
         initList();
     }
     public int getId(){
-        return (int)getComposantes().get("id").getValue();
+        return Integer.parseInt((String)getComposantes().get("id").getValue());
     }
 }

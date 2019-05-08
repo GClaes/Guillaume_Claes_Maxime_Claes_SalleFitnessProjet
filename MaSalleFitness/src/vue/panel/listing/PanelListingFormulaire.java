@@ -3,16 +3,16 @@ package vue.panel.listing;
 import business.CandidatService;
 import business.CandidatServiceImp;
 import model.Candidat;
-import vue.element.ElementFormulaireLabel;
-import vue.panel.inscription.PanelFormulaireBase;
+import vue.panel.Raffraichissable;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
-public class PanelListingFormulaire extends JPanel {
+public class PanelListingFormulaire extends JPanel implements Raffraichissable {
     private JList<String>listing;
-    public PanelListingFormulaire() {
+
+    @Override
+    public void raffraichir() {
         CandidatService candidatService = new CandidatServiceImp();
         ArrayList<Candidat>listeCandidats = candidatService.listingCandidats();
         String[]values = new String[listeCandidats.size()];
@@ -20,7 +20,6 @@ public class PanelListingFormulaire extends JPanel {
         for(Candidat candidat:listeCandidats){
             values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
             position++;
-            //setComposantes(idCandidat,new ElementFormulaireLabel(idCandidat,null,new JLabel(candidat.getNom()+" "+candidat.getPrenom())));
         }
         listing = new JList<>(values);
         listing.setVisibleRowCount(5);

@@ -35,7 +35,7 @@ public class MenuWindow extends JFrame {
         setJMenuBar(menuBar);
 
         inscriptionMenu = new ElementMenu("Inscription");
-        inscripCandidat = new ElementMenuItem("Inscrire un nouveau candidat",inscriptionMenu, new ListenerMenu(this, new PanelInscription(MenuWindow.this)));
+        inscripCandidat = new ElementMenuItem("Inscrire un nouveau candidat",inscriptionMenu, new ListenerMenu(this, new PanelInscription()));
         modifCandidat = new ElementMenuItem("Modifier un candidat",inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
 
         supprCandidat = new ElementMenuItem("Supprimer un candidat", inscriptionMenu,new ListenerMenu(this,new PanelRecherche(1)));
