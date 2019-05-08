@@ -1,6 +1,7 @@
 package dataAccess;
 
 import dataAccess.exceptions.*;
+import model.Candidat;
 import model.Coach;
 
 import java.sql.*;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 
 public class CoachDaoImp implements CoachDao {
     private static CoachDaoImp coachDaoImp;
+    public CandidatDao candidatDao = CandidatDaoImp.getInstance();
 
     private CoachDaoImp() { }
 
@@ -109,4 +111,41 @@ public class CoachDaoImp implements CoachDao {
             throw new ObtentionCoachException(e);
         }
     }
+
+    /**
+     *
+     * @param responsableMatricule
+     * @return Retourne une liste des coachs qui ont été choisis par les candidats qui eux-mêmes ont été inscrit par un responsable
+     */
+    public ArrayList<Coach> coachsParCandidatsParResponsable(int responsableMatricule) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select * from responsable resp, candidat candi, coach co\n" +
+                "where candi.responsable_matricule = resp.matricule\n" +
+                "and candi.coach_matricule = co.matricule\n" +
+                "and resp.matricule = ?";
+        ArrayList<Coach> coachs = new ArrayList<Coach>();
+        Coach coach;
+        Candidat candidat;
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setInt(1, responsableMatricule);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    coach = rowMapper.map(rs);
+
+                    if (!coachs.contains(coach)) {
+                        coach.ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
+                        coachs.add(coach);
+                    } else {
+                        coachs.get(coachs.indexOf(coach)).ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
+                    }
+                }
+                return coachs;
+            }
+        } catch (SQLException e) {
+            throw new CoachsParCandidatsParResponsableException(e);
+        }
+    }
+
 }

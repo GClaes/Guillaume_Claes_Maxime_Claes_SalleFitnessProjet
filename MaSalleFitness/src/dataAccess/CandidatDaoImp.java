@@ -22,7 +22,7 @@ public class CandidatDaoImp implements CandidatDao {
         return candidatDaoImp;
     }
 
-    private RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
+    public static RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
             Coach coach = CoachDaoImp.rowMapper.map(res);

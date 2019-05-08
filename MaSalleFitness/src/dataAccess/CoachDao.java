@@ -9,4 +9,5 @@ public interface CoachDao {
     int nbHeuresCoaching(int matriculeCoach);
     boolean coachExiste(int matriculeCoach);
     Coach obtentionCoach(int matriculeCoach);
+    ArrayList<Coach> coachsParCandidatsParResponsable(int responsableMatricule);
 }
