@@ -71,6 +71,11 @@ public class CoachDaoImp implements CoachDao {
         }
     }
 
+    /**
+     *
+     * @param matriculeCoach
+     * @return si coach existe, return coach ; sinon return null
+     */
     public Coach obtentionCoach(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from coach co where matricule = ?";

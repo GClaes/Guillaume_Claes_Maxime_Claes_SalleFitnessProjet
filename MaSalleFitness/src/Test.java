@@ -2,6 +2,7 @@ import dataAccess.*;
 import dataAccess.exceptions.AdresseExisteException;
 import model.Adresse;
 import model.Coach;
+import model.Nutritionniste;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -12,16 +13,16 @@ import java.util.ArrayList;
 
 public class Test {
     public static void main(String[] args) {
-        CoachDao dao = new CoachDaoImp();
-        /*
-        ArrayList<Coach> coachs;
+        NutritionnisteDao dao = new NutritionnisteDaoImp();
 
-        coachs = dao.listingCoach();
+        ArrayList<Nutritionniste> nutritionnistes;
 
-        for (int i = 0 ; i < coachs.size() ; i++) {
-            System.out.println(coachs.get(i).getMatricule());
+        nutritionnistes = dao.listingNutritionnistes();
+
+        for (int i = 0 ; i < nutritionnistes.size() ; i++) {
+            System.out.println(nutritionnistes.get(i).getNumReference());
         }
-        */
+
 
         /*
         if (dao.coachExiste(1)) {
@@ -31,8 +32,10 @@ public class Test {
         }
         */
 
+        /*
         Coach coach = dao.obtentionCoach(0);
         System.out.println(coach.getNom());
-
+        */
+        
     }
 }
