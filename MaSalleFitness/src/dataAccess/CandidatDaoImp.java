@@ -164,4 +164,50 @@ public class CandidatDaoImp implements CandidatDao {
         }
     }
 
+    public void modifierCandidat(Candidat candidat) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "update candidat set nom = ?, prenom = ?, date_naissance = ?, sexe = ?, num_gsm = ?, " +
+                "date_test_valide = ?, date_inscription = ?, nb_heures_coaching = ?, debutant = ?, " +
+                "maladies_chroniques = ?, coach_matricule = ?, responsable_matricule = ?, " +
+                "nutritionniste_num_reference = ?, adresse_code_hash = ? where num_inscrit = ?";
+        AdresseDao adresseDao = new AdresseDaoImp();
+        java.sql.Date sqlDate = null;
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            statement.setString(1, candidat.getNom());
+            statement.setString(2, candidat.getPrenom());
+            sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
+            statement.setDate(3, sqlDate);
+            statement.setString(4, String.valueOf(candidat.getSexe()));
+            statement.setString(5, candidat.getNumeroGSM());
+
+            if (candidat.getDateTestValide() != null) {
+                sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
+            }
+            statement.setDate(6, sqlDate);
+
+            sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
+            statement.setDate(7, sqlDate);
+            statement.setInt(8, candidat.getNbHeuresCoaching());
+            statement.setBoolean(9, candidat.getDebutant());
+            statement.setString(10, candidat.getMaladiesChroniques());
+            statement.setInt(11, candidat.getCoach().getMatricule());
+            statement.setInt(12, candidat.getResponsable().getNumeroTravailleur());
+            statement.setInt(13, candidat.getNutritionniste().getNumReference());
+            statement.setString(14, candidat.getAdresse().getCode());
+            statement.setInt(15, candidat.getNumInscription());
+
+            String ancienCodeAdresse = rechercherCandidat(candidat.getNumInscription()).getAdresse().getCode();
+            if (candidat.getAdresse().getCode() != ancienCodeAdresse) {
+                if (!adresseDao.adresseUtilisee(ancienCodeAdresse)) {
+                    adresseDao.supprimerAdresse(ancienCodeAdresse);
+                }
+                adresseDao.ajouterAdresse(candidat.getAdresse());
+            }
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new ModifierCandidatException(e);
+        }
+    }
 }

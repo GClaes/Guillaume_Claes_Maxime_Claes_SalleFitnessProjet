@@ -4,13 +4,24 @@ import dataAccess.AdresseDao;
 import dataAccess.AdresseDaoImp;
 
 public class AdresseServiceImp implements AdresseService {
-    private AdresseDao adresseDao;
+    private static AdresseDao adresseDao;       //AdresseDao adresseDao = new AdresseDaoImp();
 
-    public AdresseServiceImp() {
+
+
+    private AdresseServiceImp() {
         setAdresseDao(new AdresseDaoImp());
     }
 
-    public void setAdresseDao(AdresseDao adresseDao) {
+    public static AdresseDao getInstance() {
+        if (adresseDao == null) {
+            new AdresseServiceImp();
+            //adresseDao = new AdresseDaoImp();     En commentaire dans le constructeur
+            //setAdresseDao(new AdresseDaoImp());   En commentaire dans le constructeur
+        }
+        return adresseDao;
+    }
+
+    private void setAdresseDao(AdresseDao adresseDao) {
         this.adresseDao = adresseDao;
     }
 }
