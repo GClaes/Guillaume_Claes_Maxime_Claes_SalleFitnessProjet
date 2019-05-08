@@ -14,10 +14,8 @@ public class ListenerMenu implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        panel.revalidate();
         frame.setContentPane(panel);
         frame.repaint();
         frame.revalidate();
-        frame.setVisible(true);
     }
 }
