@@ -2,10 +2,13 @@ package vue.panel.inscription;
 
 import business.CandidatService;
 import business.CandidatServiceImp;
+import com.sun.javaws.util.JfxHelper;
 import model.Candidat;
+import model.Coach;
 import vue.panel.PanelMenu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -41,6 +44,7 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 ok.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+
                         PanelInscription3.this.removeAll();
                         PanelInscription3.this.add(new PanelMenu());
                         PanelInscription3.this.repaint();

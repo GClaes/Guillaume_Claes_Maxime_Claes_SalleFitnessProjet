@@ -6,10 +6,8 @@ import java.awt.event.ActionListener;
 public class PanelInscription extends PanelInscriptionBase<PanelFormulaire> {
     private PanelInscription2 panelInscription2;
 
-
     public PanelInscription() {
         super("<html><h1>Inscription nouveau candidat [1/3]</h1></html>", "Suivant", new PanelFormulaire());
-
         setListener(new SuivantListener());
     }
 

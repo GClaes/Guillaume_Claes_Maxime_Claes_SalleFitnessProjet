@@ -1,12 +1,12 @@
 package vue.panel.inscription;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelInscription2 extends PanelInscriptionBase<PanelFormulaire2> {
     private PersonalData data;
-
-
     private PanelInscription3 panelInscription3;
     public PanelInscription2(PersonalData data){
         super("<html><h1>Inscription nouveau candidat [2/3]</h1></html>","Suivant", new PanelFormulaire2());
@@ -19,6 +19,7 @@ public class PanelInscription2 extends PanelInscriptionBase<PanelFormulaire2> {
         public void actionPerformed(ActionEvent e) {
             if(getFormulaire().validation()){
                 data.setAdresse(getFormulaire().getAdresse());
+
 
                 panelInscription3 = new PanelInscription3(data);
                 PanelInscription2.this.removeAll();

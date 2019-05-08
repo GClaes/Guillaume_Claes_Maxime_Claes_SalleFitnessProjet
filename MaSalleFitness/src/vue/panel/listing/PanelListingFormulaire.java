@@ -3,22 +3,27 @@ package vue.panel.listing;
 import business.CandidatService;
 import business.CandidatServiceImp;
 import model.Candidat;
-import vue.element.ElementFormulaireLabel;
-import vue.panel.inscription.PanelFormulaireBase;
+import vue.panel.Raffraichissable;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 
-public class PanelListingFormulaire extends PanelFormulaireBase {
-    public PanelListingFormulaire() {
+public class PanelListingFormulaire extends JPanel implements Raffraichissable {
+    private JList<String>listing;
+
+    @Override
+    public void raffraichir() {
         CandidatService candidatService = new CandidatServiceImp();
         ArrayList<Candidat>listeCandidats = candidatService.listingCandidats();
+        String[]values = new String[listeCandidats.size()];
+        int position = 0;
         for(Candidat candidat:listeCandidats){
-            String idCandidat = candidat.getNumInscription().toString();
-            setComposantes(idCandidat,new ElementFormulaireLabel(idCandidat,null,new JLabel(candidat.getNom()+" "+candidat.getPrenom())));
+            values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
+            position++;
         }
-        setLayout(new GridLayout(listeCandidats.size(),2,5,5));
-        initList();
+        listing = new JList<>(values);
+        listing.setVisibleRowCount(5);
+        listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        add(listing);
     }
 }

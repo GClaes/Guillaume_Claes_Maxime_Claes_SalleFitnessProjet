@@ -109,7 +109,7 @@ public class CandidatDaoImp implements CandidatDao {
                 "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
                 "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
         AdresseDao adresseDao = new AdresseDaoImp();
-        java.sql.Date sqlDate;
+        java.sql.Date sqlDate = null;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, candidat.getNom());
@@ -121,8 +121,8 @@ public class CandidatDaoImp implements CandidatDao {
 
             if (candidat.getDateTestValide() != null) {
                 sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
-                statement.setDate(6, sqlDate);
             }
+            statement.setDate(6, sqlDate);
 
             sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
             statement.setDate(7, sqlDate);
