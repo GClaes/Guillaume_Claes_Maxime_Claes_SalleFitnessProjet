@@ -28,7 +28,7 @@ public class CoachServiceImp implements CoachService {
     public double calculSalaireHebdomadaire(int matriculeCoach) {
         int nbHeuresCoachingHebdo = nbHeuresCoachingUtilisees(matriculeCoach);
         Coach coach = coachDao.obtentionCoach(matriculeCoach);
-        
+
         return coach.getSalaireHoraire() * nbHeuresCoachingHebdo;
     }
 

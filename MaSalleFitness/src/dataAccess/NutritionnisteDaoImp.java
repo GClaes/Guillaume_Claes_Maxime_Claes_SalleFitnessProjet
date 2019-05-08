@@ -1,6 +1,6 @@
 package dataAccess;
 
-import dataAccess.exceptions.RechercherException;
+import dataAccess.exceptions.ListingException;
 import model.Nutritionniste;
 
 import java.sql.*;
@@ -15,32 +15,19 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
     };
 
     public ArrayList<Nutritionniste> listingNutritionnistes() {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select * from nutritionniste nutri";
         ArrayList<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
-        Connection connection = null;
-        PreparedStatement statement = null;
-        ResultSet res = null;
-        String requete;
 
-        try {
-            connection = SingletonConnection.getInstance();
-            requete = "select * from nutritionniste nutri";
-            statement = connection.prepareStatement(requete);
-            res = statement.executeQuery();
-
-            while(res.next()) {
-                nutritionnistes.add(rowMapper.map(res));
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            try (ResultSet rs  = statement.executeQuery()) {
+                while(rs.next()) {
+                    nutritionnistes.add(rowMapper.map(rs));
+                }
+                return nutritionnistes;
             }
         } catch (SQLException e) {
-            throw new RechercherException(e);
-        } finally {
-            try {
-                statement.close();
-                res.close();
-            } catch (SQLException e) {
-                throw new RechercherException(e);
-            }
+            throw new ListingException(e);
         }
-
-        return nutritionnistes;
     }
 }
