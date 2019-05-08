@@ -32,7 +32,7 @@ public class CoachDaoImp implements CoachDao {
         }
     }
 
-    public int nbHeuresCoachingUtilisees(int matriculeCoach) {
+    public int nbHeuresCoaching(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co\n" +
                 "where candi.coach_matricule = co.matricule\n" +
@@ -73,14 +73,16 @@ public class CoachDaoImp implements CoachDao {
 
     public Coach obtentionCoach(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from coach where matricule = ?";
+        String requete = "select * from coach co where matricule = ?";
 
-        try (PreparedStatement statement = connection.prepareStatement(requete)){
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setInt(1, matriculeCoach);
 
             try (ResultSet rs = statement.executeQuery()) {
-                rs.next();
-                return rowMapper.map(rs);
+                if (rs.next()) {
+                    return rowMapper.map(rs);
+                }
+                return null;
             }
         } catch (SQLException e) {
             throw new ObtentionCoachException(e);
