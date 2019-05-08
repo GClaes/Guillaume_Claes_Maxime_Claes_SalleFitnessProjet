@@ -10,15 +10,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class PanelListingFormulaire extends PanelFormulaireBase {
+public class PanelListingFormulaire extends JPanel {
+    private JList<String>listing;
     public PanelListingFormulaire() {
         CandidatService candidatService = new CandidatServiceImp();
         ArrayList<Candidat>listeCandidats = candidatService.listingCandidats();
+        String[]values = new String[listeCandidats.size()];
+        int position = 0;
         for(Candidat candidat:listeCandidats){
-            String idCandidat = candidat.getNumInscription().toString();
-            setComposantes(idCandidat,new ElementFormulaireLabel(idCandidat,null,new JLabel(candidat.getNom()+" "+candidat.getPrenom())));
+            values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
+            position++;
+            //setComposantes(idCandidat,new ElementFormulaireLabel(idCandidat,null,new JLabel(candidat.getNom()+" "+candidat.getPrenom())));
         }
-        setLayout(new GridLayout(listeCandidats.size(),2,5,5));
-        initList();
+        listing = new JList<>(values);
+        listing.setVisibleRowCount(5);
+        listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        add(listing);
     }
 }

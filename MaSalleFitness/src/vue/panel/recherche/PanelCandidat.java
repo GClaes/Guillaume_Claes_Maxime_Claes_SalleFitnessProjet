@@ -1,5 +1,7 @@
 package vue.panel.recherche;
 
+import business.CandidatService;
+import business.CandidatServiceImp;
 import model.Candidat;
 import vue.panel.PanelMenu;
 import vue.panel.modification.PanelModification;
@@ -44,7 +46,18 @@ public class PanelCandidat extends JPanel {
         listeBouttonsCandidat.getSupprimer().addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                Object[] options = { "OK", "CANCEL" };
+                int valeur = JOptionPane.showOptionDialog(null, "Cliquez sur OK pour supprimer", "Warning",
+                        JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                        null, options, options[0]);
+                if(valeur == JOptionPane.OK_OPTION){
+                    CandidatService candidatService = new CandidatServiceImp();
+                    candidatService.supprimerCandidat(candidat.getNumInscription());
+                }
+                PanelCandidat.this.removeAll();
+                PanelCandidat.this.add(new PanelMenu());
+                PanelCandidat.this.repaint();
+                PanelCandidat.this.revalidate();
             }
         });
 

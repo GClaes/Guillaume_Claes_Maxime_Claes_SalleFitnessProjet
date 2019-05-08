@@ -2,20 +2,27 @@ package vue.panel.inscription;
 
 import business.CandidatService;
 import business.CandidatServiceImp;
+import com.sun.javaws.util.JfxHelper;
 import model.Candidat;
+import model.Coach;
 import vue.panel.PanelMenu;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
 public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
     private PersonalData data;
+    private JFrame frame;
+    private Container cont;
 
-    public PanelInscription3(PersonalData data){
+    public PanelInscription3(PersonalData data, JFrame frame){
         super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Envoyer",new PanelFormulaire3());
         setListener(new EnvoyerListener());
+        this.frame = frame;
+        cont=frame.getContentPane();
         this.data = data;
     }
 
@@ -41,10 +48,16 @@ public class PanelInscription3 extends PanelInscriptionBase<PanelFormulaire3> {
                 ok.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        PanelInscription3.this.removeAll();
-                        PanelInscription3.this.add(new PanelMenu());
-                        PanelInscription3.this.repaint();
-                        PanelInscription3.this.revalidate();
+
+                        cont.removeAll();
+                        cont.add(new PanelMenu());
+                        cont.repaint();
+                        cont.revalidate();
+
+                        //PanelInscription3.this.removeAll();
+                        //PanelInscription3.this.add(new PanelMenu());
+                        //PanelInscription3.this.repaint();
+                        //PanelInscription3.this.revalidate();
 
                     }
                 });
