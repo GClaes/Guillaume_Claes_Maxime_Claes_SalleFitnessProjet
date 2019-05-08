@@ -10,7 +10,7 @@ public class CandidatServiceImp implements CandidatService {
     private CandidatDao candidatDao;
 
     public CandidatServiceImp() {
-        setCandidatDao(new CandidatDaoImp());
+        setCandidatDao(CandidatDaoImp.getInstance());
     }
 
     public Candidat rechercherCandidat(int numeroInscription) {

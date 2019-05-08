@@ -127,6 +127,10 @@ public class Candidat extends Personne {
         this.estDebutant = estDebutant;
     }
 
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
+    }
+
     public Integer getNumInscription() {
         return numInscription;
     }

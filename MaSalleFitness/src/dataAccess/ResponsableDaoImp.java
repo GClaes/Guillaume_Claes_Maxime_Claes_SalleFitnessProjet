@@ -7,6 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ResponsableDaoImp implements ResponsableDao {
+    private static ResponsableDaoImp responsableDaoImp;
+
+    private ResponsableDaoImp() { }
+
+    public static ResponsableDaoImp getInstance() {
+        if (responsableDaoImp == null) {
+            responsableDaoImp = new ResponsableDaoImp();
+        }
+        return responsableDaoImp;
+    }
+
     public static RowMapper<Responsable> rowMapper = new RowMapper<Responsable>() {
         @Override
         public Responsable map(ResultSet res) throws SQLException {

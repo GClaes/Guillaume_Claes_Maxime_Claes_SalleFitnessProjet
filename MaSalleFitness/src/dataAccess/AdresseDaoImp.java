@@ -10,6 +10,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdresseDaoImp implements AdresseDao {
+    private static AdresseDaoImp adresseDaoImp;
+
+    private AdresseDaoImp() { }
+
+    public static AdresseDaoImp getInstance() {
+        if (adresseDaoImp == null) {
+            adresseDaoImp = new AdresseDaoImp();
+        }
+        return adresseDaoImp;
+    }
+
     public static RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
         @Override
         public Adresse map(ResultSet res) throws SQLException {

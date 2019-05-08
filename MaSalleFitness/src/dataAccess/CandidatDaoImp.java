@@ -10,6 +10,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CandidatDaoImp implements CandidatDao {
+    private static CandidatDaoImp candidatDaoImp;
+    public AdresseDao adresseDao = AdresseDaoImp.getInstance();
+
+    private CandidatDaoImp() { }
+
+    public static CandidatDaoImp getInstance() {
+        if (candidatDaoImp == null) {
+            candidatDaoImp = new CandidatDaoImp();
+        }
+        return candidatDaoImp;
+    }
+
     private RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
@@ -108,10 +120,10 @@ public class CandidatDaoImp implements CandidatDao {
                 "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
                 "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
                 "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
-        AdresseDao adresseDao = new AdresseDaoImp();
         java.sql.Date sqlDate = null;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            //connection.setAutoCommit(false);
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
             sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
@@ -139,6 +151,7 @@ public class CandidatDaoImp implements CandidatDao {
             }
 
             statement.executeUpdate();
+            //connection.commit();
         } catch (SQLException e) {
             throw new AjouterCandidatException(e);
         }
@@ -147,7 +160,6 @@ public class CandidatDaoImp implements CandidatDao {
     public void supprimerCandidat(int numeroInscription) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "delete from candidat where num_inscrit = ?";
-        AdresseDao adresseDao = new AdresseDaoImp();
 
         Candidat candidat = rechercherCandidat(numeroInscription);
         if (candidat != null) {
@@ -170,7 +182,6 @@ public class CandidatDaoImp implements CandidatDao {
                 "date_test_valide = ?, date_inscription = ?, nb_heures_coaching = ?, debutant = ?, " +
                 "maladies_chroniques = ?, coach_matricule = ?, responsable_matricule = ?, " +
                 "nutritionniste_num_reference = ?, adresse_code_hash = ? where num_inscrit = ?";
-        AdresseDao adresseDao = new AdresseDaoImp();
         java.sql.Date sqlDate = null;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
@@ -198,14 +209,18 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setInt(15, candidat.getNumInscription());
 
             String ancienCodeAdresse = rechercherCandidat(candidat.getNumInscription()).getAdresse().getCode();
-            if (candidat.getAdresse().getCode() != ancienCodeAdresse) {
-                if (!adresseDao.adresseUtilisee(ancienCodeAdresse)) {
-                    adresseDao.supprimerAdresse(ancienCodeAdresse);
-                }
+
+            if (!adresseDao.adresseExiste(candidat.getAdresse().getCode())) {
                 adresseDao.ajouterAdresse(candidat.getAdresse());
             }
 
             statement.executeUpdate();
+
+            if (candidat.getAdresse().getCode().compareTo(ancienCodeAdresse) != 0) {
+                if (!adresseDao.adresseUtilisee(ancienCodeAdresse)) {
+                    adresseDao.supprimerAdresse(ancienCodeAdresse);
+                }
+            }
         } catch (SQLException e) {
             throw new ModifierCandidatException(e);
         }

@@ -6,10 +6,8 @@ import dataAccess.AdresseDaoImp;
 public class AdresseServiceImp implements AdresseService {
     private static AdresseDao adresseDao;       //AdresseDao adresseDao = new AdresseDaoImp();
 
-
-
     private AdresseServiceImp() {
-        setAdresseDao(new AdresseDaoImp());
+        setAdresseDao(AdresseDaoImp.getInstance());
     }
 
     public static AdresseDao getInstance() {

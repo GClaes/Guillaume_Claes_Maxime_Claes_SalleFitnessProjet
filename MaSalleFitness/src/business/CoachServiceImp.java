@@ -10,7 +10,7 @@ public class CoachServiceImp implements CoachService {
     private CoachDao coachDao;
 
     public CoachServiceImp() {
-        setCoachDao(new CoachDaoImp());
+        setCoachDao(CoachDaoImp.getInstance());
     }
 
     public ArrayList<Coach> listingCoachs() {

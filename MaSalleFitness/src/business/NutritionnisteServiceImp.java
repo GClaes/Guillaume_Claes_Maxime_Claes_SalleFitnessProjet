@@ -10,7 +10,7 @@ public class NutritionnisteServiceImp implements NutritionnisteService {
     private NutritionnisteDao nutritionnisteDao;
 
     public NutritionnisteServiceImp() {
-        setNutritionnisteDao(new NutritionnisteDaoImp());
+        setNutritionnisteDao(NutritionnisteDaoImp.getInstance());
     }
 
     public ArrayList<Nutritionniste> listingNutritionnistes() {

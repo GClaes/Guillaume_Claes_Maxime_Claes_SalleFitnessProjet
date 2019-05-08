@@ -7,6 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class CoachDaoImp implements CoachDao {
+    private static CoachDaoImp coachDaoImp;
+
+    private CoachDaoImp() { }
+
+    public static CoachDaoImp getInstance() {
+        if (coachDaoImp == null) {
+            coachDaoImp = new CoachDaoImp();
+        }
+        return coachDaoImp;
+    }
+
     public static RowMapper<Coach> rowMapper = new RowMapper<Coach>() {
         @Override
         public Coach map(ResultSet res) throws SQLException {
@@ -32,6 +43,11 @@ public class CoachDaoImp implements CoachDao {
         }
     }
 
+    /**
+     *
+     * @param matriculeCoach
+     * @return nombre d'heures du coach ou -1 si le coach n'existe pas
+     */
     public int nbHeuresCoaching(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co\n" +
