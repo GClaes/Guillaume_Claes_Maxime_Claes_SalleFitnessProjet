@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class PanelListingFormulaire extends JPanel implements Raffraichissable {
     private JList<String>listing;
 
+
     @Override
     public void raffraichir() {
         CandidatService candidatService = new CandidatServiceImp();
