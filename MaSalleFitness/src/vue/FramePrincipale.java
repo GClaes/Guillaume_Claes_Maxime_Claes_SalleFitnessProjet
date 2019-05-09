@@ -52,7 +52,7 @@ public class FramePrincipale extends JFrame {
     public void afficherPanel(JPanel panel){
         //reset
         if(panel instanceof Inscription) {
-            //inscription.rafraichir();
+            inscription.rafraichir();
             layout.show(this.getContentPane(), "inscription");
         }
         else if (panel instanceof Listing){
@@ -60,6 +60,7 @@ public class FramePrincipale extends JFrame {
             layout.show(this.getContentPane(), "listing");
         }
         else if (panel instanceof Recherche){
+            recherche.rafraichir();
             layout.show(this.getContentPane(),"recherche");
         }
     }

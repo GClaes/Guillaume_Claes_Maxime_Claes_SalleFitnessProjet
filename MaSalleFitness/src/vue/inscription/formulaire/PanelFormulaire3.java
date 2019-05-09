@@ -18,26 +18,8 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     private NutritionnisteService nutritionnisteService;
     private ResponsableService responsableService;
     public PanelFormulaire3() {
-        coachService = new CoachServiceImp();
-        nutritionnisteService = new NutritionnisteServiceImp();
-        responsableService = new ResponsableServiceImp();
-        listeCoachs = coachService.listingCoachs();
-        listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
-        listeResponsables = responsableService.listingResponsables();
-
-
         setLayout(new GridLayout(5, 2, 50, 75));
-
-        setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
-        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new OrValidation(new VideValidation(), new PasVideValidation())));
-
-        setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
-        setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
-        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
-
-
-
-        initList();
+        //rafraichir();
     }
 
     public int getNbHeures(){
@@ -88,5 +70,23 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
             position++;
         }
         return valuesResp;
+    }
+
+    public void rafraichir(){
+        coachService = new CoachServiceImp();
+        nutritionnisteService = new NutritionnisteServiceImp();
+        responsableService = new ResponsableServiceImp();
+        listeCoachs = coachService.listingCoachs();
+        listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
+        listeResponsables = responsableService.listingResponsables();
+
+        removeAll();
+        setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
+        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new OrValidation(new VideValidation(), new PasVideValidation())));
+        setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
+        setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
+        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
+
+        initList();
     }
 }

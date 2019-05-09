@@ -2,6 +2,7 @@ package vue.inscription;
 
 import business.CoachService;
 import business.CoachServiceImp;
+import vue.inscription.formulaire.PanelFormulaire2;
 import vue.inscription.formulaire.PanelFormulaire3;
 import vue.listener.RetourMenuListener;
 
@@ -11,10 +12,12 @@ import java.awt.event.ActionListener;
 
 public class PanelCoaching extends PanelBase<PanelFormulaire3> {
     private Inscription inscription;
+    private PanelFormulaire3 panelFormulaire3 = new PanelFormulaire3();
     private CoachService coachService = new CoachServiceImp();
 
     public PanelCoaching(Inscription inscription) {
-        super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Annuler","Envoyer",new PanelFormulaire3());
+        super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Annuler","Envoyer");
+        addFormulaire(panelFormulaire3);
         this.inscription = inscription;
         setListenerBouton1(new RetourMenuListener(inscription));
         setListenerBouton2(new EnvoyerListener());
@@ -40,5 +43,8 @@ public class PanelCoaching extends PanelBase<PanelFormulaire3> {
                 }
             }
         }
+    }
+    public void rafraichir(){
+        panelFormulaire3.rafraichir();
     }
 }

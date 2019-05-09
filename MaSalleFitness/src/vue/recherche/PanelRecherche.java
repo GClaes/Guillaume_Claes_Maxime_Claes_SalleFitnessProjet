@@ -6,8 +6,10 @@ import java.awt.event.ActionListener;
 
 public class PanelRecherche extends PanelBase<FormulaireRecherche> {
     private Recherche recherche;
+    private FormulaireRecherche formulaireRecherche = new FormulaireRecherche();
     public PanelRecherche(Recherche recherche){
-        super("<html><h1>Recherche d'un candidat","Annuler","Rechercher",new FormulaireRecherche());
+        super("<html><h1>Recherche d'un candidat","Annuler","Rechercher");
+        addFormulaire(formulaireRecherche);
         this.recherche = recherche;
         setListenerBouton1(new RetourListener());
         setListenerBouton2(new RechercherListener());
@@ -26,5 +28,8 @@ public class PanelRecherche extends PanelBase<FormulaireRecherche> {
         public void actionPerformed(ActionEvent e) {
             recherche.retour();
         }
+    }
+    public void rafraichir(){
+        formulaireRecherche.rafraichir();
     }
 }

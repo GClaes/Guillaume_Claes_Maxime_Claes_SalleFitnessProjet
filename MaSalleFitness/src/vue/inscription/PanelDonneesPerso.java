@@ -8,9 +8,11 @@ import java.awt.event.ActionListener;
 
 public class PanelDonneesPerso extends PanelBase<PanelFormulaire> {
     private Inscription inscription;
+    private PanelFormulaire panelFormulaire = new PanelFormulaire();
 
     public PanelDonneesPerso(Inscription inscription) {
-        super("<html><h1>Inscription nouveau candidat [1/3]</h1></html>", "Annuler", "Suivant", new PanelFormulaire());
+        super("<html><h1>Inscription nouveau candidat [1/3]</h1></html>", "Annuler", "Suivant");
+        addFormulaire(panelFormulaire);
         this.inscription = inscription;
         setListenerBouton1(new RetourMenuListener(inscription));
         setListenerBouton2(new SuivantListener());
@@ -32,6 +34,9 @@ public class PanelDonneesPerso extends PanelBase<PanelFormulaire> {
                 );
             }
         }
+    }
+    public void rafraichir(){
+        panelFormulaire.rafraichir();
     }
 
 }

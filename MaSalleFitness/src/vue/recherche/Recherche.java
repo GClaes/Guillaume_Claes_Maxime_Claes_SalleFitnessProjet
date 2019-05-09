@@ -66,4 +66,9 @@ public class Recherche extends JPanel {
         panelCandidatInfo.setCandidat(candidat);
         layout.show(this, "info");
     }
+
+    public void rafraichir(){
+        panelRecherche.rafraichir();
+        layout.show(this,"recherche");
+    }
 }
