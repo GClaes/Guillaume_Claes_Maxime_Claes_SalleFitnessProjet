@@ -1,13 +1,11 @@
-package vue.panel.inscription;
+package vue.inscription.formulaire;
 
 import business.*;
 import model.Candidat;
 import model.Coach;
 import model.Nutritionniste;
 import model.Responsable;
-import vue.element.ElementFormulaireJComboBox;
-import vue.element.ElementFormulaireJSpinnerNb;
-import vue.element.ElementFormulaireJTextField;
+import vue.element.*;
 import vue.validateur.*;
 
 import java.awt.*;
@@ -30,7 +28,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
 
         //AMELIROER VALIDATEURS
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
-        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
+        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new OrValidation(new VideValidation(), new PasVideValidation())));
 
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
         setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
@@ -42,6 +40,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     }
 
     public int getNbHeures(){
+
         return (int)getComposantes().get("nbHeures").getValue();
     }
     public String getMaladies(){
@@ -65,11 +64,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         String[]valuesCoach = new String[listeCoachs.size()];
         int position = 0;
         for(Coach coach : listeCoachs){
-            int nbHeures = 0;
-            for(Candidat candidat : coach.getCandidats()){
-                nbHeures+= candidat.getNbHeuresCoaching();
-            }
-            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+(20-nbHeures)+"/20 heure(s) dispo(s)";
+            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+(20)+"/20 heure(s) dispo(s)";
             position++;
         }
         return valuesCoach;

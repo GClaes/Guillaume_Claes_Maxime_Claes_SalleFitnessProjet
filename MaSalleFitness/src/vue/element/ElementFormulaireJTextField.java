@@ -1,6 +1,6 @@
 package vue.element;
 
-import vue.validateur.*;
+import vue.validateur.Validation;
 
 import javax.swing.*;
 

@@ -1,12 +1,10 @@
 package vue.element;
 
-import vue.validateur.Validation;
-
 import javax.swing.*;
 
 public class ElementFormulaireLabel extends ElementFormulaire<JLabel> {
-    public ElementFormulaireLabel(String text, Validation validation, JLabel label) {
-        super(text, validation);
+    public ElementFormulaireLabel(String text, JLabel label) {
+        super(text, null);
         setField(label);
     }
 
