@@ -115,9 +115,9 @@ public class CoachDaoImp implements CoachDao {
     /**
      *
      * @param responsableMatricule
-     * @return Retourne une liste des coachs qui ont été choisis par les candidats qui eux-mêmes ont été inscrit par un responsable
+     * @return liste des coachs qui ont été choisis par les candidats qui eux-mêmes ont été inscrit par un responsable
      */
-    public ArrayList<Coach> coachsParCandidatsParResponsable(int responsableMatricule) {
+    public ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * " +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +

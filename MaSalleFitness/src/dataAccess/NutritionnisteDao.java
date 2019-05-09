@@ -6,5 +6,5 @@ import java.util.ArrayList;
 
 public interface NutritionnisteDao {
     ArrayList<Nutritionniste> listingNutritionnistes();
-    ArrayList<Nutritionniste> nutritionnistesParCandidatsParCoach(int coachMatricule);
+    ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule);
 }

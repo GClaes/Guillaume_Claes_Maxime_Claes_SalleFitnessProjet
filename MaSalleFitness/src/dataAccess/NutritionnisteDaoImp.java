@@ -46,9 +46,9 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
     /**
      *
      * @param coachMatricule
-     * @return Retourne une liste des nutritionnistes qui ont été choisis par les candidats qui eux-mêmes sont entrainés par un coach donné
+     * @return liste des nutritionnistes qui ont été choisis par les candidats qui eux-mêmes sont entrainés par un coach donné
      */
-    public ArrayList<Nutritionniste> nutritionnistesParCandidatsParCoach(int coachMatricule) {
+    public ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * " +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +

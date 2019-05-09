@@ -11,6 +11,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class CandidatDaoImp implements CandidatDao {
@@ -221,6 +222,41 @@ public class CandidatDaoImp implements CandidatDao {
             }
         } catch (SQLException e) {
             throw new ModifierCandidatException(e);
+        }
+    }
+
+    /**
+     *
+     * @param responsableMatricule
+     * @param debut
+     * @param fin
+     * @return liste des candidats inscrits entre deux dates par un responsable
+     */
+    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select *" +
+                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr" +
+                "where candi.coach_matricule = co.matricule" +
+                "and candi.responsable_matricule = resp.matricule" +
+                "and candi.nutritionniste_num_reference = nutri.num_reference" +
+                "and candi.adresse_code_hash = adr.code_hash" +
+                "and candi.date_inscription between ? and ?" +
+                "and resp.matricule = ?";
+        ArrayList<Candidat> candidats = new ArrayList<Candidat>();
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            statement.setDate(1, new java.sql.Date(debut.getTime()));
+            statement.setDate(2, new java.sql.Date(fin.getTime()));
+            statement.setInt(3, responsableMatricule);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    candidats.add(rowMapper.map(rs));
+                }
+                return candidats;
+            }
+        } catch (SQLException e) {
+            throw new ListingException(e);
         }
     }
 }
