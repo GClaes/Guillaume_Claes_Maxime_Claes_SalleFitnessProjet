@@ -18,7 +18,7 @@ public class CoachServiceImp implements CoachService {
     }
 
     public int nbHeuresCoachingUtilisees(int matriculeCoach) {
-        return coachDao.nbHeuresCoaching(matriculeCoach);
+        return coachDao.nbHeuresCoachingUtilisees(matriculeCoach);
     }
 
     public boolean coachExiste(int matriculeCoach) {

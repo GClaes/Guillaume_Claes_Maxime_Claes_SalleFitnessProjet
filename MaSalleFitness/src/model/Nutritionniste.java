@@ -13,6 +13,12 @@ public class Nutritionniste extends Personne {
         this.avis = avis;
     }
 
+    public void ajouterCandidat(Candidat candidat) {
+        if (candidat != null) {
+            candidats.add(candidat);
+        }
+    }
+
     public Integer getNumReference() {
         return numReference;
     }

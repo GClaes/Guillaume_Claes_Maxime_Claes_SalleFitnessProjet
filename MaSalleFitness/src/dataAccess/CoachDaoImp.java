@@ -24,7 +24,7 @@ public class CoachDaoImp implements CoachDao {
         @Override
         public Coach map(ResultSet res) throws SQLException {
             java.util.Date utilDate = res.getTimestamp("co.date_debut_coaching");
-            return new Coach(res.getInt("co.matricule"), res.getString("co.nom"), res.getString("co.prenom"), res.getString("co.recompenses"), res.getInt("co.salaire_horaire"), utilDate);  //getDouble pour le salaireHoraire
+            return new Coach(res.getInt("co.matricule"), res.getString("co.nom"), res.getString("co.prenom"), res.getString("co.recompenses"), res.getDouble("co.salaire_horaire"), utilDate);  //getDouble pour le salaireHoraire
         }
     };
 
@@ -50,7 +50,7 @@ public class CoachDaoImp implements CoachDao {
      * @param matriculeCoach
      * @return nombre d'heures du coach ou -1 si le coach n'existe pas
      */
-    public int nbHeuresCoaching(int matriculeCoach) {
+    public int nbHeuresCoachingUtilisees(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co " +
                 "where candi.coach_matricule = co.matricule " +

@@ -7,7 +7,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class CandidatDaoImp implements CandidatDao {
     private static CandidatDaoImp candidatDaoImp;
@@ -95,8 +99,6 @@ public class CandidatDaoImp implements CandidatDao {
                 }
                 return candidats;
             }
-
-
         } catch (SQLException e) {
             throw new ListingException(e);
         }
@@ -108,24 +110,32 @@ public class CandidatDaoImp implements CandidatDao {
                 "date_inscription, nb_heures_coaching, debutant, maladies_chroniques, coach_matricule, " +
                 "responsable_matricule, nutritionniste_num_reference, adresse_code_hash) " +
                 "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
-        java.sql.Date sqlDate = null;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             //connection.setAutoCommit(false);
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
-            sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
-            statement.setDate(3, sqlDate);
+            statement.setDate(3,  new java.sql.Date(candidat.getDateNaissance().getTime()));
+            /*
+            Calendar naissance = Calendar.getInstance();
+            naissance.setTime(candidat.getDateNaissance());
+            statement.setDate(3,  new java.sql.Date(naissance.getTimeInMillis()));
+            */
+            /*
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            java.sql.Date date = new java.sql.Date(sdf.parse("1997-04-28").getTime());
+            statement.setDate(3,  date);
+            */
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());
 
             if (candidat.getDateTestValide() != null) {
-                sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
+                statement.setDate(6, new java.sql.Date(candidat.getDateTestValide().getTime()));
+            } else {
+                statement.setDate(6, null);
             }
-            statement.setDate(6, sqlDate);
 
-            sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
-            statement.setDate(7, sqlDate);
+            statement.setDate(7, new java.sql.Date(candidat.getDateInscription().getTime()));
             statement.setInt(8, candidat.getNbHeuresCoaching());
             statement.setBoolean(9, candidat.getDebutant());
             statement.setString(10, candidat.getMaladiesChroniques());
