@@ -63,11 +63,6 @@ public class Inscription extends JPanel {
         layout.show(this, "recap");
     }
 
-    public void resetInscription(){
-        data = new PersonalData();
-
-         layout.show(this,"panel1");
-    }
     public void creerCandidat(PersonalData data){
         Candidat candidat = new Candidat(data.getNbHeuresCoaching(),
                 data.getNom(), data.getPrenom(), data.getDateNaissance(),
@@ -77,5 +72,13 @@ public class Inscription extends JPanel {
         candidat.setMaladiesChroniques(data.getMaladiesChroniques());
         CandidatService candidatService = new CandidatServiceImp();
         candidatService.ajoutCandidat(candidat);
+    }
+
+    public void rafraichir(){
+        data = new PersonalData();
+        panelDonneesPerso.rafraichir();
+        panelAdresse.rafraichir();
+        panelCoaching.rafraichir();
+        layout.show(this, "panel1");
     }
 }

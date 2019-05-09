@@ -1,6 +1,7 @@
 package vue;
 
 
+import model.Candidat;
 import vue.inscription.Inscription;
 import vue.listing.Listing;
 import vue.recherche.Recherche;
@@ -51,14 +52,22 @@ public class FramePrincipale extends JFrame {
     public void afficherPanel(JPanel panel){
         //reset
         if(panel instanceof Inscription) {
+            inscription.rafraichir();
             layout.show(this.getContentPane(), "inscription");
         }
         else if (panel instanceof Listing){
+            listing.rafraichir();
             layout.show(this.getContentPane(), "listing");
         }
         else if (panel instanceof Recherche){
+            recherche.rafraichir();
             layout.show(this.getContentPane(),"recherche");
         }
+    }
+
+    public void afficherCandidatInfo(Candidat candidat){
+        layout.show(this.getContentPane(),"recherche");
+        recherche.afficherCandidatInfo(candidat);
     }
 
 }

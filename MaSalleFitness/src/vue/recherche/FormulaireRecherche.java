@@ -12,11 +12,13 @@ public class FormulaireRecherche extends PanelFormulaireBase {
 
     public FormulaireRecherche(){
         setLayout(new GridLayout(1,2,25,25));
-
-        setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+"))));
-        initList();
     }
     public int getId(){
         return Integer.parseInt((String)getComposantes().get("id").getValue());
+    }
+    public void rafraichir(){
+        removeAll();
+        setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+"))));
+        initList();
     }
 }

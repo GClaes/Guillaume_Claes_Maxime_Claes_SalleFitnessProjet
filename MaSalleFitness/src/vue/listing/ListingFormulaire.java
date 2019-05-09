@@ -11,6 +11,23 @@ public class ListingFormulaire extends JPanel {
     private ArrayList<Candidat>listeCandidats;
 
     public ListingFormulaire() {
+        listing = new JList<>();
+        rafraichir();
+        add(listing);
+    }
+
+    public int getIdSelect(){
+        int index = listing.getAnchorSelectionIndex();
+        if(index != -1) {
+            return listeCandidats.get(index).getNumInscription();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Sélectionnez un candidat");
+            return -1;
+        }
+    }
+
+    public void rafraichir(){
         CandidatService candidatService = new CandidatServiceImp();
         listeCandidats = candidatService.listingCandidats();
         String[]values = new String[listeCandidats.size()];
@@ -19,14 +36,8 @@ public class ListingFormulaire extends JPanel {
             values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
             position++;
         }
-        listing = new JList<>(values);
         listing.setVisibleRowCount(5);
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        add(listing);
-    }
-
-    public int getIdSelect(){
-        int index = listing.getAnchorSelectionIndex();
-        return listeCandidats.get(index).getNumInscription();
+        listing.setListData(values);
     }
 }

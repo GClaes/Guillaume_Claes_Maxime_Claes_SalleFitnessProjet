@@ -12,13 +12,7 @@ import java.awt.*;
 public class PanelFormulaire2 extends PanelFormulaireBase {
     public PanelFormulaire2() {
         setLayout(new GridLayout(4,2,25,25));
-
-        setComposantes("rue",new ElementFormulaireJTextField("Rue", 255, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
-        setComposantes("num", new ElementFormulaireJTextField("Numéro", 255, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+[a-zA-Z0-9]{0,5}"))));
-        setComposantes("codePostal", new ElementFormulaireJTextField("Code postal", 255, new AndValidation(new PasVideValidation(), new PatternValidation("[0-9]{4}"))));
-        setComposantes("localite", new ElementFormulaireJTextField("Localité", 255, new AndValidation(new PasVideValidation(),new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
-
-        initList();
+        //rafraichir();
     }
 
     public String getLocalite() {
@@ -48,4 +42,13 @@ public class PanelFormulaire2 extends PanelFormulaireBase {
         return null;
     }
 
+    public void rafraichir(){
+        removeAll();
+        setComposantes("rue",new ElementFormulaireJTextField("Rue", 255, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+        setComposantes("num", new ElementFormulaireJTextField("Numéro", 255, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+[a-zA-Z0-9]{0,5}"))));
+        setComposantes("codePostal", new ElementFormulaireJTextField("Code postal", 255, new AndValidation(new PasVideValidation(), new PatternValidation("[0-9]{4}"))));
+        setComposantes("localite", new ElementFormulaireJTextField("Localité", 255, new AndValidation(new PasVideValidation(),new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+
+        initList();
+    }
 }

@@ -13,7 +13,11 @@ public class PanelFormulaire extends PanelFormulaireBase {
 
     public PanelFormulaire() {
         setLayout(new GridLayout(6, 2,25,25));
+        //rafraichir();
+    }
 
+    public void rafraichir(){
+        removeAll();
         setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),""));
         setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),""));
         String[] valuesSexe = {"Homme","Femme"};
@@ -24,7 +28,6 @@ public class PanelFormulaire extends PanelFormulaireBase {
         setComposantes("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
 
         initList();
-
     }
     public String getNom(){
         return (String)getComposantes().get("nom").getValue();
