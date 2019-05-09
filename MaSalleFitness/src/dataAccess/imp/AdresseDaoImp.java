@@ -26,7 +26,9 @@ public class AdresseDaoImp implements AdresseDao {
     public static RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
         @Override
         public Adresse map(ResultSet res) throws SQLException {
-            Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"), res.getString("adr.rue"), res.getString("adr.numero"));
+            Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"),
+                    res.getString("adr.rue"), res.getString("adr.numero")
+            );
 
             try {
                 Field field = Adresse.class.getDeclaredField("code");

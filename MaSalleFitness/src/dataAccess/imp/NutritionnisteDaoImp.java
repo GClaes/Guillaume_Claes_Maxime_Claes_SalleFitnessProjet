@@ -24,7 +24,9 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
     public static RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
         @Override
         public Nutritionniste map(ResultSet res) throws SQLException {
-            return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"), res.getString("nutri.prenom"), res.getString("nutri.avis"));
+            return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"),
+                    res.getString("nutri.prenom"), res.getString("nutri.avis")
+            );
         }
     };
 

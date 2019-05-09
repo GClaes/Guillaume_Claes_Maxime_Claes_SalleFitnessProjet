@@ -6,6 +6,7 @@ import dataAccess.imp.CandidatDaoImp;
 import model.Candidat;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CandidatServiceImp implements CandidatService {
     private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
@@ -34,5 +35,12 @@ public class CandidatServiceImp implements CandidatService {
 
     public void supprimerCandidat(int numeroInscription) {
         candidatDao.supprimerCandidat(numeroInscription);
+    }
+
+    public void modifierCandidat(Candidat candidat) {
+        candidatDao.modifierCandidat(candidat);
+    }
+    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+        return candidatDao.candidatsInscritsEntreDeuxDates(responsableMatricule, debut, fin);
     }
 }

@@ -23,4 +23,8 @@ public class NutritionnisteServiceImp implements NutritionnisteService {
     public ArrayList<Nutritionniste> listingNutritionnistes() {
         return nutritionnisteDao.listingNutritionnistes();
     }
+
+    public ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
+        return nutritionnisteDao.nutritionnistesDesCandidatsEntrainesParUnCoach(coachMatricule);
+    }
 }

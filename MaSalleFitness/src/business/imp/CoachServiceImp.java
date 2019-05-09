@@ -21,15 +21,19 @@ public class CoachServiceImp implements CoachService {
     }
 
     public ArrayList<Coach> listingCoachs() {
-        return coachDao.listingCoach();
+        return coachDao.listingCoachs();
     }
 
     public int nbHeuresCoachingUtilisees(int matriculeCoach) {
         return coachDao.nbHeuresCoachingUtilisees(matriculeCoach);
     }
 
-    public boolean coachExiste(int matriculeCoach) {
-        return coachDao.coachExiste(matriculeCoach);
+    public Coach obtentionCoach(int matriculeCoach) {
+        return coachDao.obtentionCoach(matriculeCoach);
+    }
+
+    public ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
+        return coachsDesCandidatsInscritsParUnResponsable(responsableMatricule);
     }
 
     public double calculSalaireHebdomadaire(int matriculeCoach) {

@@ -25,12 +25,14 @@ public class CoachDaoImp implements CoachDao {
     public static RowMapper<Coach> rowMapper = new RowMapper<Coach>() {
         @Override
         public Coach map(ResultSet res) throws SQLException {
-            java.util.Date utilDate = res.getTimestamp("co.date_debut_coaching");
-            return new Coach(res.getInt("co.matricule"), res.getString("co.nom"), res.getString("co.prenom"), res.getString("co.recompenses"), res.getDouble("co.salaire_horaire"), utilDate);  //getDouble pour le salaireHoraire
+            return new Coach(res.getInt("co.matricule"), res.getString("co.nom"),
+                    res.getString("co.prenom"), res.getString("co.recompenses"),
+                    res.getDouble("co.salaire_horaire"), res.getTimestamp("co.date_debut_coaching")
+            );
         }
     };
 
-    public ArrayList<Coach> listingCoach() {
+    public ArrayList<Coach> listingCoachs() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from coach co";
         ArrayList<Coach> coachs = new ArrayList<Coach>();
@@ -91,11 +93,6 @@ public class CoachDaoImp implements CoachDao {
         }
     }
 
-    /**
-     *
-     * @param matriculeCoach
-     * @return si coach existe, return coach ; sinon return null
-     */
     public Coach obtentionCoach(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from coach co where matricule = ?";

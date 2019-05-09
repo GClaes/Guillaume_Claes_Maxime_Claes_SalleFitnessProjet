@@ -1,7 +1,6 @@
 package dataAccess;
 
 import model.Candidat;
-import model.Responsable;
 
 import java.util.ArrayList;
 import java.util.Date;
