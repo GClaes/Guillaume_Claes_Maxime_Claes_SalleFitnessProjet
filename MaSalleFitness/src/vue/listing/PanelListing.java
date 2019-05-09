@@ -1,17 +1,17 @@
 package vue.listing;
 
-import model.Candidat;
 import vue.inscription.PanelBase;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class PanelListing extends PanelBase<ListingFormulaire> {
     private Listing listing;
+    private ListingFormulaire listingFormulaire = new ListingFormulaire();
     public PanelListing(Listing listing) {
-        super("<html><h1>Listing des candidats inscrits</h1></html>", "Retour","Afficher", new ListingFormulaire());
+        super("<html><h1>Listing des candidats inscrits</h1></html>", "Retour","Afficher");
         this.listing = listing;
+        addFormulaire(listingFormulaire);
         setListenerBouton1(new AnnulerListener());
         setListenerBouton2(new AfficherListener());
     }
@@ -29,5 +29,9 @@ public class PanelListing extends PanelBase<ListingFormulaire> {
                 listing.afficherCandidat(getFormulaire().getIdSelect());
             }
         }
+    }
+
+    public void rafraichir(){
+        listingFormulaire.rafraichir();
     }
 }

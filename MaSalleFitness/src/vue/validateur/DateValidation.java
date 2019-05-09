@@ -9,6 +9,6 @@ public class DateValidation implements Validation {
     }
     @Override
     public boolean valider(Object o) {
-        return (((Date)o).compareTo(date) >= 0);
+        return (((Date)o).compareTo(date) >= 0 && (((Date)o).compareTo(new Date()) <= 0));
     }
 }

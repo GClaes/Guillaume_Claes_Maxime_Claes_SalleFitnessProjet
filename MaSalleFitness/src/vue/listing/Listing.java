@@ -14,14 +14,11 @@ public class Listing extends JPanel {
     private CardLayout layout = new CardLayout();
     private FramePrincipale frame;
     private PanelListing panelListing;
-    private PanelCandidatInfo candidatInfo;
-    private Recherche recherche;
 
     public Listing(FramePrincipale frame) {
         this.setLayout(layout);
         this.frame = frame;
 
-        recherche = new Recherche(frame);
         panelListing = new PanelListing(this);
         add(panelListing, "listing");
     }
@@ -32,8 +29,10 @@ public class Listing extends JPanel {
     public void afficherCandidat(int id){
         CandidatService candidatService = new CandidatServiceImp();
         Candidat candidat = candidatService.rechercherCandidat(id);
-        candidatInfo = new PanelCandidatInfo(recherche,candidat);
-        add(candidatInfo, "info");
-        layout.show(this, "info");
+        frame.afficherCandidatInfo(candidat);
+    }
+
+    public void rafraichir(){
+        panelListing.rafraichir();
     }
 }

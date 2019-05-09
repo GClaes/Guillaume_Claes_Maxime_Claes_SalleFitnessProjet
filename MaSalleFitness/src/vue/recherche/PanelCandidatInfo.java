@@ -8,13 +8,13 @@ import java.awt.event.ActionListener;
 
 public class PanelCandidatInfo extends PanelBase<CandidatFormulaire> {
     private Recherche recherche;
+    private CandidatFormulaire candidatFormulaire = new CandidatFormulaire();
     private Candidat candidat;
 
-    public PanelCandidatInfo(Recherche recherche, Candidat candidat) {
-        super("<html><h1>Fiche du candidat recherché</h1></html>", "Supprimer","Modifier",new CandidatFormulaire(candidat));
+    public PanelCandidatInfo(Recherche recherche) {
+        super("<html><h1>Fiche du candidat recherché</h1></html>", "Supprimer","Modifier");
+        this.addFormulaire(candidatFormulaire);
         this.recherche = recherche;
-        this.candidat = candidat;
-
         setListenerBouton1(new SupprimerListener());
         setListenerBouton2(new ModifierListener());
     }
@@ -30,5 +30,10 @@ public class PanelCandidatInfo extends PanelBase<CandidatFormulaire> {
         public void actionPerformed(ActionEvent e) {
             recherche.modifier(candidat);
         }
+    }
+
+    public void setCandidat(Candidat candidat){
+        this.candidat = candidat;
+        candidatFormulaire.setCandidat(candidat);
     }
 }

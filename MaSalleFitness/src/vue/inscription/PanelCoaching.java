@@ -5,6 +5,7 @@ import business.CoachServiceImp;
 import vue.inscription.formulaire.PanelFormulaire3;
 import vue.listener.RetourMenuListener;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,14 +24,20 @@ public class PanelCoaching extends PanelBase<PanelFormulaire3> {
         @Override
         public void actionPerformed(ActionEvent e) {
             int nbHeuresCoachDispo = 20 - coachService.nbHeuresCoachingUtilisees(getFormulaire().getCoach().getMatricule());
-            if(getFormulaire().validation() && nbHeuresCoachDispo >= getFormulaire().getNbHeures()){
-                PanelFormulaire3 formulaire = getFormulaire();
-                inscription.envoyerInscription(
-                        formulaire.getNbHeures(),
-                        formulaire.getMaladies(),
-                        formulaire.getResponsable(),
-                        formulaire.getCoach(),
-                        formulaire.getNutri());
+            if(getFormulaire().validation()){
+                if(nbHeuresCoachDispo >= getFormulaire().getNbHeures()) {
+                    PanelFormulaire3 formulaire = getFormulaire();
+                    inscription.envoyerInscription(
+                            formulaire.getNbHeures(),
+                            formulaire.getMaladies(),
+                            formulaire.getResponsable(),
+                            formulaire.getCoach(),
+                            formulaire.getNutri());
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"Le coach choisi n'a plus assez d'heures. \n " +
+                            "Veuillez choisir un autre coach, ou prendre moins d'heures de coaching.");
+                }
             }
         }
     }

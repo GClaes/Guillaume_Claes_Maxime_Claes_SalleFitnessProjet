@@ -112,4 +112,10 @@ public class FormulaireModification extends PanelFormulaireBase {
     public Responsable getResponsable(){
         return(Responsable)getComposantes().get("responsable").getValue();
     }
+    public boolean getValiderTest(){
+        return (int)getComposantes().get("validerTest").getValue() == 1;
+    }
+    public Date getDateTestValide(){
+        return (Date)getComposantes().get("dateTest").getValue();
+    }
 }

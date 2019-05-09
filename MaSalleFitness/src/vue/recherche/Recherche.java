@@ -24,7 +24,10 @@ public class Recherche extends JPanel {
         this.setLayout(layout);
 
         panelRecherche = new PanelRecherche(this);
+        panelCandidatInfo = new PanelCandidatInfo(this);
         add(panelRecherche, "recherche");
+        add(panelCandidatInfo, "info");
+
     }
 
     public void retour(){
@@ -37,9 +40,7 @@ public class Recherche extends JPanel {
             JOptionPane.showMessageDialog(null,"Le recherche recherché n'existe pas, veuillez entrer un identifiant correct","Erreur lors de la recherche",JOptionPane.ERROR_MESSAGE);
         }
         else{
-            panelCandidatInfo = new PanelCandidatInfo(this,candidat);
-            add(panelCandidatInfo, "info");
-            layout.show(this, "info");
+            afficherCandidatInfo(candidat);
         }
     }
 
@@ -59,5 +60,10 @@ public class Recherche extends JPanel {
         panelModification = new PanelModification(this, candidat);
         add(panelModification, "modif");
         layout.show(this,"modif");
+    }
+
+    public void afficherCandidatInfo(Candidat candidat) {
+        panelCandidatInfo.setCandidat(candidat);
+        layout.show(this, "info");
     }
 }

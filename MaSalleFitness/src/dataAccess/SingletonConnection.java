@@ -10,7 +10,7 @@ public class SingletonConnection {
     public static Connection getInstance() {
         if (uniqueConnection == null) {
             try {
-                uniqueConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sallefitness?useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
+                uniqueConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbsallefitness?useLegacyDatetimeCode=false&serverTimezone=UTC", "root", "1234");
             } catch (SQLException e) {
                 throw new ConnectionException(e);
             }

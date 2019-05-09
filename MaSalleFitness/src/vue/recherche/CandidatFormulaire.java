@@ -8,9 +8,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CandidatFormulaire extends PanelFormulaireBase {
-    public CandidatFormulaire(Candidat candidat) {
+    public CandidatFormulaire() {
         setLayout(new GridLayout(7,2,25,25));
-
+    }
+    public void setCandidat(Candidat candidat){
+        removeAll();
         setComposantes("id",new ElementFormulaireLabel("ID", new JLabel(candidat.getNumInscription().toString())));
         setComposantes("nom",new ElementFormulaireLabel("Nom", new JLabel(candidat.getNom())));
         setComposantes("prenom",new ElementFormulaireLabel("Prénom", new JLabel(candidat.getPrenom())));

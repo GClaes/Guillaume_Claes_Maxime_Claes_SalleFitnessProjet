@@ -11,17 +11,8 @@ public class ListingFormulaire extends JPanel {
     private ArrayList<Candidat>listeCandidats;
 
     public ListingFormulaire() {
-        CandidatService candidatService = new CandidatServiceImp();
-        listeCandidats = candidatService.listingCandidats();
-        String[]values = new String[listeCandidats.size()];
-        int position = 0;
-        for(Candidat candidat:listeCandidats){
-            values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
-            position++;
-        }
-        listing = new JList<>(values);
-        listing.setVisibleRowCount(5);
-        listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listing = new JList<>();
+        rafraichir();
         add(listing);
     }
 
@@ -34,5 +25,19 @@ public class ListingFormulaire extends JPanel {
             JOptionPane.showMessageDialog(null, "Sélectionnez un candidat");
             return -1;
         }
+    }
+
+    public void rafraichir(){
+        CandidatService candidatService = new CandidatServiceImp();
+        listeCandidats = candidatService.listingCandidats();
+        String[]values = new String[listeCandidats.size()];
+        int position = 0;
+        for(Candidat candidat:listeCandidats){
+            values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
+            position++;
+        }
+        listing.setVisibleRowCount(5);
+        listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listing.setListData(values);
     }
 }
