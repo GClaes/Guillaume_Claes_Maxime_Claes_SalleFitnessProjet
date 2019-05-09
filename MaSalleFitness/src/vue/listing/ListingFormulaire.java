@@ -1,21 +1,18 @@
-package vue.panel.listing;
+package vue.listing;
 
 import business.CandidatService;
 import business.CandidatServiceImp;
 import model.Candidat;
-import vue.panel.Raffraichissable;
-
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class PanelListingFormulaire extends JPanel implements Raffraichissable {
+public class ListingFormulaire extends JPanel {
     private JList<String>listing;
+    private ArrayList<Candidat>listeCandidats;
 
-
-    @Override
-    public void raffraichir() {
+    public ListingFormulaire() {
         CandidatService candidatService = new CandidatServiceImp();
-        ArrayList<Candidat>listeCandidats = candidatService.listingCandidats();
+        listeCandidats = candidatService.listingCandidats();
         String[]values = new String[listeCandidats.size()];
         int position = 0;
         for(Candidat candidat:listeCandidats){
@@ -26,5 +23,10 @@ public class PanelListingFormulaire extends JPanel implements Raffraichissable {
         listing.setVisibleRowCount(5);
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         add(listing);
+    }
+
+    public int getIdSelect(){
+        int index = listing.getAnchorSelectionIndex();
+        return listeCandidats.get(index).getNumInscription();
     }
 }

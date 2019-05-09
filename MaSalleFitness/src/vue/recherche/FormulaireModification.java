@@ -1,18 +1,21 @@
-package vue.panel.modification;
+package vue.recherche;
 
 import model.*;
-import vue.element.*;
-import vue.panel.inscription.PanelFormulaireBase;
+import vue.element.ElementFormulaireJComboBox;
+import vue.element.ElementFormulaireJSpinnerDate;
+import vue.element.ElementFormulaireJSpinnerNb;
+import vue.element.ElementFormulaireJTextField;
+import vue.inscription.formulaire.PanelFormulaireBase;
 import vue.validateur.*;
 
 import java.awt.*;
 import java.util.Date;
 
-
-public class PanelModificationFormulaire extends PanelFormulaireBase {
-    public PanelModificationFormulaire(Candidat candidat){
-        setLayout(new GridLayout(11, 2,25,15));
-        //String nom = candidat.getNom();
+public class FormulaireModification extends PanelFormulaireBase {
+    private Candidat candidat;
+    public FormulaireModification(Candidat candidat){
+        this.candidat = candidat;
+        setLayout(new GridLayout(13, 2,25,15));
         setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,
                 new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
                 candidat.getNom()));
@@ -47,13 +50,20 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré",
                 new NbValidation(1,'>'),
                 candidat.getNbHeuresCoaching()));
-
-
-
+        String[]values = {"Non","Oui"};
+        setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values,
+                new PasVideValidation()));
+        try {
+            setComposantes("dateTest", new ElementFormulaireJSpinnerDate("Date du test",
+                    new DateValidation(candidat.getDateInscription()),
+                    candidat.getDateTestValide()));
+        }catch (Exception e){
+            setComposantes("dateTest", new ElementFormulaireJSpinnerDate("Date du test",
+                    new DateValidation(candidat.getDateInscription()),
+                    new Date()));
+        }
         initList();
-
     }
-
     public String getNom(){
         return (String)getComposantes().get("nom").getValue();
     }
@@ -75,21 +85,15 @@ public class PanelModificationFormulaire extends PanelFormulaireBase {
     public String getLocalite() {
         return (String)getComposantes().get("localite").getValue();
     }
-
     public String getNumero() {
         return (String)getComposantes().get("num").getValue();
     }
-
-
     public String getRue() {
         return (String)getComposantes().get("rue").getValue();
     }
-
-
     public String getCodePostal() {
         return (String)getComposantes().get("codePostal").getValue();
     }
-
     public Adresse getAdresse(){
         return new Adresse(getLocalite(), getCodePostal(), getRue(), getNumero());
     }

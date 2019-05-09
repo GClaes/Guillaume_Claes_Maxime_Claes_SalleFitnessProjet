@@ -1,24 +1,25 @@
-package vue.panel.inscription;
+package vue.inscription.formulaire;
 
-import vue.validateur.*;
+
 import vue.element.ElementFormulaireJComboBox;
 import vue.element.ElementFormulaireJSpinnerDate;
 import vue.element.ElementFormulaireJTextField;
+import vue.validateur.*;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Date;
 
 public class PanelFormulaire extends PanelFormulaireBase {
 
     public PanelFormulaire() {
         setLayout(new GridLayout(6, 2,25,25));
 
-        setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
-        setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$"))));
+        setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),""));
+        setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30, new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),""));
         String[] valuesSexe = {"Homme","Femme"};
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe, new PasVideValidation()));
         setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance", new AgeValidation()));
-        setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
+        setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10, new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}")),""));
         String[] valuesExp = {"Non","Oui"};
         setComposantes("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,new PasVideValidation()));
 
@@ -43,5 +44,6 @@ public class PanelFormulaire extends PanelFormulaireBase {
     public boolean getExp(){
         return (int)getComposantes().get("experience").getValue()==0;
     }
+
 
 }

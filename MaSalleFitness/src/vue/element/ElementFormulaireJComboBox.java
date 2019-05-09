@@ -4,7 +4,7 @@ import vue.validateur.Validation;
 
 import javax.swing.*;
 
-public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox>{
+public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox> {
 
     public ElementFormulaireJComboBox(String nom, String []values, Validation validation) {
         super(nom, validation);

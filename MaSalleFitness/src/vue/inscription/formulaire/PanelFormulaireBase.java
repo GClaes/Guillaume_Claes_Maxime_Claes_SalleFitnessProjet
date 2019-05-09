@@ -1,7 +1,6 @@
-package vue.panel.inscription;
+package vue.inscription.formulaire;
 
 import vue.element.ElementFormulaire;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedHashMap;
@@ -45,5 +44,6 @@ public abstract class PanelFormulaireBase extends JPanel {
     public void setComposantes(String cle, ElementFormulaire entree) {
         composantes.put(cle, entree);
     }
+
 
 }

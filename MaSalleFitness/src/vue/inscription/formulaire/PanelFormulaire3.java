@@ -1,13 +1,10 @@
-package vue.panel.inscription;
+package vue.inscription.formulaire;
 
 import business.*;
-import model.Candidat;
 import model.Coach;
 import model.Nutritionniste;
 import model.Responsable;
-import vue.element.ElementFormulaireJComboBox;
-import vue.element.ElementFormulaireJSpinnerNb;
-import vue.element.ElementFormulaireJTextField;
+import vue.element.*;
 import vue.validateur.*;
 
 import java.awt.*;
@@ -17,20 +14,22 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     private ArrayList<Coach>listeCoachs;
     private ArrayList<Nutritionniste>listeNutritionnistes;
     private ArrayList<Responsable>listeResponsables;
+    private CoachService coachService;
+    private NutritionnisteService nutritionnisteService;
+    private ResponsableService responsableService;
     public PanelFormulaire3() {
-        CoachService coachService = new CoachServiceImp();
+        coachService = new CoachServiceImp();
+        nutritionnisteService = new NutritionnisteServiceImp();
+        responsableService = new ResponsableServiceImp();
         listeCoachs = coachService.listingCoachs();
-        NutritionnisteService nutritionnisteService = new NutritionnisteServiceImp();
         listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
-        ResponsableService responsableService = new ResponsableServiceImp();
         listeResponsables = responsableService.listingResponsables();
 
 
         setLayout(new GridLayout(5, 2, 50, 75));
 
-        //AMELIROER VALIDATEURS
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
-        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new VideValidation()));
+        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new OrValidation(new VideValidation(), new PasVideValidation())));
 
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
         setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
@@ -65,11 +64,8 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         String[]valuesCoach = new String[listeCoachs.size()];
         int position = 0;
         for(Coach coach : listeCoachs){
-            int nbHeures = 0;
-            for(Candidat candidat : coach.getCandidats()){
-                nbHeures+= candidat.getNbHeuresCoaching();
-            }
-            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+(20-nbHeures)+"/20 heure(s) dispo(s)";
+            int nbHeuresCoach = coachService.nbHeuresCoachingUtilisees(coach.getMatricule());
+            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+nbHeuresCoach+"/20 heure(s) dispo(s)";
             position++;
         }
         return valuesCoach;

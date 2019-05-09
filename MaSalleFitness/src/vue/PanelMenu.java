@@ -1,10 +1,11 @@
-package vue.panel;
+package vue;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.ImageObserver;
-import java.io.*;
-import javax.imageio.*;
+import java.io.File;
+import java.io.IOException;
 
 public class PanelMenu extends JPanel {
     private Image img;

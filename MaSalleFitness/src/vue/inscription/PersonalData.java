@@ -1,4 +1,4 @@
-package vue.panel.inscription;
+package vue.inscription;
 
 import model.Adresse;
 import model.Coach;
@@ -22,16 +22,36 @@ public class PersonalData {
     private Adresse adresse;
 
 
-    public PersonalData(String nom, String prenom, Date dateNaissance, char sexe, boolean estDebutant, String numeroGSM) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.dateNaissance = dateNaissance;
-        this.sexe = sexe;
-        this.estDebutant = estDebutant;
-        this.numeroGSM = numeroGSM;
+    public PersonalData() {
+
     }
 
     //SETTERS
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public void setSexe(char sexe) {
+        this.sexe = sexe;
+    }
+
+    public void setEstDebutant(boolean estDebutant) {
+        this.estDebutant = estDebutant;
+    }
+
+    public void setNumeroGSM(String numeroGSM) {
+        this.numeroGSM = numeroGSM;
+    }
+
     public void setNbHeuresCoaching(Integer nbHeuresCoaching) {
         this.nbHeuresCoaching = nbHeuresCoaching;
     }
