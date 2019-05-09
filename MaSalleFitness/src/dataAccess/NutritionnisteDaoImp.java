@@ -7,6 +7,17 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class NutritionnisteDaoImp implements NutritionnisteDao {
+    private static NutritionnisteDaoImp nutritionnisteDaoImp;
+
+    private NutritionnisteDaoImp() { }
+
+    public static NutritionnisteDaoImp getInstance() {
+        if (nutritionnisteDaoImp == null) {
+            nutritionnisteDaoImp = new NutritionnisteDaoImp();
+        }
+        return nutritionnisteDaoImp;
+    }
+
     public static RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
         @Override
         public Nutritionniste map(ResultSet res) throws SQLException {

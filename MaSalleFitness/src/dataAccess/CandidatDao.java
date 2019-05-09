@@ -9,5 +9,5 @@ public interface CandidatDao {
     ArrayList<Candidat> listingCandidats();
     void ajouterCandidat(Candidat candidat);
     void supprimerCandidat(int numeroInscription);
-    //void modifierCandidat(Candidat candidat);
+    void modifierCandidat(Candidat candidat);
 }

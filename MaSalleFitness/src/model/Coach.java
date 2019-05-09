@@ -18,6 +18,12 @@ public class Coach extends Personne {
         this.dateDebutCoaching = dateDebutCoaching;
     }
 
+    public void ajouterCandidat(Candidat candidat) {
+        if (candidat != null) {
+            candidats.add(candidat);
+        }
+    }
+
     public Integer getMatricule() {
         return matricule;
     }

@@ -10,7 +10,7 @@ public class ResponsableServiceImp implements ResponsableService {
     private ResponsableDao responsableDao;
 
     public ResponsableServiceImp() {
-        setResponsableDao(new ResponsableDaoImp());
+        setResponsableDao(ResponsableDaoImp.getInstance());
     }
 
     public ArrayList<Responsable> listingResponsables() {
