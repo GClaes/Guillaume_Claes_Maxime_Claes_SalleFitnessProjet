@@ -10,7 +10,7 @@ public class PanelAdresse extends PanelBase<PanelFormulaire2> {
     private Inscription inscription;
 
     public PanelAdresse(Inscription inscription) {
-        super("<html><h1>Inscription nouveau recherche [2/3]</h1></html>","Annuler","Suivant", new PanelFormulaire2());
+        super("<html><h1>Inscription nouveau candidat [2/3]</h1></html>","Annuler","Suivant", new PanelFormulaire2());
         this.inscription = inscription;
         setListenerBouton1(new RetourMenuListener(inscription));
         setListenerBouton2(new SuivantListener());

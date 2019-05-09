@@ -1,7 +1,9 @@
 package vue.listing;
 
+import model.Candidat;
 import vue.inscription.PanelBase;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,7 +25,9 @@ public class PanelListing extends PanelBase<ListingFormulaire> {
     private class AfficherListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            listing.afficherCandidat(getFormulaire().getIdSelect());
+            if(getFormulaire().getIdSelect() != -1) {
+                listing.afficherCandidat(getFormulaire().getIdSelect());
+            }
         }
     }
 }

@@ -11,7 +11,7 @@ public class PanelCandidatInfo extends PanelBase<CandidatFormulaire> {
     private Candidat candidat;
 
     public PanelCandidatInfo(Recherche recherche, Candidat candidat) {
-        super("<html><h1>Fiche du recherche recherché</h1></html>", "Supprimer","Modifier",new CandidatFormulaire(candidat));
+        super("<html><h1>Fiche du candidat recherché</h1></html>", "Supprimer","Modifier",new CandidatFormulaire(candidat));
         this.recherche = recherche;
         this.candidat = candidat;
 

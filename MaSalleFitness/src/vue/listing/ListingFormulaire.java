@@ -27,6 +27,12 @@ public class ListingFormulaire extends JPanel {
 
     public int getIdSelect(){
         int index = listing.getAnchorSelectionIndex();
-        return listeCandidats.get(index).getNumInscription();
+        if(index != -1) {
+            return listeCandidats.get(index).getNumInscription();
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Sélectionnez un candidat");
+            return -1;
+        }
     }
 }

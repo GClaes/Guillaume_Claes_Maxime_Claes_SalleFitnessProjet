@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 public class PanelModification extends PanelBase<FormulaireModification> {
     private Recherche recherche;
     public PanelModification(Recherche recherche, Candidat candidat) {
-        super("<html><h1>Modification d'un recherche</h1></html>","Annuler", "Valider", new FormulaireModification(candidat));
+        super("<html><h1>Modification d'un candidat</h1></html>","Annuler", "Valider", new FormulaireModification(candidat));
         this.recherche = recherche;
 
         setListenerBouton1(new AnnulerListener());

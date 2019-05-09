@@ -65,7 +65,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         int position = 0;
         for(Coach coach : listeCoachs){
             int nbHeuresCoach = coachService.nbHeuresCoachingUtilisees(coach.getMatricule());
-            valuesCoach[position] = coach.getPrenom()+" "+coach.getNom()+" "+nbHeuresCoach+"/20 heure(s) dispo(s)";
+            valuesCoach[position] = coach.getPrenom() + " " + coach.getNom() + " " + (20 - nbHeuresCoach) + "/20 heure(s) dispo(s)";
             position++;
         }
         return valuesCoach;

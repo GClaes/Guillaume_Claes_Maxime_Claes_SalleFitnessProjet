@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 public class PanelRecherche extends PanelBase<FormulaireRecherche> {
     private Recherche recherche;
     public PanelRecherche(Recherche recherche){
-        super("<html><h1>PanelRecherche d'un recherche","Annuler","Rechercher",new FormulaireRecherche());
+        super("<html><h1>Recherche d'un candidat","Annuler","Rechercher",new FormulaireRecherche());
         this.recherche = recherche;
         setListenerBouton1(new RetourListener());
         setListenerBouton2(new RechercherListener());
