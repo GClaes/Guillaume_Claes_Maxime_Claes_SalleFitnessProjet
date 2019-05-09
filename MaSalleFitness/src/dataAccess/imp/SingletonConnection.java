@@ -1,4 +1,4 @@
-package dataAccess;
+package dataAccess.imp;
 
 import dataAccess.exceptions.ConnectionException;
 

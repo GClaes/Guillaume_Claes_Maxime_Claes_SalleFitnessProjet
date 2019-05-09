@@ -1,23 +1,25 @@
-package dataAccess;
+package dataAccess.imp;
 
+import dataAccess.CandidatDao;
+import dataAccess.CoachDao;
+import dataAccess.RowMapper;
 import dataAccess.exceptions.*;
-import model.Candidat;
 import model.Coach;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class CoachDaoImp implements CoachDao {
-    private static CoachDaoImp coachDaoImp;
-    public CandidatDao candidatDao = CandidatDaoImp.getInstance();
+    private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
+    private static CoachDao coachDao;
 
     private CoachDaoImp() { }
 
-    public static CoachDaoImp getInstance() {
-        if (coachDaoImp == null) {
-            coachDaoImp = new CoachDaoImp();
+    public static CoachDao getInstance() {
+        if (coachDao == null) {
+            coachDao = new CoachDaoImp();
         }
-        return coachDaoImp;
+        return coachDao;
     }
 
     public static RowMapper<Coach> rowMapper = new RowMapper<Coach>() {

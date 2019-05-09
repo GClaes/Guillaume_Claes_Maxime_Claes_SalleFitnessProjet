@@ -1,16 +1,23 @@
-package business;
+package business.imp;
 
+import business.CandidatService;
 import dataAccess.CandidatDao;
-import dataAccess.CandidatDaoImp;
+import dataAccess.imp.CandidatDaoImp;
 import model.Candidat;
 
 import java.util.ArrayList;
 
 public class CandidatServiceImp implements CandidatService {
-    private CandidatDao candidatDao;
+    private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
+    private static CandidatService candidatService;
 
-    public CandidatServiceImp() {
-        setCandidatDao(CandidatDaoImp.getInstance());
+    private CandidatServiceImp() { }
+
+    public static CandidatService getInstance() {
+        if (candidatService == null) {
+            candidatService = new CandidatServiceImp();
+        }
+        return candidatService;
     }
 
     public Candidat rechercherCandidat(int numeroInscription) {
@@ -27,9 +34,5 @@ public class CandidatServiceImp implements CandidatService {
 
     public void supprimerCandidat(int numeroInscription) {
         candidatDao.supprimerCandidat(numeroInscription);
-    }
-
-    public void setCandidatDao(CandidatDao candidatDao) {
-        this.candidatDao = candidatDao;
     }
 }

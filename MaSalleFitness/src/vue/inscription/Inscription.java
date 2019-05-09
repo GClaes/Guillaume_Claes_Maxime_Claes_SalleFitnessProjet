@@ -1,7 +1,7 @@
 package vue.inscription;
 
 import business.CandidatService;
-import business.CandidatServiceImp;
+import business.imp.CandidatServiceImp;
 import model.*;
 import vue.FramePrincipale;
 

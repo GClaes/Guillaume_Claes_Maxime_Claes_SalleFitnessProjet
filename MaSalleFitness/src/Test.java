@@ -1,4 +1,5 @@
 import dataAccess.*;
+import dataAccess.imp.NutritionnisteDaoImp;
 import model.Nutritionniste;
 
 import java.util.ArrayList;
