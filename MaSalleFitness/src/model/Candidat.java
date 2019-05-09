@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import model.exceptions.*;
+import utilitaires.DateUtilitaire;
 
 public class Candidat extends Personne {
     private Integer numInscription;
@@ -46,7 +47,7 @@ public class Candidat extends Personne {
     }
 
     public void setDateNaissance(Date dateNaissance) {
-        if (dateNaissance == null || age(dateNaissance) < AGE_MINIMUM) {
+        if (dateNaissance == null || DateUtilitaire.age(dateNaissance) < AGE_MINIMUM) {
             throw new DateNaissanceException(dateNaissance);
         }
         this.dateNaissance = dateNaissance;
@@ -59,40 +60,12 @@ public class Candidat extends Personne {
         this.sexe = sexe;
     }
 
-    private int age(Date dateNaissance) {
-        int anneesDifference;
-        int moisDifference;
-        int joursDifference;
-
-        GregorianCalendar today = new GregorianCalendar();
-        Calendar naissance = Calendar.getInstance();
-        naissance.setTime(dateNaissance);
-
-        anneesDifference = today.get(Calendar.YEAR) - naissance.get(Calendar.YEAR);
-        moisDifference = today.get(Calendar.MONTH) - naissance.get(Calendar.MONTH);
-        joursDifference = today.get(Calendar.DAY_OF_MONTH) - naissance.get(Calendar.DAY_OF_MONTH);
-
-        if (moisDifference < 0) {
-            return anneesDifference - 1;
-        }
-
-        if (moisDifference > 0) {
-            return anneesDifference;
-        }
-
-        if (joursDifference < 0) {
-            return anneesDifference - 1;
-        }
-
-        return anneesDifference;
-    }
-
     public void setMaladiesChroniques(String maladiesChroniques) {      //Mettre une longueur pour la validation
         this.maladiesChroniques = maladiesChroniques;
     }
 
     public void setNumeroGSM(String numeroGSM) {
-        if (numeroGSM != null) {
+        if (numeroGSM != null && numeroGSM.length() != 0) {
             if (numeroGSM.charAt(0) != '0') {
                 throw new NumeroGSMException(numeroGSM);
             } else {
@@ -147,7 +120,7 @@ public class Candidat extends Personne {
         return numeroGSM;
     }
 
-    public Date getDateNaissance() {
+    public java.util.Date getDateNaissance() {
         return dateNaissance;
     }
 

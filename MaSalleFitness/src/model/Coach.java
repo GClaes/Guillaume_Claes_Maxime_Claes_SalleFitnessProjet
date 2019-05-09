@@ -5,12 +5,12 @@ import java.util.Date;
 
 public class Coach extends Personne {
     private Integer matricule;
-    private Integer salaireHoraire;
+    private double salaireHoraire;
     private String recompenses;
     private Date dateDebutCoaching;
     private ArrayList<Candidat> candidats = new ArrayList <>();
 
-    public Coach(Integer matricule, String nom, String prenom, String recompenses, Integer salaireHoraire, Date dateDebutCoaching) {
+    public Coach(Integer matricule, String nom, String prenom, String recompenses, double salaireHoraire, Date dateDebutCoaching) {
         super(nom, prenom);
         this.matricule = matricule;
         this.recompenses = recompenses;
@@ -28,7 +28,7 @@ public class Coach extends Personne {
         return matricule;
     }
 
-    public Integer getSalaireHoraire() {
+    public double getSalaireHoraire() {
         return salaireHoraire;
     }
 
