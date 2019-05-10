@@ -120,9 +120,9 @@ public class CoachDaoImpl implements CoachDao {
     public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select distinct co.matricule, co.nom, co.prenom, co.recompenses, co.salaire_horaire, co.date_debut_coaching " +
-                "from candidat candi, coach co, responsable resp " +
-                "where candi.coach_matricule = co.matricule " +
-                "and candi.responsable_matricule = resp.matricule " +
+                "from coach co " +
+                "join candidat candi on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
                 "and resp.matricule = ?";
 
         List<Coach> coachs = new ArrayList<Coach>();
