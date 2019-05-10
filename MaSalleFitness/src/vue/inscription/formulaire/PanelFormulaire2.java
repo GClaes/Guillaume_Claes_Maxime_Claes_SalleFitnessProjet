@@ -12,7 +12,6 @@ import java.awt.*;
 public class PanelFormulaire2 extends PanelFormulaireBase {
     public PanelFormulaire2() {
         setLayout(new GridLayout(4,2,25,25));
-        //rafraichir();
     }
 
     public String getLocalite() {

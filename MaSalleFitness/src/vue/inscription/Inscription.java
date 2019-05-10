@@ -70,7 +70,7 @@ public class Inscription extends JPanel {
         candidat.setNumeroGSM(data.getNumeroGSM());
         candidat.setEstDebutant(data.getEstDebutant());
         candidat.setMaladiesChroniques(data.getMaladiesChroniques());
-        CandidatService candidatService = new CandidatServiceImp();
+        CandidatService candidatService = CandidatServiceImp.getInstance();
         candidatService.ajoutCandidat(candidat);
     }
 

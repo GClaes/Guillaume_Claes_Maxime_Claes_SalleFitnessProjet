@@ -22,7 +22,6 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     private ResponsableService responsableService;
     public PanelFormulaire3() {
         setLayout(new GridLayout(5, 2, 50, 75));
-        //rafraichir();
     }
 
     public int getNbHeures(){
@@ -76,9 +75,9 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     }
 
     public void rafraichir(){
-        coachService = new CoachServiceImp();
-        nutritionnisteService = new NutritionnisteServiceImp();
-        responsableService = new ResponsableServiceImp();
+        coachService =  CoachServiceImp.getInstance();
+        nutritionnisteService = NutritionnisteServiceImp.getInstance();
+        responsableService = ResponsableServiceImp.getInstance();
         listeCoachs = coachService.listingCoachs();
         listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
         listeResponsables = responsableService.listingResponsables();

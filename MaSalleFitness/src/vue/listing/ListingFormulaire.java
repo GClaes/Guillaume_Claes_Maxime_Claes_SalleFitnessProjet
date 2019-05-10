@@ -28,7 +28,7 @@ public class ListingFormulaire extends JPanel {
     }
 
     public void rafraichir(){
-        CandidatService candidatService = new CandidatServiceImp();
+        CandidatService candidatService = CandidatServiceImp.getInstance();
         listeCandidats = candidatService.listingCandidats();
         String[]values = new String[listeCandidats.size()];
         int position = 0;
