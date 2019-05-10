@@ -32,7 +32,7 @@ public class CandidatDaoImpl implements CandidatDao {
         public Candidat map(ResultSet res) throws SQLException {
             Candidat candidat = new Candidat(
                     res.getInt("candi.nb_heures_coaching"), res.getString("candi.nom"),
-                    res.getString("candi.prenom"), res.getTimestamp("candi.date_naissance"),
+                    res.getString("candi.prenom"), res.getDate("candi.date_naissance"),
                     res.getString("candi.sexe").charAt(0),
                     CoachDaoImpl.rowMapper.map(res), ResponsableDaoImpl.rowMapper.map(res), NutritionnisteDaoImpl.rowMapper.map(res),
                     AdresseDaoImpl.rowMapper.map(res)
@@ -41,8 +41,8 @@ public class CandidatDaoImpl implements CandidatDao {
             candidat.setNumInscrit(res.getInt("candi.num_inscrit"));
             candidat.setMaladiesChroniques(res.getString("candi.maladies_chroniques"));
             candidat.setNumeroGSM(res.getString("candi.num_gsm"));
-            candidat.setDateTestValide(res.getTimestamp("candi.date_test_valide"));
-            candidat.setDateInscription(res.getTimestamp("candi.date_inscription"));
+            candidat.setDateTestValide(res.getDate("candi.date_test_valide"));
+            candidat.setDateInscription(res.getDate("candi.date_inscription"));
             candidat.setEstDebutant(res.getBoolean("candi.debutant"));
 
             return candidat;
@@ -240,7 +240,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join responsable resp on candi.responsable_matricule = resp.matricule " +
                 "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
-                "where candi.coach_matricule = 1";
+                "where candi.coach_matricule = ?";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
@@ -265,7 +265,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join responsable resp on candi.responsable_matricule = resp.matricule " +
                 "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
-                "where candi.nutritionniste_num_reference = 1";
+                "where candi.nutritionniste_num_reference = ?";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
