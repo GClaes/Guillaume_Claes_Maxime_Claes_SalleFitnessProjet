@@ -51,12 +51,11 @@ public class CandidatDaoImpl implements CandidatDao {
 
     public Candidat rechercherCandidat(int numeroInscription) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select *" +
-                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
-                "where candi.coach_matricule = co.matricule " +
-                "and candi.responsable_matricule = resp.matricule " +
-                "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                "and candi.adresse_code_hash = adr.code_hash " +
+        String requete = "select * from candidat candi " +
+                "join coach co on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
                 "and candi.num_inscrit = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
@@ -75,12 +74,11 @@ public class CandidatDaoImpl implements CandidatDao {
 
     public List<Candidat> listingCandidats() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select *" +
-                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
-                "where candi.coach_matricule = co.matricule " +
-                "and candi.responsable_matricule = resp.matricule " +
-                "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                "and candi.adresse_code_hash = adr.code_hash";
+        String requete = "select * from candidat candi " +
+                "join coach co on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join adresse adr on candi.adresse_code_hash = adr.code_hash";
         List<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
@@ -210,12 +208,11 @@ public class CandidatDaoImpl implements CandidatDao {
      */
     public List<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select *" +
-                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr" +
-                "where candi.coach_matricule = co.matricule" +
-                "and candi.responsable_matricule = resp.matricule" +
-                "and candi.nutritionniste_num_reference = nutri.num_reference" +
-                "and candi.adresse_code_hash = adr.code_hash" +
+        String requete = "select * from candidat candi " +
+                "join coach co on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
                 "and candi.date_inscription between ? and ?" +
                 "and resp.matricule = ?";
         List<Candidat> candidats = new ArrayList<Candidat>();
