@@ -1,6 +1,8 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
-import dataAccess.*;
+import dataAccess.AdresseDao;
+import dataAccess.CandidatDao;
+import dataAccess.RowMapper;
 import dataAccess.exceptions.*;
 import model.*;
 
@@ -12,15 +14,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CandidatDaoImp implements CandidatDao {
-    private final AdresseDao adresseDao = AdresseDaoImp.getInstance();
+public class CandidatDaoImpl implements CandidatDao {
+    private final AdresseDao adresseDao = AdresseDaoImpl.getInstance();
     private static CandidatDao candidatDao;
 
-    private CandidatDaoImp() { }
+    private CandidatDaoImpl() { }
 
     public static CandidatDao getInstance() {
         if (candidatDao == null) {
-            candidatDao = new CandidatDaoImp();
+            candidatDao = new CandidatDaoImpl();
         }
         return candidatDao;
     }
@@ -32,8 +34,8 @@ public class CandidatDaoImp implements CandidatDao {
                     res.getInt("candi.nb_heures_coaching"), res.getString("candi.nom"),
                     res.getString("candi.prenom"), res.getTimestamp("candi.date_naissance"),
                     res.getString("candi.sexe").charAt(0),
-                    CoachDaoImp.rowMapper.map(res), ResponsableDaoImp.rowMapper.map(res), NutritionnisteDaoImp.rowMapper.map(res),
-                    AdresseDaoImp.rowMapper.map(res)
+                    CoachDaoImpl.rowMapper.map(res), ResponsableDaoImpl.rowMapper.map(res), NutritionnisteDaoImpl.rowMapper.map(res),
+                    AdresseDaoImpl.rowMapper.map(res)
             );
 
             candidat.setNumInscrit(res.getInt("candi.num_inscrit"));
@@ -101,7 +103,6 @@ public class CandidatDaoImp implements CandidatDao {
                 "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
-            //connection.setAutoCommit(false);
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
             statement.setDate(3,  new java.sql.Date(candidat.getDateNaissance().getTime()));
@@ -128,7 +129,6 @@ public class CandidatDaoImp implements CandidatDao {
             }
 
             statement.executeUpdate();
-            //connection.commit();
         } catch (SQLException e) {
             throw new AjouterCandidatException(e);
         }
@@ -233,6 +233,50 @@ public class CandidatDaoImp implements CandidatDao {
             }
         } catch (SQLException e) {
             throw new ListingException(e);
+        }
+    }
+
+    public List<Candidat> candidatsDUnCoach(Coach coach) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select * " +
+                "from candidat candi " +
+                "where candi.coach_matricule = ?";
+
+        List<Candidat> candidats = new ArrayList<Candidat>();
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setInt(1, coach.getMatricule());
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    candidats.add(rowMapper.map(rs));
+                }
+                return candidats;
+            }
+        } catch (SQLException e) {
+            throw new CandidatsDUnCoachException(e);
+        }
+    }
+
+    public List<Candidat> candidatsDUnNutritionniste(Nutritionniste nutritionniste) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select * " +
+                "from candidat candi " +
+                "where candi.nutritionniste_num_reference = ?";
+
+        List<Candidat> candidats = new ArrayList<Candidat>();
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            statement.setInt(1, nutritionniste.getNumReference());
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    candidats.add(rowMapper.map(rs));
+                }
+                return candidats;
+            }
+        } catch (SQLException e) {
+            throw new CandidatsDUnNutritionniste(e);
         }
     }
 }

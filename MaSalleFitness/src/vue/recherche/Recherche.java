@@ -1,7 +1,7 @@
 package vue.recherche;
 
 import business.CandidatService;
-import business.imp.CandidatServiceImp;
+import business.impl.CandidatServiceImpl;
 import model.Candidat;
 import vue.FramePrincipale;
 
@@ -15,7 +15,7 @@ public class Recherche extends JPanel {
     private PanelCandidatInfo panelCandidatInfo;
     private PanelModification panelModification;
 
-    private CandidatService candidatService = CandidatServiceImp.getInstance();
+    private CandidatService candidatService = CandidatServiceImpl.getInstance();
     private Candidat candidat;
 
     public Recherche(FramePrincipale frame) {
@@ -50,7 +50,7 @@ public class Recherche extends JPanel {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
         if(valeur == JOptionPane.OK_OPTION){
-            CandidatService candidatService = CandidatServiceImp.getInstance();
+            CandidatService candidatService = CandidatServiceImpl.getInstance();
             candidatService.supprimerCandidat(candidat.getNumInscription());
             frame.afficherAccueil();
             layout.show(this,"menu");
@@ -68,7 +68,7 @@ public class Recherche extends JPanel {
         layout.show(this, "info");
     }
     public void modifierCandidat(Candidat candidat){
-        CandidatService candidatService = CandidatServiceImp.getInstance();
+        CandidatService candidatService = CandidatServiceImpl.getInstance();
         candidatService.modifierCandidat(candidat);
         frame.afficherAccueil();
     }

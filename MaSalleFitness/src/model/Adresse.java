@@ -4,7 +4,6 @@ import model.exceptions.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 
 public class Adresse {
     private String code;
@@ -12,7 +11,6 @@ public class Adresse {
     private String codePostal;
     private String rue;
     private String numero;
-    private ArrayList<Candidat> candidats = new ArrayList <>();
 
     public Adresse(String localite, String codePostal, String rue, String numero) {
         setLocalite(localite);
@@ -95,7 +93,4 @@ public class Adresse {
         return numero;
     }
 
-    public ArrayList<Candidat> getCandidats() {
-        return candidats;
-    }
 }

@@ -1,7 +1,7 @@
 package vue.inscription;
 
 import business.CoachService;
-import business.imp.CoachServiceImp;
+import business.impl.CoachServiceImpl;
 import vue.inscription.formulaire.PanelFormulaire3;
 import vue.listener.RetourMenuListener;
 
@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class PanelCoaching extends PanelBase<PanelFormulaire3> {
     private Inscription inscription;
     private PanelFormulaire3 panelFormulaire3 = new PanelFormulaire3();
-    private CoachService coachService = CoachServiceImp.getInstance();
+    private CoachService coachService = CoachServiceImpl.getInstance();
 
     public PanelCoaching(Inscription inscription) {
         super("<html><h1>Inscription nouveau candidat [3/3]</h1></html>", "Annuler","Envoyer");

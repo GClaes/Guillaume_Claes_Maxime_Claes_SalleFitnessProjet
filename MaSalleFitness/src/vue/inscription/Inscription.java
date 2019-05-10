@@ -1,7 +1,7 @@
 package vue.inscription;
 
 import business.CandidatService;
-import business.imp.CandidatServiceImp;
+import business.impl.CandidatServiceImpl;
 import model.*;
 import vue.FramePrincipale;
 
@@ -70,7 +70,7 @@ public class Inscription extends JPanel {
         candidat.setNumeroGSM(data.getNumeroGSM());
         candidat.setEstDebutant(data.getEstDebutant());
         candidat.setMaladiesChroniques(data.getMaladiesChroniques());
-        CandidatService candidatService = CandidatServiceImp.getInstance();
+        CandidatService candidatService = CandidatServiceImpl.getInstance();
         candidatService.ajoutCandidat(candidat);
     }
 

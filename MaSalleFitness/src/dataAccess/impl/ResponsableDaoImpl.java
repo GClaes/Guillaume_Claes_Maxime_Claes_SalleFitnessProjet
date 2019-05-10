@@ -1,4 +1,4 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
 import dataAccess.ResponsableDao;
 import dataAccess.RowMapper;
@@ -9,14 +9,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ResponsableDaoImp implements ResponsableDao {
+public class ResponsableDaoImpl implements ResponsableDao {
     private static ResponsableDao responsableDao;
 
-    private ResponsableDaoImp() { }
+    private ResponsableDaoImpl() { }
 
     public static ResponsableDao getInstance() {
         if (responsableDao == null) {
-            responsableDao = new ResponsableDaoImp();
+            responsableDao = new ResponsableDaoImpl();
         }
         return responsableDao;
     }

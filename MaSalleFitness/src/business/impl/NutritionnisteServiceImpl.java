@@ -1,21 +1,21 @@
-package business.imp;
+package business.impl;
 
 import business.NutritionnisteService;
 import dataAccess.NutritionnisteDao;
-import dataAccess.imp.NutritionnisteDaoImp;
+import dataAccess.impl.NutritionnisteDaoImpl;
 import model.Nutritionniste;
 
 import java.util.List;
 
-public class NutritionnisteServiceImp implements NutritionnisteService {
-    private final NutritionnisteDao nutritionnisteDao = NutritionnisteDaoImp.getInstance();
+public class NutritionnisteServiceImpl implements NutritionnisteService {
+    private final NutritionnisteDao nutritionnisteDao = NutritionnisteDaoImpl.getInstance();
     private static NutritionnisteService nutritionnisteService;
 
-    private NutritionnisteServiceImp() { }
+    private NutritionnisteServiceImpl() { }
 
     public static NutritionnisteService getInstance() {
         if (nutritionnisteService == null) {
-            nutritionnisteService = new NutritionnisteServiceImp();
+            nutritionnisteService = new NutritionnisteServiceImpl();
         }
         return nutritionnisteService;
     }

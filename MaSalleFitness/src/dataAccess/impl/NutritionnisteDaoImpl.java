@@ -1,23 +1,23 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
 import dataAccess.NutritionnisteDao;
 import dataAccess.RowMapper;
 import dataAccess.exceptions.ListingException;
-import dataAccess.exceptions.NutritionnistesParCandidatsParCoachException;
+import dataAccess.exceptions.NutritionnistesDesCandidatsEntrainesParUnCoach;
 import model.Nutritionniste;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NutritionnisteDaoImp implements NutritionnisteDao {
+public class NutritionnisteDaoImpl implements NutritionnisteDao {
     private static NutritionnisteDao nutritionnisteDao;
 
-    private NutritionnisteDaoImp() { }
+    private NutritionnisteDaoImpl() { }
 
     public static NutritionnisteDao getInstance() {
         if (nutritionnisteDao == null) {
-            nutritionnisteDao = new NutritionnisteDaoImp();
+            nutritionnisteDao = new NutritionnisteDaoImpl();
         }
         return nutritionnisteDao;
     }
@@ -55,45 +55,25 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
      */
     public List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * " +
-                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
-                "where candi.coach_matricule = co.matricule " +
-                "and candi.responsable_matricule = resp.matricule " +
-                "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                "and candi.adresse_code_hash = adr.code_hash " +
+        String requete = "select distinct nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis " +
+                "from candidat candi, nutritionniste nutri, coach co " +
+                "where candi.nutritionniste_num_reference = nutri.num_reference " +
+                "and candi.coach_matricule = co.matricule " +
                 "and co.matricule = ?";
 
         List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
-        Nutritionniste nutritionnisteAjout;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setInt(1, coachMatricule);
 
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
-                    nutritionnisteAjout = rowMapper.map(rs);
-
-                    int indice = contientNutritionniste(nutritionnistes, nutritionnisteAjout);
-                    if (indice == -1) {
-                        nutritionnisteAjout.ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
-                        nutritionnistes.add(nutritionnisteAjout);
-                    } else {
-                        nutritionnistes.get(indice).ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
-                    }
+                    nutritionnistes.add(rowMapper.map(rs));
                 }
                 return nutritionnistes;
             }
         } catch (SQLException e) {
-            throw new NutritionnistesParCandidatsParCoachException(e);
+            throw new NutritionnistesDesCandidatsEntrainesParUnCoach(e);
         }
-    }
-
-    private int contientNutritionniste(List<Nutritionniste> nutritionnistes, Nutritionniste nutritionnisteRech) {
-        for (int i = 0 ; i < nutritionnistes.size() ; i++) {
-            if (nutritionnistes.get(i).getNumReference() == nutritionnisteRech.getNumReference()) {
-                return i;
-            }
-        }
-        return -1;
     }
 }

@@ -1,21 +1,21 @@
-package business.imp;
+package business.impl;
 
 import business.ResponsableService;
 import dataAccess.ResponsableDao;
-import dataAccess.imp.ResponsableDaoImp;
+import dataAccess.impl.ResponsableDaoImpl;
 import model.Responsable;
 
 import java.util.List;
 
-public class ResponsableServiceImp implements ResponsableService {
-    private final ResponsableDao responsableDao = ResponsableDaoImp.getInstance();
+public class ResponsableServiceImpl implements ResponsableService {
+    private final ResponsableDao responsableDao = ResponsableDaoImpl.getInstance();
     private static ResponsableService responsableService;
 
-    private ResponsableServiceImp() { }
+    private ResponsableServiceImpl() { }
 
     public static ResponsableService getInstance() {
         if (responsableService == null) {
-            responsableService = new ResponsableServiceImp();
+            responsableService = new ResponsableServiceImpl();
         }
         return responsableService;
     }
