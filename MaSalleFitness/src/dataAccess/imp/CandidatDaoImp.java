@@ -1,5 +1,6 @@
-package dataAccess;
+package dataAccess.imp;
 
+import dataAccess.*;
 import dataAccess.exceptions.*;
 import model.*;
 
@@ -7,28 +8,26 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
 
 public class CandidatDaoImp implements CandidatDao {
-    private static CandidatDaoImp candidatDaoImp;
-    public AdresseDao adresseDao = AdresseDaoImp.getInstance();
+    private final AdresseDao adresseDao = AdresseDaoImp.getInstance();
+    private static CandidatDao candidatDao;
 
     private CandidatDaoImp() { }
 
-    public static CandidatDaoImp getInstance() {
-        if (candidatDaoImp == null) {
-            candidatDaoImp = new CandidatDaoImp();
+    public static CandidatDao getInstance() {
+        if (candidatDao == null) {
+            candidatDao = new CandidatDaoImp();
         }
-        return candidatDaoImp;
+        return candidatDao;
     }
 
     public static RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
+            /*
             Coach coach = CoachDaoImp.rowMapper.map(res);
             Responsable responsable = ResponsableDaoImp.rowMapper.map(res);
             Nutritionniste nutritionniste = NutritionnisteDaoImp.rowMapper.map(res);
@@ -45,14 +44,21 @@ public class CandidatDaoImp implements CandidatDao {
             int nbHeuresCoaching = res.getInt("candi.nb_heures_coaching");
             boolean estDebutant = res.getBoolean("candi.debutant");
             String maladiesChroniques = res.getString("candi.maladies_chroniques");
+            */
+            Candidat candidat = new Candidat(
+                    res.getInt("candi.nb_heures_coaching"), res.getString("candi.nom"),
+                    res.getString("candi.prenom"), res.getTimestamp("candi.date_naissance"),
+                    res.getString("candi.sexe").charAt(0),
+                    CoachDaoImp.rowMapper.map(res), ResponsableDaoImp.rowMapper.map(res), NutritionnisteDaoImp.rowMapper.map(res),
+                    AdresseDaoImp.rowMapper.map(res)
+            );
 
-            Candidat candidat = new Candidat(nbHeuresCoaching, nom, prenom, dateNaissance, sexe, coach, responsable, nutritionniste, adresse);
-            candidat.setNumInscrit(numInscription);
-            candidat.setMaladiesChroniques(maladiesChroniques);
-            candidat.setNumeroGSM(numeroGSM);
-            candidat.setDateTestValide(dateTestValide);
-            candidat.setDateInscription(dateInscription);
-            candidat.setEstDebutant(estDebutant);
+            candidat.setNumInscrit(res.getInt("candi.num_inscrit"));
+            candidat.setMaladiesChroniques(res.getString("candi.maladies_chroniques"));
+            candidat.setNumeroGSM(res.getString("candi.num_gsm"));
+            candidat.setDateTestValide(res.getTimestamp("candi.date_test_valide"));
+            candidat.setDateInscription(res.getTimestamp("candi.date_inscription"));
+            candidat.setEstDebutant(res.getBoolean("candi.debutant"));
 
             return candidat;
         }
@@ -221,6 +227,41 @@ public class CandidatDaoImp implements CandidatDao {
             }
         } catch (SQLException e) {
             throw new ModifierCandidatException(e);
+        }
+    }
+
+    /**
+     *
+     * @param responsableMatricule
+     * @param debut
+     * @param fin
+     * @return liste des candidats inscrits entre deux dates par un responsable
+     */
+    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+        Connection connection = SingletonConnection.getInstance();
+        String requete = "select *" +
+                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr" +
+                "where candi.coach_matricule = co.matricule" +
+                "and candi.responsable_matricule = resp.matricule" +
+                "and candi.nutritionniste_num_reference = nutri.num_reference" +
+                "and candi.adresse_code_hash = adr.code_hash" +
+                "and candi.date_inscription between ? and ?" +
+                "and resp.matricule = ?";
+        ArrayList<Candidat> candidats = new ArrayList<Candidat>();
+
+        try (PreparedStatement statement = connection.prepareStatement(requete)){
+            statement.setDate(1, new java.sql.Date(debut.getTime()));
+            statement.setDate(2, new java.sql.Date(fin.getTime()));
+            statement.setInt(3, responsableMatricule);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                while (rs.next()) {
+                    candidats.add(rowMapper.map(rs));
+                }
+                return candidats;
+            }
+        } catch (SQLException e) {
+            throw new ListingException(e);
         }
     }
 }

@@ -1,5 +1,7 @@
-package dataAccess;
+package dataAccess.imp;
 
+import dataAccess.NutritionnisteDao;
+import dataAccess.RowMapper;
 import dataAccess.exceptions.ListingException;
 import dataAccess.exceptions.NutritionnistesParCandidatsParCoachException;
 import model.Nutritionniste;
@@ -8,21 +10,23 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class NutritionnisteDaoImp implements NutritionnisteDao {
-    private static NutritionnisteDaoImp nutritionnisteDaoImp;
+    private static NutritionnisteDao nutritionnisteDao;
 
     private NutritionnisteDaoImp() { }
 
-    public static NutritionnisteDaoImp getInstance() {
-        if (nutritionnisteDaoImp == null) {
-            nutritionnisteDaoImp = new NutritionnisteDaoImp();
+    public static NutritionnisteDao getInstance() {
+        if (nutritionnisteDao == null) {
+            nutritionnisteDao = new NutritionnisteDaoImp();
         }
-        return nutritionnisteDaoImp;
+        return nutritionnisteDao;
     }
 
     public static RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
         @Override
         public Nutritionniste map(ResultSet res) throws SQLException {
-            return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"), res.getString("nutri.prenom"), res.getString("nutri.avis"));
+            return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"),
+                    res.getString("nutri.prenom"), res.getString("nutri.avis")
+            );
         }
     };
 
@@ -46,9 +50,9 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
     /**
      *
      * @param coachMatricule
-     * @return Retourne une liste des nutritionnistes qui ont été choisis par les candidats qui eux-mêmes sont entrainés par un coach donné
+     * @return liste des nutritionnistes qui ont été choisis par les candidats qui eux-mêmes sont entrainés par un coach donné
      */
-    public ArrayList<Nutritionniste> nutritionnistesParCandidatsParCoach(int coachMatricule) {
+    public ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * " +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +

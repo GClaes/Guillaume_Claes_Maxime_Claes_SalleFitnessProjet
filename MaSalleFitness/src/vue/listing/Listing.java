@@ -1,7 +1,7 @@
 package vue.listing;
 
 import business.CandidatService;
-import business.CandidatServiceImp;
+import business.imp.CandidatServiceImp;
 import model.Candidat;
 import vue.FramePrincipale;
 import vue.recherche.PanelCandidatInfo;

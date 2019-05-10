@@ -1,6 +1,9 @@
 package vue.inscription.formulaire;
 
 import business.*;
+import business.imp.CoachServiceImp;
+import business.imp.NutritionnisteServiceImp;
+import business.imp.ResponsableServiceImp;
 import model.Coach;
 import model.Nutritionniste;
 import model.Responsable;

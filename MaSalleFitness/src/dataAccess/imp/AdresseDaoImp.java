@@ -1,5 +1,7 @@
-package dataAccess;
+package dataAccess.imp;
 
+import dataAccess.AdresseDao;
+import dataAccess.RowMapper;
 import dataAccess.exceptions.*;
 import model.Adresse;
 
@@ -10,21 +12,23 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AdresseDaoImp implements AdresseDao {
-    private static AdresseDaoImp adresseDaoImp;
+    private static AdresseDao adresseDao;
 
     private AdresseDaoImp() { }
 
-    public static AdresseDaoImp getInstance() {
-        if (adresseDaoImp == null) {
-            adresseDaoImp = new AdresseDaoImp();
+    public static AdresseDao getInstance() {
+        if (adresseDao == null) {
+            adresseDao = new AdresseDaoImp();
         }
-        return adresseDaoImp;
+        return adresseDao;
     }
 
     public static RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
         @Override
         public Adresse map(ResultSet res) throws SQLException {
-            Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"), res.getString("adr.rue"), res.getString("adr.numero"));
+            Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"),
+                    res.getString("adr.rue"), res.getString("adr.numero")
+            );
 
             try {
                 Field field = Adresse.class.getDeclaredField("code");

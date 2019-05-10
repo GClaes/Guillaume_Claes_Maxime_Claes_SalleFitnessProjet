@@ -1,5 +1,7 @@
-package dataAccess;
+package dataAccess.imp;
 
+import dataAccess.ResponsableDao;
+import dataAccess.RowMapper;
 import dataAccess.exceptions.ListingException;
 import model.Responsable;
 
@@ -7,15 +9,15 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ResponsableDaoImp implements ResponsableDao {
-    private static ResponsableDaoImp responsableDaoImp;
+    private static ResponsableDao responsableDao;
 
     private ResponsableDaoImp() { }
 
-    public static ResponsableDaoImp getInstance() {
-        if (responsableDaoImp == null) {
-            responsableDaoImp = new ResponsableDaoImp();
+    public static ResponsableDao getInstance() {
+        if (responsableDao == null) {
+            responsableDao = new ResponsableDaoImp();
         }
-        return responsableDaoImp;
+        return responsableDao;
     }
 
     public static RowMapper<Responsable> rowMapper = new RowMapper<Responsable>() {
