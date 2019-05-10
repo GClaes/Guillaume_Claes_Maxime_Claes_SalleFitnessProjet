@@ -4,6 +4,7 @@ import business.CandidatService;
 import business.imp.CandidatServiceImp;
 import model.Candidat;
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class ListingFormulaire extends JPanel {
@@ -39,5 +40,6 @@ public class ListingFormulaire extends JPanel {
         listing.setVisibleRowCount(5);
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listing.setListData(values);
+        listing.setFont(new Font("Gras",Font.BOLD,20));
     }
 }

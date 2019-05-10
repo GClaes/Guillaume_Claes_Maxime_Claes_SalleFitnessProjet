@@ -1,9 +1,11 @@
-package vue.recherche;
+package vue.recherche.rechercheCandidat;
 
 import business.CandidatService;
 import business.imp.CandidatServiceImp;
 import model.Candidat;
 import vue.FramePrincipale;
+import vue.recherche.PanelCandidatInfo;
+import vue.recherche.PanelModification;
 
 import javax.swing.*;
 import java.awt.*;

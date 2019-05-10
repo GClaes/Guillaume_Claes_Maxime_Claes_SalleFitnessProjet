@@ -4,8 +4,6 @@ import business.CandidatService;
 import business.imp.CandidatServiceImp;
 import model.Candidat;
 import vue.FramePrincipale;
-import vue.recherche.PanelCandidatInfo;
-import vue.recherche.Recherche;
 
 import javax.swing.*;
 import java.awt.*;

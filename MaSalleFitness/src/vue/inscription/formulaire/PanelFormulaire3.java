@@ -84,10 +84,10 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
 
         removeAll();
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
-        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255, new OrValidation(new VideValidation(), new PasVideValidation())));
-        setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs(),new PasVideValidation()));
-        setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes(),new PasVideValidation()));
-        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables(),new PasVideValidation()));
+        setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255));
+        setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs()));
+        setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes()));
+        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables()));
 
         initList();
     }

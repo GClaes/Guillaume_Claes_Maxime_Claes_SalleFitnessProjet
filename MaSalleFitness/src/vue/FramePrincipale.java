@@ -4,7 +4,8 @@ package vue;
 import model.Candidat;
 import vue.inscription.Inscription;
 import vue.listing.Listing;
-import vue.recherche.Recherche;
+import vue.recherche.rechercheCandidat.Recherche;
+import vue.recherche.rechercheCoachs.ListingCoach;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ public class FramePrincipale extends JFrame {
     private Inscription inscription;
     private Listing listing;
     private Recherche recherche;
+    private ListingCoach listingCoach;
 
     private JMenuBar menuBar;
 
@@ -40,11 +42,13 @@ public class FramePrincipale extends JFrame {
         inscription = new Inscription(this);
         listing = new Listing(this);
         recherche = new Recherche(this);
+        listingCoach = new ListingCoach(this);
 
         add(panelMenu,"menu");
         add(inscription,"inscription");
         add(listing, "listing");
         add(recherche, "recherche");
+        add(listingCoach, "coachs");
     }
     public void afficherAccueil(){
         layout.show(this.getContentPane(),"menu");
@@ -62,6 +66,10 @@ public class FramePrincipale extends JFrame {
         else if (panel instanceof Recherche){
             recherche.rafraichir();
             layout.show(this.getContentPane(),"recherche");
+        }
+        else if (panel instanceof ListingCoach){
+            listingCoach.rafraichir();
+            layout.show(this.getContentPane(),"coachs");
         }
     }
 

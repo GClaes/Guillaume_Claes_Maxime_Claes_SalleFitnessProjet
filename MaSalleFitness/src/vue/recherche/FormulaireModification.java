@@ -24,7 +24,6 @@ public class FormulaireModification extends PanelFormulaireBase {
                 candidat.getPrenom()));
         String[] valuesSexe = {"Homme","Femme"};
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe,
-                new PasVideValidation(),
                 candidat.getSexe()=='h'?0:1));
         setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance",
                 new PasVideValidation(),
@@ -33,7 +32,6 @@ public class FormulaireModification extends PanelFormulaireBase {
                 new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}")),
                 candidat.getNumeroGSM()));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies éventuelles", 255,
-                new OrValidation(new PasVideValidation(),new VideValidation()),
                 candidat.getMaladiesChroniques()));
         setComposantes("rue",new ElementFormulaireJTextField("Rue", 255,
                 new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
@@ -51,8 +49,7 @@ public class FormulaireModification extends PanelFormulaireBase {
                 new NbValidation(1,'>'),
                 candidat.getNbHeuresCoaching()));
         String[]values = {"Non","Oui"};
-        setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values,
-                new PasVideValidation()));
+        setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values));
         try {
             setComposantes("dateTest", new ElementFormulaireJSpinnerDate("Date du test",
                     new DateValidation(candidat.getDateInscription()),
@@ -123,15 +120,12 @@ public class FormulaireModification extends PanelFormulaireBase {
         return (String)getComposantes().get("maladie").getValue();
     }
     public Coach getCoach(){
-        //return (Coach)getComposantes().get("coach").getValue();
         return candidat.getCoach();
     }
     public Nutritionniste getNutri(){
-        //return (Nutritionniste)getComposantes().get("nutri").getValue();
         return candidat.getNutritionniste();
     }
     public Responsable getResponsable(){
-        //return(Responsable)getComposantes().get("responsable").getValue();
         return candidat.getResponsable();
     }
 }

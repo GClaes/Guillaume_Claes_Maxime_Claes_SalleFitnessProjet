@@ -2,6 +2,7 @@ package vue.recherche;
 
 import model.Candidat;
 import vue.inscription.PanelBase;
+import vue.recherche.rechercheCandidat.Recherche;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
