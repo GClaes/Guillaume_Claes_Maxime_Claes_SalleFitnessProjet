@@ -1,8 +1,12 @@
 package vue.recherche;
 
+import business.CoachService;
+import business.imp.CoachServiceImp;
 import model.Candidat;
 import vue.inscription.PanelBase;
+import vue.recherche.rechercheCandidat.Recherche;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,28 +30,37 @@ public class PanelModification extends PanelBase<FormulaireModification> {
         @Override
         public void actionPerformed(ActionEvent e) {
             FormulaireModification formulaire = getFormulaire();
+            CoachService coachService = CoachServiceImp.getInstance();
+            int nbHeuresCoachDispo = 20 - coachService.nbHeuresCoachingUtilisees(getFormulaire().getCoach().getMatricule());
             if(formulaire.validation()){
-                Candidat candidat = new Candidat(
-                        formulaire.getNbHeures(),
-                        formulaire.getNom(),
-                        formulaire.getPrenom(),
-                        formulaire.getDateNaissance(),
-                        formulaire.getSexe(),
-                        formulaire.getCoach(),
-                        formulaire.getResponsable(),
-                        formulaire.getNutri(),
-                        formulaire.getAdresse());
-                candidat.setNumInscrit(formulaire.getNumInscription());
-                candidat.setDateInscription(formulaire.getDateInscription());
-                candidat.setDateTestValide(formulaire.getDateTestValide());
+                if(nbHeuresCoachDispo >= getFormulaire().getNbHeures()) {
+                    Candidat candidat = new Candidat(
+                            formulaire.getNbHeures(),
+                            formulaire.getNom(),
+                            formulaire.getPrenom(),
+                            formulaire.getDateNaissance(),
+                            formulaire.getSexe(),
+                            formulaire.getCoach(),
+                            formulaire.getResponsable(),
+                            formulaire.getNutri(),
+                            formulaire.getAdresse());
+                    candidat.setNumInscrit(formulaire.getNumInscription());
+                    candidat.setDateInscription(formulaire.getDateInscription());
+                    candidat.setDateTestValide(formulaire.getDateTestValide());
 
-                if(!formulaire.getNumTel().equals("")){
-                    candidat.setNumeroGSM(formulaire.getNumTel());
+                    if (!formulaire.getNumTel().equals("")) {
+                        candidat.setNumeroGSM(formulaire.getNumTel());
+                    }
+                    if (!formulaire.getMaladies().equals("")) {
+                        candidat.setMaladiesChroniques(formulaire.getMaladies());
+                    }
+                    recherche.modifierCandidat(candidat);
                 }
-                if(!formulaire.getMaladies().equals("")){
-                    candidat.setMaladiesChroniques(formulaire.getMaladies());
+                else{
+                    JOptionPane.showMessageDialog(null,"Le coach choisi n'a plus assez d'heures. \n " +
+                            "Veuillez prendre moins d'heures de coaching.");
+
                 }
-                recherche.modifierCandidat(candidat);
             }
         }
     }

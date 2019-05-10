@@ -1,18 +1,16 @@
 package vue.element;
 
-import vue.validateur.Validation;
-
 import javax.swing.*;
 
 public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox> {
 
-    public ElementFormulaireJComboBox(String nom, String []values, Validation validation) {
-        super(nom, validation);
-        setField(new JComboBox(values));
+    public ElementFormulaireJComboBox(String label, String []values) {
+        super(label, null);
+        setField(new JComboBox<>(values));
     }
 
-    public ElementFormulaireJComboBox(String nom,String []values, Validation validation, int valeurInit) {
-        this(nom, values, validation);
+    public ElementFormulaireJComboBox(String label,String []values, int valeurInit) {
+        this(label, values);
         setValue(valeurInit);
     }
 

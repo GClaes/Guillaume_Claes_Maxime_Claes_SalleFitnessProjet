@@ -4,7 +4,8 @@ import vue.element.*;
 import vue.inscription.Inscription;
 import vue.listener.ListenerMenu;
 import vue.listing.Listing;
-import vue.recherche.Recherche;
+import vue.recherche.rechercheCandidat.Recherche;
+import vue.recherche.rechercheCoachs.ListingCoach;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,12 +18,12 @@ public class MyMenu extends JMenuBar {
         this.frame = frame;
 
         JMenu inscriptionMenu = new ElementMenu("Inscription");
-        JMenuItem inscripCandidat = new ElementMenuItem("Inscrire un nouveau recherche",inscriptionMenu, new ListenerMenu(frame, new Inscription(frame)));
-        JMenuItem modifCandidat = new ElementMenuItem("Modifier/Supprimer un recherche",inscriptionMenu,new ListenerMenu(frame,new Recherche(frame)));
+        JMenuItem inscripCandidat = new ElementMenuItem("Inscrire un nouveau candidat",inscriptionMenu, new ListenerMenu(frame, new Inscription(frame)));
+        JMenuItem modifCandidat = new ElementMenuItem("Modifier/Supprimer un candidat",inscriptionMenu,new ListenerMenu(frame,new Recherche(frame)));
 
         JMenu rechercheMenu = new ElementMenu("Rechercher");
-        JMenuItem candidatRecherche = new ElementMenuItem("Rechercher un recherche", rechercheMenu, new ListenerMenu(frame,new Recherche(frame)));
-        //JMenuItem coachRecherche = new ElementMenuItemOld("Rechercher un coach", rechercheMenu, new ListenerMenu(this,new PanelRecherche(2)));
+        JMenuItem candidatRecherche = new ElementMenuItem("Rechercher un candidat", rechercheMenu, new ListenerMenu(frame,new Recherche(frame)));
+        JMenuItem coachRecherche = new ElementMenuItem("Rechercher les candidats isncrits par un responsable", rechercheMenu, new ListenerMenu(frame,new ListingCoach(frame)));
         //JMenuItem responsableRecherche = new ElementMenuItemOld("Rechercher un responsable", rechercheMenu, new ListenerMenu(this,new PanelRecherche(3)));
 
         JMenu afficherListeMenu = new ElementMenu("Afficher");
