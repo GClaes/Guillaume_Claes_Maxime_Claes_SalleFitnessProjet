@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCoachs;
+package vue.recherches.rechercheCoachs;
 
 import business.ResponsableService;
 import business.impl.ResponsableServiceImpl;

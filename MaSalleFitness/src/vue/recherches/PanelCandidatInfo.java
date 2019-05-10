@@ -1,8 +1,8 @@
-package vue.recherche;
+package vue.recherches;
 
 import model.Candidat;
 import vue.inscription.PanelBase;
-import vue.recherche.rechercheCandidat.Recherche;
+import vue.recherches.rechercheCandidat.Recherche;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

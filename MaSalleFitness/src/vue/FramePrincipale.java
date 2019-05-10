@@ -4,8 +4,9 @@ package vue;
 import model.Candidat;
 import vue.inscription.Inscription;
 import vue.listing.Listing;
-import vue.recherche.rechercheCandidat.Recherche;
-import vue.recherche.rechercheCoachs.ListingCoach;
+import vue.recherches.rechercheCandidat.Recherche;
+import vue.recherches.rechercheCoachs.ListingCoach;
+import vue.recherches.rechercheNutritionnistes.ListingNutritionniste;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,7 @@ public class FramePrincipale extends JFrame {
     private Listing listing;
     private Recherche recherche;
     private ListingCoach listingCoach;
+    private ListingNutritionniste listingNutritionniste;
 
     private JMenuBar menuBar;
 
@@ -43,12 +45,14 @@ public class FramePrincipale extends JFrame {
         listing = new Listing(this);
         recherche = new Recherche(this);
         listingCoach = new ListingCoach(this);
+        listingNutritionniste = new ListingNutritionniste(this);
 
         add(panelMenu,"menu");
         add(inscription,"inscription");
         add(listing, "listing");
         add(recherche, "recherche");
         add(listingCoach, "coachs");
+        add(listingNutritionniste,"nutris");
     }
     public void afficherAccueil(){
         layout.show(this.getContentPane(),"menu");
@@ -70,6 +74,10 @@ public class FramePrincipale extends JFrame {
         else if (panel instanceof ListingCoach){
             listingCoach.rafraichir();
             layout.show(this.getContentPane(),"coachs");
+        }
+        else if (panel instanceof ListingNutritionniste){
+            listingNutritionniste.rafraichir();
+            layout.show(this.getContentPane(), "nutris");
         }
     }
 

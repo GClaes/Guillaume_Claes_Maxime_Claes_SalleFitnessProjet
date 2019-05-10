@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCoachs;
+package vue.recherches.rechercheCoachs;
 
 import business.CoachService;
 import business.impl.CandidatServiceImpl;
@@ -12,11 +12,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class PanelListingCoachFormulaire extends JPanel {
+public class ListingCoachFormulaire extends JPanel {
     private JList<String>listeCoachs;
     private List<Coach> coachs;
 
-    public PanelListingCoachFormulaire() {
+    public ListingCoachFormulaire() {
         listeCoachs = new JList<>();
 
         add(listeCoachs);
@@ -27,9 +27,9 @@ public class PanelListingCoachFormulaire extends JPanel {
         String[]values = new String[coachs.size()];
         int position = 0;
         for(Coach coach : coachs){
-            values[position] = "Coach: "+coach.getNom()+" "+coach.getPrenom();
+            values[position] = "Coach: "+coach.getNom()+" "+coach.getPrenom()+"\n";
             for (Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnCoach(coach)){
-                values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription();
+                values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription()+"\n";
             }
             position++;
         }

@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCandidat;
+package vue.recherches.rechercheCandidat;
 
 import vue.inscription.PanelBase;
 import java.awt.event.ActionEvent;

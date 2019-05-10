@@ -1,10 +1,10 @@
-package vue.recherche;
+package vue.recherches;
 
 import business.CoachService;
 import business.impl.CoachServiceImpl;
 import model.Candidat;
 import vue.inscription.PanelBase;
-import vue.recherche.rechercheCandidat.Recherche;
+import vue.recherches.rechercheCandidat.Recherche;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

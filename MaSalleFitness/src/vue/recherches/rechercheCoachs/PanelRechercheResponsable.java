@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCoachs;
+package vue.recherches.rechercheCoachs;
 
 import model.Responsable;
 import vue.inscription.PanelBase;
@@ -7,11 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 
-public class PanelListeResponsables extends PanelBase<FormulaireRechercheResponsable> {
+public class PanelRechercheResponsable extends PanelBase<FormulaireRechercheResponsable> {
     private ListingCoach listingCoach;
     private FormulaireRechercheResponsable formulaireRechercheResponsable = new FormulaireRechercheResponsable();
 
-    public PanelListeResponsables(ListingCoach listingCoach) {
+    public PanelRechercheResponsable(ListingCoach listingCoach) {
         super("Selection d'un responsable", "Retour", "Valider");
         addFormulaire(formulaireRechercheResponsable);
         this.listingCoach = listingCoach;

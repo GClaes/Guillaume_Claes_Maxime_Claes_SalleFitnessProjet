@@ -87,7 +87,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255));
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs()));
         setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes()));
-        setComposantes("responsable", new ElementFormulaireJComboBox("Reponsable",afficherListeResponsables()));
+        setComposantes("responsable", new ElementFormulaireJComboBox("Responsable",afficherListeResponsables()));
 
         initList();
     }

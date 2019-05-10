@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCandidat;
+package vue.recherches.rechercheCandidat;
 
 import vue.element.ElementFormulaireJTextField;
 import vue.inscription.formulaire.PanelFormulaireBase;

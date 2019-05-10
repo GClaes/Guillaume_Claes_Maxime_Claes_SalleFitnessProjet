@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCoachs;
+package vue.recherches.rechercheCoachs;
 
 import model.Responsable;
 import vue.FramePrincipale;
@@ -9,7 +9,7 @@ import java.awt.*;
 public class ListingCoach extends JPanel {
     private FramePrincipale frame;
     private CardLayout layout = new CardLayout();
-    private PanelListeResponsables panelListeResponsable;
+    private PanelRechercheResponsable panelListeResponsable;
     private PanelListeCoachs panelListeCoachs;
 
     public ListingCoach(FramePrincipale frame) {
@@ -17,7 +17,7 @@ public class ListingCoach extends JPanel {
 
         this.setLayout(layout);
 
-        panelListeResponsable = new PanelListeResponsables(this);
+        panelListeResponsable = new PanelRechercheResponsable(this);
         panelListeCoachs = new PanelListeCoachs(this);
 
         add(panelListeResponsable, "responsable");
@@ -26,7 +26,7 @@ public class ListingCoach extends JPanel {
 
     public void afficherListingCoach(Responsable responsable){
         panelListeCoachs.setResponsable(responsable);
-        layout.show(panelListeCoachs, "coach");
+        layout.show(this, "coach");
     }
 
     public void retour(){

@@ -1,4 +1,4 @@
-package vue.recherche;
+package vue.recherches;
 
 import model.Candidat;
 import vue.element.ElementFormulaireLabel;

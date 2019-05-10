@@ -1,4 +1,4 @@
-package vue.recherche.rechercheCoachs;
+package vue.recherches.rechercheCoachs;
 
 import model.Responsable;
 import vue.inscription.PanelBase;
@@ -6,9 +6,9 @@ import vue.inscription.PanelBase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelListeCoachs extends PanelBase<PanelListingCoachFormulaire> {
+public class PanelListeCoachs extends PanelBase<ListingCoachFormulaire> {
     private ListingCoach listingCoach;
-    private PanelListingCoachFormulaire panelListingCoachFormulaire = new PanelListingCoachFormulaire();
+    private ListingCoachFormulaire panelListingCoachFormulaire = new ListingCoachFormulaire();
 
     public PanelListeCoachs(ListingCoach listingCoach) {
         super("Liste des coachs gérants les candidats inscrits par ce responsable","Retour","Afficher");
