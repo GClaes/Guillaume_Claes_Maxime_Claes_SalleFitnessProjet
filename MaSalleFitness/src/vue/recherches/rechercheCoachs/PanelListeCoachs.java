@@ -11,7 +11,7 @@ public class PanelListeCoachs extends PanelBase<ListingCoachFormulaire> {
     private ListingCoachFormulaire panelListingCoachFormulaire = new ListingCoachFormulaire();
 
     public PanelListeCoachs(ListingCoach listingCoach) {
-        super("Liste des coachs gérants les candidats inscrits par ce responsable","Retour","Afficher");
+        super("<html><h1>Liste des coachs des candidats inscrits par ce responsable</h1></html>","Retour","Afficher");
         addFormulaire(panelListingCoachFormulaire);
         this.listingCoach = listingCoach;
 

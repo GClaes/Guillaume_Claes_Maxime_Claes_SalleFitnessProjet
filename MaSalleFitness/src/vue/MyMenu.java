@@ -24,8 +24,8 @@ public class MyMenu extends JMenuBar {
 
         JMenu rechercheMenu = new ElementMenu("Rechercher");
         new ElementMenuItem("Rechercher un candidat", rechercheMenu, new ListenerMenu(frame,new Recherche(frame)));
-        new ElementMenuItem("Rechercher les candidats/coachs inscrits par un responsable", rechercheMenu, new ListenerMenu(frame,new ListingCoach(frame)));
-        new ElementMenuItem("Rechercher les nutritionnistes travaillants avec un coach", rechercheMenu, new ListenerMenu(frame,new ListingNutritionniste(frame)));
+        new ElementMenuItem("Rechercher les coachs travaillant avec un responsable", rechercheMenu, new ListenerMenu(frame,new ListingCoach(frame)));
+        new ElementMenuItem("Rechercher les nutritionnistes travaillant avec un coach", rechercheMenu, new ListenerMenu(frame,new ListingNutritionniste(frame)));
 
         JMenu afficherListeMenu = new ElementMenu("Afficher");
         new ElementMenuItem("Afficher la liste des candidats", afficherListeMenu, new ListenerMenu(frame, new Listing(frame)));

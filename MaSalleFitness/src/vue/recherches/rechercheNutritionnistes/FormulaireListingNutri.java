@@ -11,11 +11,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class ListingNutriFormulaire extends JPanel {
+public class FormulaireListingNutri extends JPanel {
     private JList<String>listeNutris;
     private List<Nutritionniste> nutris;
 
-    public ListingNutriFormulaire() {
+    public FormulaireListingNutri() {
         listeNutris = new JList<>();
 
         add(listeNutris);
@@ -28,9 +28,9 @@ public class ListingNutriFormulaire extends JPanel {
         int position = 0;
         for(Nutritionniste nutritionniste: nutris){
             values[position] = "Nutrtionniste: "+nutritionniste.getNom()+" "+nutritionniste.getPrenom()+"\n";
-            for(Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnNutritionniste(nutritionniste)){
-                values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription()+"\n";
-            }
+            //for(Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnNutritionniste(nutritionniste)){
+             //   values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription()+"\n";
+            //}
             position++;
         }
         listeNutris.setVisibleRowCount(6);

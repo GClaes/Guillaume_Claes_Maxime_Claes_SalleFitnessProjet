@@ -2,18 +2,16 @@ package vue.recherches.rechercheNutritionnistes;
 
 import model.Coach;
 import vue.inscription.PanelBase;
-import vue.listing.ListingFormulaire;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class PanelListeNutri extends PanelBase<ListingNutriFormulaire> {
+public class PanelListeNutri extends PanelBase<FormulaireListingNutri> {
     private ListingNutritionniste listingNutritionniste;
-    private ListingNutriFormulaire listingNutriFormulaire = new ListingNutriFormulaire();
+    private FormulaireListingNutri listingNutriFormulaire = new FormulaireListingNutri();
 
     public PanelListeNutri(ListingNutritionniste listingNutritionniste){
-        super("Liste des nutritionnistes travaillant avec ce coach","Retour","Afficher");
+        super("<html><h1>Liste des nutritionnistes travaillant avec ce coach</h1></html>","Retour","Afficher");
         addFormulaire(listingNutriFormulaire);
         this.listingNutritionniste = listingNutritionniste;
 
