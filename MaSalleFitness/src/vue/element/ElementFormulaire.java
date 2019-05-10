@@ -35,4 +35,7 @@ public abstract class ElementFormulaire<T extends  JComponent> extends JComponen
         return validation != null? validation.valider(getValue()): true;
     }
 
+    public void addValidation(Validation validation) {
+        this.validation = validation;
+    }
 }

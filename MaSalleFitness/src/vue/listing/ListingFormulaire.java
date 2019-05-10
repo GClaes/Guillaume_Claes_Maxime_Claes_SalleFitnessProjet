@@ -3,6 +3,8 @@ package vue.listing;
 import business.CandidatService;
 import business.impl.CandidatServiceImpl;
 import model.Candidat;
+import utilitaires.NomUtilitaire;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -34,7 +36,7 @@ public class ListingFormulaire extends JPanel {
         String[]values = new String[listeCandidats.size()];
         int position = 0;
         for(Candidat candidat:listeCandidats){
-            values[position] = candidat.getNumInscription().toString()+" "+candidat.getNom()+" "+candidat.getPrenom();
+            values[position] = "<html><li>ID: "+candidat.getNumInscription()+" | "+NomUtilitaire.setMaj(candidat.getNom())+" "+candidat.getPrenom()+"</li></html>";
             position++;
         }
         listing.setVisibleRowCount(5);

@@ -27,10 +27,11 @@ public class FormulaireListingNutri extends JPanel {
         String[]values = new String[nutris.size()];
         int position = 0;
         for(Nutritionniste nutritionniste: nutris){
-            values[position] = "Nutrtionniste: "+nutritionniste.getNom()+" "+nutritionniste.getPrenom()+"\n";
-            //for(Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnNutritionniste(nutritionniste)){
-             //   values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription()+"\n";
-            //}
+            values[position] = "<html>Nutritonniste: "+nutritionniste.getNom()+" "+nutritionniste.getPrenom()+"<br><ul>";
+            for(Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnNutritionniste(nutritionniste)){
+                values[position] += "    <li>"+"ID: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li><br>";
+            }
+            values[position]+="</ul></html>";
             position++;
         }
         listeNutris.setVisibleRowCount(6);

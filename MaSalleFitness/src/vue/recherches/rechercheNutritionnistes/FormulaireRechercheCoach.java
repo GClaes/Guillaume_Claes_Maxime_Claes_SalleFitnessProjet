@@ -25,6 +25,7 @@ public class FormulaireRechercheCoach extends PanelFormulaireBase {
 
     public Coach getCoach(){
         int indice = (int)getComposantes().get("coach").getValue();
+        System.out.println(listCoachs.get(indice));
         return listCoachs.get(indice);
     }
     public String[] afficherCoachs(){

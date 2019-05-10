@@ -12,7 +12,7 @@ public class PanelRechercheResponsable extends PanelBase<FormulaireRechercheResp
     private FormulaireRechercheResponsable formulaireRechercheResponsable = new FormulaireRechercheResponsable();
 
     public PanelRechercheResponsable(ListingCoach listingCoach) {
-        super("Selection d'un responsable", "Retour", "Valider");
+        super("<html><h1>Selection d'un responsable</h1></html>", "Retour", "Valider");
         addFormulaire(formulaireRechercheResponsable);
         this.listingCoach = listingCoach;
 

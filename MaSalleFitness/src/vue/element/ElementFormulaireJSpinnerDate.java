@@ -19,6 +19,9 @@ public class ElementFormulaireJSpinnerDate extends ElementFormulaire<JSpinner> {
         this(text, validation);
         setValue(valeurInit);
     }
+    public ElementFormulaireJSpinnerDate(String text){
+        this(text,null);
+    }
 
     @Override
     public Object getValue() {
@@ -27,5 +30,4 @@ public class ElementFormulaireJSpinnerDate extends ElementFormulaire<JSpinner> {
     private void setValue(Date value){
         getField().setValue(value);
     }
-
 }

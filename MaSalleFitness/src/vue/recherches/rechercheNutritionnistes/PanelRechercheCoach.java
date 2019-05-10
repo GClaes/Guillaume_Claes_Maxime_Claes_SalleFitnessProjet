@@ -11,7 +11,7 @@ public class PanelRechercheCoach extends PanelBase<FormulaireRechercheCoach> {
     private FormulaireRechercheCoach formulaireRechercheNutritionniste = new FormulaireRechercheCoach();
 
     public PanelRechercheCoach(ListingNutritionniste listingNutritionniste) {
-        super("Selection d'un coach", "Retour", "Valider");
+        super("<html><h1>Selection d'un coach</h1></html>", "Retour", "Valider");
         addFormulaire(formulaireRechercheNutritionniste);
         this.listingNutritionniste = listingNutritionniste;
 

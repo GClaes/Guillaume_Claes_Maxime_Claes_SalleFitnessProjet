@@ -8,15 +8,14 @@ import model.Coach;
 import model.Responsable;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.util.List;
 
-public class ListingCoachFormulaire extends JPanel {
+public class FormulaireListingCoach extends JPanel {
     private JList<String>listeCoachs;
     private List<Coach> coachs;
 
-    public ListingCoachFormulaire() {
+    public FormulaireListingCoach() {
         listeCoachs = new JList<>();
 
         add(listeCoachs);
@@ -27,10 +26,11 @@ public class ListingCoachFormulaire extends JPanel {
         String[]values = new String[coachs.size()];
         int position = 0;
         for(Coach coach : coachs){
-            values[position] = "Coach: "+coach.getNom()+" "+coach.getPrenom()+"\n";
+            values[position] = "<html>Coach: "+coach.getNom()+" "+coach.getPrenom()+"<br><ul>";
             for (Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnCoach(coach)){
-                values[position] += "     Candidat: "+candidat.getNom()+" "+candidat.getPrenom()+" ID: "+candidat.getNumInscription()+"\n";
+                values[position] += "   <li>"+"ID: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li></br>";
             }
+            values[position]+="</ul></html>";
             position++;
         }
         listeCoachs.setVisibleRowCount(6);
@@ -38,5 +38,4 @@ public class ListingCoachFormulaire extends JPanel {
         listeCoachs.setListData(values);
         listeCoachs.setFont(new Font("Gras",Font.BOLD,15));
     }
-
 }

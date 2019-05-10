@@ -4,6 +4,7 @@ import vue.element.*;
 import vue.inscription.Inscription;
 import vue.listener.ListenerMenu;
 import vue.listing.Listing;
+import vue.recherches.rechercheAdresse.ListingAdresse;
 import vue.recherches.rechercheCandidat.Recherche;
 import vue.recherches.rechercheCoachs.ListingCoach;
 import vue.recherches.rechercheNutritionnistes.ListingNutritionniste;
@@ -26,6 +27,8 @@ public class MyMenu extends JMenuBar {
         new ElementMenuItem("Rechercher un candidat", rechercheMenu, new ListenerMenu(frame,new Recherche(frame)));
         new ElementMenuItem("Rechercher les coachs travaillant avec un responsable", rechercheMenu, new ListenerMenu(frame,new ListingCoach(frame)));
         new ElementMenuItem("Rechercher les nutritionnistes travaillant avec un coach", rechercheMenu, new ListenerMenu(frame,new ListingNutritionniste(frame)));
+        new ElementMenuItem("Rechercher les adresses des candidats s'étant inscrits entre 2 dates", rechercheMenu, new ListenerMenu(frame,new ListingAdresse(frame)));
+
 
         JMenu afficherListeMenu = new ElementMenu("Afficher");
         new ElementMenuItem("Afficher la liste des candidats", afficherListeMenu, new ListenerMenu(frame, new Listing(frame)));

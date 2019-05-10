@@ -11,7 +11,7 @@ public class PanelListeNutri extends PanelBase<FormulaireListingNutri> {
     private FormulaireListingNutri listingNutriFormulaire = new FormulaireListingNutri();
 
     public PanelListeNutri(ListingNutritionniste listingNutritionniste){
-        super("<html><h1>Liste des nutritionnistes travaillant avec ce coach</h1></html>","Retour","Afficher");
+        super("<html><h1>Liste des nutritionnistes travaillant avec ce coach</h1></html>","Retour","");
         addFormulaire(listingNutriFormulaire);
         this.listingNutritionniste = listingNutritionniste;
 

@@ -7,7 +7,7 @@ public class BoutonsInscription extends JButton {
     private JButton bouton1;
     private JButton bouton2;
     public BoutonsInscription(String textBouton1, String textBouton2){
-        setLayout(new GridLayout(1,2,50,50));
+        setLayout(new GridLayout(1,2));
         bouton1 = new JButton(textBouton1);
         bouton1.setFont(new Font("Gras",Font.BOLD,20));
         bouton2 = new JButton(textBouton2);
