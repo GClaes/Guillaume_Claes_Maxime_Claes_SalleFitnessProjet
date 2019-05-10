@@ -2,9 +2,9 @@ package business;
 
 import model.Nutritionniste;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface NutritionnisteService {
-    ArrayList<Nutritionniste> listingNutritionnistes();
-    ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule);
+    List<Nutritionniste> listingNutritionnistes();
+    List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule);
 }

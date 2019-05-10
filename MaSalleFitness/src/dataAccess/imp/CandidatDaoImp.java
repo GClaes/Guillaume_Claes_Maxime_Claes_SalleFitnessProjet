@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CandidatDaoImp implements CandidatDao {
     private final AdresseDao adresseDao = AdresseDaoImp.getInstance();
@@ -70,7 +71,7 @@ public class CandidatDaoImp implements CandidatDao {
         }
     }
 
-    public ArrayList<Candidat> listingCandidats() {
+    public List<Candidat> listingCandidats() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select *" +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
@@ -78,7 +79,7 @@ public class CandidatDaoImp implements CandidatDao {
                 "and candi.responsable_matricule = resp.matricule " +
                 "and candi.nutritionniste_num_reference = nutri.num_reference " +
                 "and candi.adresse_code_hash = adr.code_hash";
-        ArrayList<Candidat> candidats = new ArrayList<Candidat>();
+        List<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             try (ResultSet rs = statement.executeQuery()) {
@@ -207,7 +208,7 @@ public class CandidatDaoImp implements CandidatDao {
      * @param fin
      * @return liste des candidats inscrits entre deux dates par un responsable
      */
-    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+    public List<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select *" +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr" +
@@ -217,7 +218,7 @@ public class CandidatDaoImp implements CandidatDao {
                 "and candi.adresse_code_hash = adr.code_hash" +
                 "and candi.date_inscription between ? and ?" +
                 "and resp.matricule = ?";
-        ArrayList<Candidat> candidats = new ArrayList<Candidat>();
+        List<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             statement.setDate(1, new java.sql.Date(debut.getTime()));

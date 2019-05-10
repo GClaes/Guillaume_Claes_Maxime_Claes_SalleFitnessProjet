@@ -8,6 +8,7 @@ import model.Nutritionniste;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class NutritionnisteDaoImp implements NutritionnisteDao {
     private static NutritionnisteDao nutritionnisteDao;
@@ -30,10 +31,10 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
         }
     };
 
-    public ArrayList<Nutritionniste> listingNutritionnistes() {
+    public List<Nutritionniste> listingNutritionnistes() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from nutritionniste nutri";
-        ArrayList<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
+        List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             try (ResultSet rs  = statement.executeQuery()) {
@@ -52,7 +53,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
      * @param coachMatricule
      * @return liste des nutritionnistes qui ont été choisis par les candidats qui eux-mêmes sont entrainés par un coach donné
      */
-    public ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
+    public List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * " +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
@@ -62,7 +63,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
                 "and candi.adresse_code_hash = adr.code_hash " +
                 "and co.matricule = ?";
 
-        ArrayList<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
+        List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
         Nutritionniste nutritionnisteAjout;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
@@ -87,7 +88,7 @@ public class NutritionnisteDaoImp implements NutritionnisteDao {
         }
     }
 
-    private int contientNutritionniste(ArrayList<Nutritionniste> nutritionnistes, Nutritionniste nutritionnisteRech) {
+    private int contientNutritionniste(List<Nutritionniste> nutritionnistes, Nutritionniste nutritionnisteRech) {
         for (int i = 0 ; i < nutritionnistes.size() ; i++) {
             if (nutritionnistes.get(i).getNumReference() == nutritionnisteRech.getNumReference()) {
                 return i;

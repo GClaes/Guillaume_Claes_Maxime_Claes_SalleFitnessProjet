@@ -5,7 +5,7 @@ import dataAccess.NutritionnisteDao;
 import dataAccess.imp.NutritionnisteDaoImp;
 import model.Nutritionniste;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class NutritionnisteServiceImp implements NutritionnisteService {
     private final NutritionnisteDao nutritionnisteDao = NutritionnisteDaoImp.getInstance();
@@ -20,11 +20,11 @@ public class NutritionnisteServiceImp implements NutritionnisteService {
         return nutritionnisteService;
     }
 
-    public ArrayList<Nutritionniste> listingNutritionnistes() {
+    public List<Nutritionniste> listingNutritionnistes() {
         return nutritionnisteDao.listingNutritionnistes();
     }
 
-    public ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
+    public List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         return nutritionnisteDao.nutritionnistesDesCandidatsEntrainesParUnCoach(coachMatricule);
     }
 }

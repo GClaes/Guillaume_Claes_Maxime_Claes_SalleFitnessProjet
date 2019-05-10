@@ -5,7 +5,7 @@ import dataAccess.ResponsableDao;
 import dataAccess.imp.ResponsableDaoImp;
 import model.Responsable;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ResponsableServiceImp implements ResponsableService {
     private final ResponsableDao responsableDao = ResponsableDaoImp.getInstance();
@@ -20,7 +20,7 @@ public class ResponsableServiceImp implements ResponsableService {
         return responsableService;
     }
 
-    public ArrayList<Responsable> listingResponsables() {
+    public List<Responsable> listingResponsables() {
         return responsableDao.listingResponsables();
     }
 }

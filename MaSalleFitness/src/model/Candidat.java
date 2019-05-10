@@ -1,5 +1,6 @@
 package model;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import model.exceptions.*;
@@ -84,7 +85,7 @@ public class Candidat extends Personne {
     public void setDateTestValide(Date dateTestValide) {
         Date today = new Date();
 
-        if (dateTestValide != null && dateInscription.compareTo(dateTestValide) > 0 && today.compareTo(dateTestValide) < 0) {      //Pas de validation de null car la db l'utilise et peut etre null dans la db
+        if (dateTestValide != null && today.compareTo(dateTestValide) < 0) {      //Pas de validation de null car la db l'utilise et peut etre null dans la db
             throw new DateTestValideException(dateTestValide);
         }
         this.dateTestValide = dateTestValide;

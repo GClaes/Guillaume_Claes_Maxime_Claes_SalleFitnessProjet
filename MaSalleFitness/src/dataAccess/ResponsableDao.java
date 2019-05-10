@@ -2,9 +2,9 @@ package dataAccess;
 
 import model.Responsable;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ResponsableDao {
-    ArrayList<Responsable> listingResponsables();
+    List<Responsable> listingResponsables();
 }
 

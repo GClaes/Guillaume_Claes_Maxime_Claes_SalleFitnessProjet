@@ -5,8 +5,8 @@ import dataAccess.CandidatDao;
 import dataAccess.imp.CandidatDaoImp;
 import model.Candidat;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CandidatServiceImp implements CandidatService {
     private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
@@ -25,7 +25,7 @@ public class CandidatServiceImp implements CandidatService {
         return candidatDao.rechercherCandidat(numeroInscription);
     }
 
-    public ArrayList<Candidat> listingCandidats() {
+    public List<Candidat> listingCandidats() {
         return candidatDao.listingCandidats();
     }
 
@@ -40,7 +40,7 @@ public class CandidatServiceImp implements CandidatService {
     public void modifierCandidat(Candidat candidat) {
         candidatDao.modifierCandidat(candidat);
     }
-    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+    public List<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
         return candidatDao.candidatsInscritsEntreDeuxDates(responsableMatricule, debut, fin);
     }
 }

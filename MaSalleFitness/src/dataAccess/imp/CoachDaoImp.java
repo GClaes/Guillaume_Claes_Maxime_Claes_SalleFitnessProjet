@@ -8,6 +8,7 @@ import model.Coach;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CoachDaoImp implements CoachDao {
     private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
@@ -32,10 +33,10 @@ public class CoachDaoImp implements CoachDao {
         }
     };
 
-    public ArrayList<Coach> listingCoachs() {
+    public List<Coach> listingCoachs() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from coach co";
-        ArrayList<Coach> coachs = new ArrayList<Coach>();
+        List<Coach> coachs = new ArrayList<Coach>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             try (ResultSet rs = statement.executeQuery()) {
@@ -116,7 +117,7 @@ public class CoachDaoImp implements CoachDao {
      * @param responsableMatricule
      * @return liste des coachs qui ont été choisis par les candidats qui eux-mêmes ont été inscrit par un responsable
      */
-    public ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
+    public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * " +
                 "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
@@ -126,7 +127,7 @@ public class CoachDaoImp implements CoachDao {
                 "and candi.adresse_code_hash = adr.code_hash " +
                 "and resp.matricule = ?";
 
-        ArrayList<Coach> coachs = new ArrayList<Coach>();
+        List<Coach> coachs = new ArrayList<Coach>();
         Coach coachAjout;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
@@ -157,7 +158,7 @@ public class CoachDaoImp implements CoachDao {
      * @param coachRech
      * @return l'index du coach, ou -1 si la liste ne contient pas l'élément
      */
-    private int contientCoach(ArrayList<Coach> coachs, Coach coachRech) {
+    private int contientCoach(List<Coach> coachs, Coach coachRech) {
         for (int i = 0 ; i < coachs.size() ; i++) {
             if (coachs.get(i).getMatricule() == coachRech.getMatricule()) {
                 return i;

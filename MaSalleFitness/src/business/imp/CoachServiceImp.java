@@ -5,7 +5,7 @@ import dataAccess.CoachDao;
 import dataAccess.imp.CoachDaoImp;
 import model.Coach;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CoachServiceImp implements CoachService {
     private final CoachDao coachDao = CoachDaoImp.getInstance();
@@ -20,7 +20,7 @@ public class CoachServiceImp implements CoachService {
         return coachService;
     }
 
-    public ArrayList<Coach> listingCoachs() {
+    public List<Coach> listingCoachs() {
         return coachDao.listingCoachs();
     }
 
@@ -32,7 +32,7 @@ public class CoachServiceImp implements CoachService {
         return coachDao.obtentionCoach(matriculeCoach);
     }
 
-    public ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
+    public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         return coachsDesCandidatsInscritsParUnResponsable(responsableMatricule);
     }
 
