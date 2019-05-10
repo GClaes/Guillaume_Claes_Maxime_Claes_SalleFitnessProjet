@@ -10,6 +10,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -103,6 +104,7 @@ public class CandidatDaoImpl implements CandidatDao {
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
+            //statement.setDate(3, java.sql.Date.valueOf(LocalDate.of(1995, 10, 25)));
             statement.setDate(3,  new java.sql.Date(candidat.getDateNaissance().getTime()));
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());

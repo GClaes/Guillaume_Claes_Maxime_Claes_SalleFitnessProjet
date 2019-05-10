@@ -1,5 +1,7 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
@@ -84,6 +86,7 @@ public class Candidat extends Personne {
 
     public void setDateTestValide(Date dateTestValide) {
         Date today = new Date();
+
         /*
         if (dateTestValide != null && dateInscription.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(dateTestValide.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) > 0) {
             //System.out.println(dateInscription.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
