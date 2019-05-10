@@ -33,7 +33,7 @@ public class CoachServiceImpl implements CoachService {
     }
 
     public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
-        return coachsDesCandidatsInscritsParUnResponsable(responsableMatricule);
+        return coachDao.coachsDesCandidatsInscritsParUnResponsable(responsableMatricule);
     }
 
     public double calculSalaireHebdomadaire(int matriculeCoach) {

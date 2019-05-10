@@ -11,12 +11,12 @@ import vue.element.*;
 import vue.validateur.*;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class PanelFormulaire3 extends PanelFormulaireBase {
-    private ArrayList<Coach>listeCoachs;
-    private ArrayList<Nutritionniste>listeNutritionnistes;
-    private ArrayList<Responsable>listeResponsables;
+    private List<Coach>listeCoachs;
+    private List<Nutritionniste>listeNutritionnistes;
+    private List<Responsable>listeResponsables;
     private CoachService coachService;
     private NutritionnisteService nutritionnisteService;
     private ResponsableService responsableService;

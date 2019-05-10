@@ -1,20 +1,17 @@
 package vue.recherche.rechercheCoachs;
 
 import business.ResponsableService;
-import business.imp.ResponsableServiceImp;
+import business.impl.ResponsableServiceImpl;
 import model.Responsable;
 import vue.element.ElementFormulaireJComboBox;
 import vue.inscription.formulaire.PanelFormulaireBase;
-import vue.validateur.OrValidation;
-import vue.validateur.PasVideValidation;
-import vue.validateur.VideValidation;
 
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class FormulaireRechercheResponsable extends PanelFormulaireBase {
-    private ResponsableService responsableService = ResponsableServiceImp.getInstance();
-    private ArrayList<Responsable> listResponsables;
+    private ResponsableService responsableService = ResponsableServiceImpl.getInstance();
+    private List<Responsable> listResponsables;
 
     public FormulaireRechercheResponsable() {
         setLayout(new GridLayout(1,2,25,25));

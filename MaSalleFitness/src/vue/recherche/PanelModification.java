@@ -1,7 +1,7 @@
 package vue.recherche;
 
 import business.CoachService;
-import business.imp.CoachServiceImp;
+import business.impl.CoachServiceImpl;
 import model.Candidat;
 import vue.inscription.PanelBase;
 import vue.recherche.rechercheCandidat.Recherche;
@@ -30,7 +30,7 @@ public class PanelModification extends PanelBase<FormulaireModification> {
         @Override
         public void actionPerformed(ActionEvent e) {
             FormulaireModification formulaire = getFormulaire();
-            CoachService coachService = CoachServiceImp.getInstance();
+            CoachService coachService = CoachServiceImpl.getInstance();
             int nbHeuresCoachDispo = 20 - coachService.nbHeuresCoachingUtilisees(getFormulaire().getCoach().getMatricule());
             if(formulaire.validation()){
                 if(nbHeuresCoachDispo >= getFormulaire().getNbHeures()) {

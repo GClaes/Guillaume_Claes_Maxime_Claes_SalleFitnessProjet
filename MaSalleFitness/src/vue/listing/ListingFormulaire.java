@@ -5,11 +5,11 @@ import business.impl.CandidatServiceImpl;
 import model.Candidat;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+import java.util.List;
 
 public class ListingFormulaire extends JPanel {
     private JList<String>listing;
-    private ArrayList<Candidat>listeCandidats;
+    private List<Candidat>listeCandidats;
 
     public ListingFormulaire() {
         listing = new JList<>();
