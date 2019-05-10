@@ -30,11 +30,11 @@ public class FormulaireModification extends PanelFormulaireBase {
                 new PasVideValidation(),
                 candidat.getDateNaissance()));
         setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10,
-                new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}"))));
-        String[] valuesExp = {"Non","Oui"};
-        setComposantes("experience", new ElementFormulaireJComboBox("Avez-vous de l'expérience dans les salles de sport?",valuesExp,
-                new PasVideValidation(),
-                candidat.getDebutant()?0:1));
+                new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}")),
+                candidat.getNumeroGSM()));
+        setComposantes("maladie", new ElementFormulaireJTextField("Maladies éventuelles", 255,
+                new OrValidation(new PasVideValidation(),new VideValidation()),
+                candidat.getMaladiesChroniques()));
         setComposantes("rue",new ElementFormulaireJTextField("Rue", 255,
                 new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
                 candidat.getAdresse().getRue()));
@@ -104,7 +104,12 @@ public class FormulaireModification extends PanelFormulaireBase {
         return (int)getComposantes().get("validerTest").getValue() == 1;
     }
     public Date getDateTestValide(){
-        return (Date)getComposantes().get("dateTest").getValue();
+        if(getValiderTest()) {
+            return (Date) getComposantes().get("dateTest").getValue();
+        }
+        else{
+            return candidat.getDateTestValide();
+        }
     }
     public int getNumInscription(){
         return candidat.getNumInscription();
@@ -115,8 +120,7 @@ public class FormulaireModification extends PanelFormulaireBase {
 
 
     public String getMaladies(){
-        //return (String)getComposantes().get("maladie").getValue();
-        return candidat.getMaladiesChroniques();
+        return (String)getComposantes().get("maladie").getValue();
     }
     public Coach getCoach(){
         //return (Coach)getComposantes().get("coach").getValue();

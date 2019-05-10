@@ -41,13 +41,12 @@ public class PanelModification extends PanelBase<FormulaireModification> {
                         formulaire.getAdresse());
                 candidat.setNumInscrit(formulaire.getNumInscription());
                 candidat.setDateInscription(formulaire.getDateInscription());
-                if(formulaire.getValiderTest()){
-                    candidat.setDateTestValide(formulaire.getDateTestValide());
-                }
+                candidat.setDateTestValide(formulaire.getDateTestValide());
+
                 if(!formulaire.getNumTel().equals("")){
                     candidat.setNumeroGSM(formulaire.getNumTel());
                 }
-                if(formulaire.getMaladies() != null && !formulaire.getMaladies().equals("")){
+                if(!formulaire.getMaladies().equals("")){
                     candidat.setMaladiesChroniques(formulaire.getMaladies());
                 }
                 recherche.modifierCandidat(candidat);

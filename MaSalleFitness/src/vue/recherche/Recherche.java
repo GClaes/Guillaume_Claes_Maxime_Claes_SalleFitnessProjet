@@ -52,6 +52,7 @@ public class Recherche extends JPanel {
         if(valeur == JOptionPane.OK_OPTION){
             CandidatService candidatService = CandidatServiceImp.getInstance();
             candidatService.supprimerCandidat(candidat.getNumInscription());
+            frame.afficherAccueil();
             layout.show(this,"menu");
         }
     }
@@ -69,7 +70,7 @@ public class Recherche extends JPanel {
     public void modifierCandidat(Candidat candidat){
         CandidatService candidatService = CandidatServiceImp.getInstance();
         candidatService.modifierCandidat(candidat);
-        layout.show(this, "info");
+        frame.afficherAccueil();
     }
 
     public void rafraichir(){

@@ -70,4 +70,5 @@ public class FramePrincipale extends JFrame {
         recherche.afficherCandidatInfo(candidat);
     }
 
+
 }
