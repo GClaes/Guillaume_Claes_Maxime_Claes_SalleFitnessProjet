@@ -13,7 +13,6 @@ public class PanelFormulaire extends PanelFormulaireBase {
 
     public PanelFormulaire() {
         setLayout(new GridLayout(6, 2,25,25));
-        //rafraichir();
     }
 
     public void rafraichir(){

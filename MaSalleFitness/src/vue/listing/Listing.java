@@ -27,7 +27,7 @@ public class Listing extends JPanel {
         frame.afficherAccueil();
     }
     public void afficherCandidat(int id){
-        CandidatService candidatService = new CandidatServiceImp();
+        CandidatService candidatService = CandidatServiceImp.getInstance();
         Candidat candidat = candidatService.rechercherCandidat(id);
         frame.afficherCandidatInfo(candidat);
     }

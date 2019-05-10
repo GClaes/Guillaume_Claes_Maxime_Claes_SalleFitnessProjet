@@ -1,7 +1,7 @@
 package vue.recherche;
 
 import business.CandidatService;
-import business.CandidatServiceImp;
+import business.imp.CandidatServiceImp;
 import model.Candidat;
 import vue.inscription.PanelBase;
 
@@ -39,17 +39,18 @@ public class PanelModification extends PanelBase<FormulaireModification> {
                         formulaire.getResponsable(),
                         formulaire.getNutri(),
                         formulaire.getAdresse());
+                candidat.setNumInscrit(formulaire.getNumInscription());
+                candidat.setDateInscription(formulaire.getDateInscription());
                 if(formulaire.getValiderTest()){
                     candidat.setDateTestValide(formulaire.getDateTestValide());
                 }
-                if(!formulaire.getNumero().equals("")){
-                    candidat.setNumeroGSM(formulaire.getNumero());
+                if(!formulaire.getNumTel().equals("")){
+                    candidat.setNumeroGSM(formulaire.getNumTel());
                 }
-                if(!formulaire.getMaladies().equals("")){
+                if(formulaire.getMaladies() != null && !formulaire.getMaladies().equals("")){
                     candidat.setMaladiesChroniques(formulaire.getMaladies());
                 }
-                CandidatService candidatService = new CandidatServiceImp();
-                //APPELR MODIF
+                recherche.modifierCandidat(candidat);
             }
         }
     }

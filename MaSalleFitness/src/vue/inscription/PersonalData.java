@@ -75,6 +75,8 @@ public class PersonalData {
     public void setNutri(Nutritionniste nutri) {
         this.nutri = nutri;
     }
+
+
     //GETTERS
 
     public String getNom() {

@@ -15,7 +15,7 @@ public class Recherche extends JPanel {
     private PanelCandidatInfo panelCandidatInfo;
     private PanelModification panelModification;
 
-    private CandidatService candidatService = new CandidatServiceImp();
+    private CandidatService candidatService = CandidatServiceImp.getInstance();
     private Candidat candidat;
 
     public Recherche(FramePrincipale frame) {
@@ -50,7 +50,7 @@ public class Recherche extends JPanel {
                 JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
                 null, options, options[0]);
         if(valeur == JOptionPane.OK_OPTION){
-            CandidatService candidatService = new CandidatServiceImp();
+            CandidatService candidatService = CandidatServiceImp.getInstance();
             candidatService.supprimerCandidat(candidat.getNumInscription());
             layout.show(this,"menu");
         }
@@ -64,6 +64,11 @@ public class Recherche extends JPanel {
 
     public void afficherCandidatInfo(Candidat candidat) {
         panelCandidatInfo.setCandidat(candidat);
+        layout.show(this, "info");
+    }
+    public void modifierCandidat(Candidat candidat){
+        CandidatService candidatService = CandidatServiceImp.getInstance();
+        candidatService.modifierCandidat(candidat);
         layout.show(this, "info");
     }
 

@@ -100,22 +100,34 @@ public class FormulaireModification extends PanelFormulaireBase {
     public int getNbHeures(){
         return (int)getComposantes().get("nbHeures").getValue();
     }
-    public String getMaladies(){
-        return (String)getComposantes().get("maladie").getValue();
-    }
-    public Coach getCoach(){
-        return (Coach)getComposantes().get("coach").getValue();
-    }
-    public Nutritionniste getNutri(){
-        return (Nutritionniste)getComposantes().get("nutri").getValue();
-    }
-    public Responsable getResponsable(){
-        return(Responsable)getComposantes().get("responsable").getValue();
-    }
     public boolean getValiderTest(){
         return (int)getComposantes().get("validerTest").getValue() == 1;
     }
     public Date getDateTestValide(){
         return (Date)getComposantes().get("dateTest").getValue();
+    }
+    public int getNumInscription(){
+        return candidat.getNumInscription();
+    }
+    public Date getDateInscription(){
+        return candidat.getDateInscription();
+    }
+
+
+    public String getMaladies(){
+        //return (String)getComposantes().get("maladie").getValue();
+        return candidat.getMaladiesChroniques();
+    }
+    public Coach getCoach(){
+        //return (Coach)getComposantes().get("coach").getValue();
+        return candidat.getCoach();
+    }
+    public Nutritionniste getNutri(){
+        //return (Nutritionniste)getComposantes().get("nutri").getValue();
+        return candidat.getNutritionniste();
+    }
+    public Responsable getResponsable(){
+        //return(Responsable)getComposantes().get("responsable").getValue();
+        return candidat.getResponsable();
     }
 }
