@@ -238,9 +238,12 @@ public class CandidatDaoImpl implements CandidatDao {
 
     public List<Candidat> candidatsDUnCoach(Coach coach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * " +
-                "from candidat candi " +
-                "where candi.coach_matricule = ?";
+        String requete = "select * from candidat candi " +
+                "join coach co on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
+                "where candi.coach_matricule = 1";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
@@ -260,9 +263,12 @@ public class CandidatDaoImpl implements CandidatDao {
 
     public List<Candidat> candidatsDUnNutritionniste(Nutritionniste nutritionniste) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * " +
-                "from candidat candi " +
-                "where candi.nutritionniste_num_reference = ?";
+        String requete = "select * from candidat candi " +
+                "join coach co on candi.coach_matricule = co.matricule " +
+                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "join nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join adresse adr on candi.adresse_code_hash = adr.code_hash " +
+                "where candi.nutritionniste_num_reference = 1";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
