@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Coach extends Personne {
@@ -8,7 +7,6 @@ public class Coach extends Personne {
     private double salaireHoraire;
     private String recompenses;
     private Date dateDebutCoaching;
-    private ArrayList<Candidat> candidats = new ArrayList <>();
 
     public Coach(Integer matricule, String nom, String prenom, String recompenses, double salaireHoraire, Date dateDebutCoaching) {
         super(nom, prenom);
@@ -16,12 +14,6 @@ public class Coach extends Personne {
         this.recompenses = recompenses;
         this.salaireHoraire = salaireHoraire;
         this.dateDebutCoaching = dateDebutCoaching;
-    }
-
-    public void ajouterCandidat(Candidat candidat) {
-        if (candidat != null) {
-            candidats.add(candidat);
-        }
     }
 
     public Integer getMatricule() {
@@ -40,7 +32,4 @@ public class Coach extends Personne {
         return dateDebutCoaching;
     }
 
-    public ArrayList<Candidat> getCandidats() {
-        return candidats;
-    }
 }

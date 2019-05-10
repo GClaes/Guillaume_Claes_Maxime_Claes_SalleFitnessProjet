@@ -2,9 +2,9 @@ package dataAccess;
 
 import model.Nutritionniste;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface NutritionnisteDao {
-    ArrayList<Nutritionniste> listingNutritionnistes();
-    ArrayList<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule);
+    List<Nutritionniste> listingNutritionnistes();
+    List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule);
 }

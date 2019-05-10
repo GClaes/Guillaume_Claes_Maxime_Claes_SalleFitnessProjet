@@ -1,7 +1,7 @@
 package vue.listing;
 
 import business.CandidatService;
-import business.imp.CandidatServiceImp;
+import business.impl.CandidatServiceImpl;
 import model.Candidat;
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +29,7 @@ public class ListingFormulaire extends JPanel {
     }
 
     public void rafraichir(){
-        CandidatService candidatService = CandidatServiceImp.getInstance();
+        CandidatService candidatService = CandidatServiceImpl.getInstance();
         listeCandidats = candidatService.listingCandidats();
         String[]values = new String[listeCandidats.size()];
         int position = 0;

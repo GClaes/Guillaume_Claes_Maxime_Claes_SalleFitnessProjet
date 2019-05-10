@@ -1,4 +1,4 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
 import dataAccess.CandidatDao;
 import dataAccess.CoachDao;
@@ -8,16 +8,17 @@ import model.Coach;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CoachDaoImp implements CoachDao {
-    private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
+public class CoachDaoImpl implements CoachDao {
+    private final CandidatDao candidatDao = CandidatDaoImpl.getInstance();
     private static CoachDao coachDao;
 
-    private CoachDaoImp() { }
+    private CoachDaoImpl() { }
 
     public static CoachDao getInstance() {
         if (coachDao == null) {
-            coachDao = new CoachDaoImp();
+            coachDao = new CoachDaoImpl();
         }
         return coachDao;
     }
@@ -32,10 +33,10 @@ public class CoachDaoImp implements CoachDao {
         }
     };
 
-    public ArrayList<Coach> listingCoachs() {
+    public List<Coach> listingCoachs() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select * from coach co";
-        ArrayList<Coach> coachs = new ArrayList<Coach>();
+        List<Coach> coachs = new ArrayList<Coach>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             try (ResultSet rs = statement.executeQuery()) {
@@ -116,54 +117,27 @@ public class CoachDaoImp implements CoachDao {
      * @param responsableMatricule
      * @return liste des coachs qui ont été choisis par les candidats qui eux-mêmes ont été inscrit par un responsable
      */
-    public ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
+    public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * " +
-                "from candidat candi, coach co, responsable resp, nutritionniste nutri, adresse adr " +
+        String requete = "select distinct co.matricule, co.nom, co.prenom, co.recompenses, co.salaire_horaire, co.date_debut_coaching " +
+                "from candidat candi, coach co, responsable resp " +
                 "where candi.coach_matricule = co.matricule " +
                 "and candi.responsable_matricule = resp.matricule " +
-                "and candi.nutritionniste_num_reference = nutri.num_reference " +
-                "and candi.adresse_code_hash = adr.code_hash " +
                 "and resp.matricule = ?";
 
-        ArrayList<Coach> coachs = new ArrayList<Coach>();
-        Coach coachAjout;
+        List<Coach> coachs = new ArrayList<Coach>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setInt(1, responsableMatricule);
 
             try (ResultSet rs = statement.executeQuery()) {
                 while (rs.next()) {
-                    coachAjout = rowMapper.map(rs);
-
-                    int indice = contientCoach(coachs, coachAjout);
-                    if (indice == -1) {
-                        coachAjout.ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
-                        coachs.add(coachAjout);
-                    } else {
-                        coachs.get(indice).ajouterCandidat(CandidatDaoImp.rowMapper.map(rs));
-                    }
+                    coachs.add(rowMapper.map(rs));
                 }
                 return coachs;
             }
         } catch (SQLException e) {
-            throw new CoachsParCandidatsParResponsableException(e);
+            throw new CoachsDesCandidatsInscritsParUnResponsable(e);
         }
     }
-
-    /**
-     *
-     * @param coachs
-     * @param coachRech
-     * @return l'index du coach, ou -1 si la liste ne contient pas l'élément
-     */
-    private int contientCoach(ArrayList<Coach> coachs, Coach coachRech) {
-        for (int i = 0 ; i < coachs.size() ; i++) {
-            if (coachs.get(i).getMatricule() == coachRech.getMatricule()) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
 }

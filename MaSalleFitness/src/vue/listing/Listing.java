@@ -1,7 +1,7 @@
 package vue.listing;
 
 import business.CandidatService;
-import business.imp.CandidatServiceImp;
+import business.impl.CandidatServiceImpl;
 import model.Candidat;
 import vue.FramePrincipale;
 
@@ -26,7 +26,7 @@ public class Listing extends JPanel {
     }
     
     public void afficherCandidat(int id){
-        CandidatService candidatService = CandidatServiceImp.getInstance();
+        CandidatService candidatService = CandidatServiceImpl.getInstance();
         Candidat candidat = candidatService.rechercherCandidat(id);
         frame.afficherCandidatInfo(candidat);
     }

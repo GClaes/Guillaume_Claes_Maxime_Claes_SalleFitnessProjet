@@ -32,4 +32,8 @@ public class DateUtilitaire {
 
         return anneesDifference;
     }
+
+    public static int compareDate(Date dateUne, Date dateDeux) {
+        return 1;
+    }
 }

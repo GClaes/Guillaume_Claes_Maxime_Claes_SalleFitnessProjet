@@ -2,12 +2,12 @@ package business;
 
 import model.Coach;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CoachService {
-    ArrayList<Coach> listingCoachs();
+    List<Coach> listingCoachs();
     int nbHeuresCoachingUtilisees(int matriculeCoach);
     Coach obtentionCoach(int matriculeCoach);
-    ArrayList<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule);
+    List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule);
     double calculSalaireHebdomadaire(int matriculeCoach);
 }

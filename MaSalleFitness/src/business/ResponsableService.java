@@ -2,8 +2,8 @@ package business;
 
 import model.Responsable;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ResponsableService {
-    ArrayList<Responsable> listingResponsables();
+    List<Responsable> listingResponsables();
 }

@@ -1,9 +1,9 @@
 package vue.inscription.formulaire;
 
 import business.*;
-import business.imp.CoachServiceImp;
-import business.imp.NutritionnisteServiceImp;
-import business.imp.ResponsableServiceImp;
+import business.impl.CoachServiceImpl;
+import business.impl.NutritionnisteServiceImpl;
+import business.impl.ResponsableServiceImpl;
 import model.Coach;
 import model.Nutritionniste;
 import model.Responsable;
@@ -75,9 +75,9 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
     }
 
     public void rafraichir(){
-        coachService =  CoachServiceImp.getInstance();
-        nutritionnisteService = NutritionnisteServiceImp.getInstance();
-        responsableService = ResponsableServiceImp.getInstance();
+        coachService =  CoachServiceImpl.getInstance();
+        nutritionnisteService = NutritionnisteServiceImpl.getInstance();
+        responsableService = ResponsableServiceImpl.getInstance();
         listeCoachs = coachService.listingCoachs();
         listeNutritionnistes = nutritionnisteService.listingNutritionnistes();
         listeResponsables = responsableService.listingResponsables();

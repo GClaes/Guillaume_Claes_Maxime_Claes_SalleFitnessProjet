@@ -1,4 +1,4 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
 import dataAccess.ResponsableDao;
 import dataAccess.RowMapper;
@@ -7,15 +7,16 @@ import model.Responsable;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public class ResponsableDaoImp implements ResponsableDao {
+public class ResponsableDaoImpl implements ResponsableDao {
     private static ResponsableDao responsableDao;
 
-    private ResponsableDaoImp() { }
+    private ResponsableDaoImpl() { }
 
     public static ResponsableDao getInstance() {
         if (responsableDao == null) {
-            responsableDao = new ResponsableDaoImp();
+            responsableDao = new ResponsableDaoImpl();
         }
         return responsableDao;
     }
@@ -27,10 +28,10 @@ public class ResponsableDaoImp implements ResponsableDao {
         }
     };
 
-    public ArrayList<Responsable> listingResponsables() {
+    public List<Responsable> listingResponsables() {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select matricule, nom, prenom from responsable resp";
-        ArrayList<Responsable> responsables = new ArrayList<Responsable>();
+        List<Responsable> responsables = new ArrayList<Responsable>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             try (ResultSet rs = statement.executeQuery()) {

@@ -1,4 +1,4 @@
-package dataAccess.imp;
+package dataAccess.impl;
 
 import dataAccess.AdresseDao;
 import dataAccess.RowMapper;
@@ -11,14 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AdresseDaoImp implements AdresseDao {
+public class AdresseDaoImpl implements AdresseDao {
     private static AdresseDao adresseDao;
 
-    private AdresseDaoImp() { }
+    private AdresseDaoImpl() { }
 
     public static AdresseDao getInstance() {
         if (adresseDao == null) {
-            adresseDao = new AdresseDaoImp();
+            adresseDao = new AdresseDaoImpl();
         }
         return adresseDao;
     }

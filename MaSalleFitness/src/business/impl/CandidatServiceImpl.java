@@ -1,22 +1,24 @@
-package business.imp;
+package business.impl;
 
 import business.CandidatService;
 import dataAccess.CandidatDao;
-import dataAccess.imp.CandidatDaoImp;
+import dataAccess.impl.CandidatDaoImpl;
 import model.Candidat;
+import model.Coach;
+import model.Nutritionniste;
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-public class CandidatServiceImp implements CandidatService {
-    private final CandidatDao candidatDao = CandidatDaoImp.getInstance();
+public class CandidatServiceImpl implements CandidatService {
+    private final CandidatDao candidatDao = CandidatDaoImpl.getInstance();
     private static CandidatService candidatService;
 
-    private CandidatServiceImp() { }
+    private CandidatServiceImpl() { }
 
     public static CandidatService getInstance() {
         if (candidatService == null) {
-            candidatService = new CandidatServiceImp();
+            candidatService = new CandidatServiceImpl();
         }
         return candidatService;
     }
@@ -25,7 +27,7 @@ public class CandidatServiceImp implements CandidatService {
         return candidatDao.rechercherCandidat(numeroInscription);
     }
 
-    public ArrayList<Candidat> listingCandidats() {
+    public List<Candidat> listingCandidats() {
         return candidatDao.listingCandidats();
     }
 
@@ -40,7 +42,16 @@ public class CandidatServiceImp implements CandidatService {
     public void modifierCandidat(Candidat candidat) {
         candidatDao.modifierCandidat(candidat);
     }
-    public ArrayList<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
+
+    public List<Candidat> candidatsInscritsEntreDeuxDates(int responsableMatricule, Date debut, Date fin) {
         return candidatDao.candidatsInscritsEntreDeuxDates(responsableMatricule, debut, fin);
+    }
+
+    public List<Candidat> candidatsDUnCoach(Coach coach) {
+        return candidatDao.candidatsDUnCoach(coach);
+    }
+
+    public List<Candidat> candidatsDUnNutritionniste(Nutritionniste nutritionniste) {
+        return candidatDao.candidatsDUnNutritionniste(nutritionniste);
     }
 }
