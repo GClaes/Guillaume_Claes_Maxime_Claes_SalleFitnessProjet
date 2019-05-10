@@ -27,24 +27,6 @@ public class CandidatDaoImp implements CandidatDao {
     public static RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
-            /*
-            Coach coach = CoachDaoImp.rowMapper.map(res);
-            Responsable responsable = ResponsableDaoImp.rowMapper.map(res);
-            Nutritionniste nutritionniste = NutritionnisteDaoImp.rowMapper.map(res);
-            Adresse adresse = AdresseDaoImp.rowMapper.map(res);
-
-            int numInscription = res.getInt("candi.num_inscrit");
-            String nom = res.getString("candi.nom");
-            String prenom = res.getString("candi.prenom");
-            java.util.Date dateNaissance = res.getTimestamp("candi.date_naissance");
-            char sexe = res.getString("candi.sexe").charAt(0);
-            String numeroGSM = res.getString("candi.num_gsm");
-            java.util.Date dateTestValide = res.getTimestamp("candi.date_test_valide");
-            java.util.Date dateInscription = res.getTimestamp("candi.date_inscription");
-            int nbHeuresCoaching = res.getInt("candi.nb_heures_coaching");
-            boolean estDebutant = res.getBoolean("candi.debutant");
-            String maladiesChroniques = res.getString("candi.maladies_chroniques");
-            */
             Candidat candidat = new Candidat(
                     res.getInt("candi.nb_heures_coaching"), res.getString("candi.nom"),
                     res.getString("candi.prenom"), res.getTimestamp("candi.date_naissance"),
@@ -122,16 +104,6 @@ public class CandidatDaoImp implements CandidatDao {
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
             statement.setDate(3,  new java.sql.Date(candidat.getDateNaissance().getTime()));
-            /*
-            Calendar naissance = Calendar.getInstance();
-            naissance.setTime(candidat.getDateNaissance());
-            statement.setDate(3,  new java.sql.Date(naissance.getTimeInMillis()));
-            */
-            /*
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            java.sql.Date date = new java.sql.Date(sdf.parse("1997-04-28").getTime());
-            statement.setDate(3,  date);
-            */
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());
 
@@ -186,23 +158,21 @@ public class CandidatDaoImp implements CandidatDao {
                 "date_test_valide = ?, date_inscription = ?, nb_heures_coaching = ?, debutant = ?, " +
                 "maladies_chroniques = ?, coach_matricule = ?, responsable_matricule = ?, " +
                 "nutritionniste_num_reference = ?, adresse_code_hash = ? where num_inscrit = ?";
-        java.sql.Date sqlDate = null;
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
-            sqlDate = new java.sql.Date(candidat.getDateNaissance().getTime());
-            statement.setDate(3, sqlDate);
+            statement.setDate(3, new java.sql.Date(candidat.getDateNaissance().getTime()));
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());
 
             if (candidat.getDateTestValide() != null) {
-                sqlDate = new java.sql.Date(candidat.getDateTestValide().getTime());
+                statement.setDate(6, new java.sql.Date(candidat.getDateTestValide().getTime()));
+            } else {
+                statement.setDate(6, null);
             }
-            statement.setDate(6, sqlDate);
 
-            sqlDate = new java.sql.Date(candidat.getDateInscription().getTime());
-            statement.setDate(7, sqlDate);
+            statement.setDate(7, new java.sql.Date(candidat.getDateInscription().getTime()));
             statement.setInt(8, candidat.getNbHeuresCoaching());
             statement.setBoolean(9, candidat.getDebutant());
             statement.setString(10, candidat.getMaladiesChroniques());
