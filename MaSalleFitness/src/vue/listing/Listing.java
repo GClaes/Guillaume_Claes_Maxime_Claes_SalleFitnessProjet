@@ -24,6 +24,7 @@ public class Listing extends JPanel {
     public void retour(){
         frame.afficherAccueil();
     }
+    
     public void afficherCandidat(int id){
         CandidatService candidatService = CandidatServiceImp.getInstance();
         Candidat candidat = candidatService.rechercherCandidat(id);
