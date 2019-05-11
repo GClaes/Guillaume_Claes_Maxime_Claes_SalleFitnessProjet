@@ -4,6 +4,7 @@ import model.exceptions.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 public class Adresse {
     private String code;
@@ -20,6 +21,13 @@ public class Adresse {
         genereCode();
     }
 
+    public void setLocalite(String localite) {
+        if (localite == null || !Pattern.matches("[a-zA-Z]", localite)) {
+            throw new LocaliteException(localite);
+        }
+        this.localite = localite.toLowerCase();
+    }
+
     public void setCodePostal(String codePostal) {
         Integer codePostalCast = Integer.parseInt(codePostal);
 
@@ -29,30 +37,21 @@ public class Adresse {
         this.codePostal = codePostal.toLowerCase();
     }
 
-    public void setLocalite(String localite) {
-        if (localite == null) {
-            throw new LocaliteException(localite);
-        }
-        this.localite = localite.toLowerCase();
-    }
-
     public void setRue(String rue) {
         if (rue == null) {
             throw new RueException(rue);
         }
-        this.rue = rue.toLowerCase();
     }
 
     public void setNumero(String numero) {
-        if (numero == null) {
+        if (numero == null ) {
             throw new NumeroException(numero);
         }
-        this.numero = numero.toLowerCase();
     }
 
     public void genereCode() {
         MessageDigest m = null;
-        String adr = localite + codePostal + rue + numero;
+        String adr = localite.toLowerCase() + codePostal.toLowerCase() + rue.toLowerCase() + numero.toLowerCase();
         byte[] adrByte = adr.getBytes();
 
         try {
