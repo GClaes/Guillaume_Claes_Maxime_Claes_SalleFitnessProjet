@@ -10,7 +10,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -102,9 +101,9 @@ public class CandidatDaoImpl implements CandidatDao {
                 "values (? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ? , ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
+            connection.setAutoCommit(false);
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
-            //statement.setDate(3, java.sql.Date.valueOf(LocalDate.of(1995, 10, 25)));
             statement.setDate(3,  new java.sql.Date(candidat.getDateNaissance().getTime()));
             statement.setString(4, String.valueOf(candidat.getSexe()));
             statement.setString(5, candidat.getNumeroGSM());
@@ -129,6 +128,8 @@ public class CandidatDaoImpl implements CandidatDao {
             }
 
             statement.executeUpdate();
+            connection.commit();
+            connection.setAutoCommit(true);
         } catch (SQLException e) {
             throw new AjouterCandidatException(e);
         }
@@ -141,12 +142,15 @@ public class CandidatDaoImpl implements CandidatDao {
         Candidat candidat = rechercherCandidat(numeroInscription);
         if (candidat != null) {
             try (PreparedStatement statement = connection.prepareStatement(requete)) {
+                connection.setAutoCommit(false);
                 statement.setInt(1, numeroInscription);
                 statement.executeUpdate();
 
                 if (!adresseDao.adresseUtilisee(candidat.getAdresse().getCode())) {
                     adresseDao.supprimerAdresse(candidat.getAdresse().getCode());
                 }
+                connection.commit();
+                connection.setAutoCommit(true);
             } catch (SQLException e) {
                 throw new SupprimerCandidatException(e);
             }
@@ -161,6 +165,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "nutritionniste_num_reference = ?, adresse_code_hash = ? where num_inscrit = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
+            connection.setAutoCommit(false);
             statement.setString(1, candidat.getNom());
             statement.setString(2, candidat.getPrenom());
             statement.setDate(3, new java.sql.Date(candidat.getDateNaissance().getTime()));
@@ -190,7 +195,8 @@ public class CandidatDaoImpl implements CandidatDao {
             }
 
             statement.executeUpdate();
-
+            connection.commit();
+            connection.setAutoCommit(true);
             if (candidat.getAdresse().getCode().compareTo(ancienCodeAdresse) != 0) {
                 if (!adresseDao.adresseUtilisee(ancienCodeAdresse)) {
                     adresseDao.supprimerAdresse(ancienCodeAdresse);

@@ -12,18 +12,14 @@ public abstract class Personne {
     }
 
     public void setNom(String nom) {
-        nom = nom.trim();
-
-        if (nom == null || nom.length() == 0) {
+        if (nom == null || nom.trim().length() == 0) {
             throw new NomException(nom);
         }
         this.nom = nom;
     }
 
     public void setPrenom(String prenom) {
-        prenom = prenom.trim();
-
-        if (prenom == null || nom.length() == 0) {
+        if (prenom == null || prenom.trim().length() == 0) {
             throw new PrenomException(prenom);
         }
         this.prenom = prenom;

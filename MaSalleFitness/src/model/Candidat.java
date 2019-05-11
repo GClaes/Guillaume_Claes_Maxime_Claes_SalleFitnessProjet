@@ -85,7 +85,6 @@ public class Candidat extends Personne {
     }
 
     public void setDateTestValide(Date dateTestValide) {
-
         if (dateTestValide != null && dateInscription.compareTo(dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
