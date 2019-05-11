@@ -12,9 +12,9 @@ public class NbValidation implements Validation {
     @Override
     public boolean valider(Object o) {
         if(sens =='>')
-        return (int)o >= nb;
+        return Integer.parseInt(o.toString()) >= nb;
         else{
-            return (int)o <= nb;
+            return Integer.parseInt(o.toString()) <= nb;
         }
     }
 }

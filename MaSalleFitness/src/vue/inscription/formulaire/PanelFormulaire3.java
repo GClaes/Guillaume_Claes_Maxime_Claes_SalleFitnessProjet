@@ -83,7 +83,7 @@ public class PanelFormulaire3 extends PanelFormulaireBase {
         listeResponsables = responsableService.listingResponsables();
 
         removeAll();
-        setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>')));
+        setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré", new NbValidation(1,'>'),1));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies chroniques éventuelles", 255));
         setComposantes("coach", new ElementFormulaireJComboBox("Coach", afficherListeCoachs()));
         setComposantes("nutri", new ElementFormulaireJComboBox("Nutritionniste",afficherListeNutritionnistes()));

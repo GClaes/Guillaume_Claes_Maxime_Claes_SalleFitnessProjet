@@ -38,7 +38,7 @@ public class ListingFormulaire extends JPanel {
         String[]values = new String[listeCandidats.size()];
         int position = 0;
         for(Candidat candidat:listeCandidats){
-            values[position] = "<html><li>ID: "+candidat.getNumInscription()+" | "+NomUtilitaire.setMaj(candidat.getNom())+" "+candidat.getPrenom()+"</li></html>";
+            values[position] = "<html><li>ID: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li></html>";
             position++;
         }
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

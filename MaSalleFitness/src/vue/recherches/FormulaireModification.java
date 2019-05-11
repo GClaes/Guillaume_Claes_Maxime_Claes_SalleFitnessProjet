@@ -1,6 +1,7 @@
 package vue.recherches;
 
 import model.*;
+import utilitaires.ConstantesRegex;
 import vue.element.ElementFormulaireJComboBox;
 import vue.element.ElementFormulaireJSpinnerDate;
 import vue.element.ElementFormulaireJSpinnerNb;
@@ -17,10 +18,10 @@ public class FormulaireModification extends PanelFormulaireBase {
         this.candidat = candidat;
         setLayout(new GridLayout(13, 2,25,15));
         setComposantes("nom",new ElementFormulaireJTextField("Nom", 30,
-                new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
+                new AndValidation(new PasVideValidation(), new PatternValidation(ConstantesRegex.REGEX_NOM)),
                 candidat.getNom()));
         setComposantes("prenom", new ElementFormulaireJTextField("Prénom", 30,
-                new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
+                new AndValidation(new PasVideValidation(), new PatternValidation(ConstantesRegex.REGEX_PRENOM)),
                 candidat.getPrenom()));
         String[] valuesSexe = {"Homme","Femme"};
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe,
@@ -29,27 +30,28 @@ public class FormulaireModification extends PanelFormulaireBase {
                 new PasVideValidation(),
                 candidat.getDateNaissance()));
         setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10,
-                new OrValidation(new VideValidation(), new PatternValidation("0[1-9][0-9]{8}")),
+                new OrValidation(new VideValidation(), new PatternValidation(ConstantesRegex.REGEX_NUMTEL)),
                 candidat.getNumeroGSM()));
         setComposantes("maladie", new ElementFormulaireJTextField("Maladies éventuelles", 255,
                 candidat.getMaladiesChroniques()));
         setComposantes("rue",new ElementFormulaireJTextField("Rue", 255,
-                new AndValidation(new PasVideValidation(), new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
+                new AndValidation(new PasVideValidation(), new PatternValidation(ConstantesRegex.REGEX_RUE)),
                 candidat.getAdresse().getRue()));
         setComposantes("num", new ElementFormulaireJTextField("Numéro", 255,
-                new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]*[a-zA-Z0-9]{1,5}")),
+                new AndValidation(new PasVideValidation(),new PatternValidation(ConstantesRegex.REGEX_NUM)),
                 candidat.getAdresse().getNumero()));
         setComposantes("codePostal", new ElementFormulaireJTextField("Code postal", 255,
-                new AndValidation(new PasVideValidation(), new PatternValidation("[0-9]{4}")),
+                new AndValidation(new PasVideValidation(), new PatternValidation(ConstantesRegex.REGEX_CODEPOSTAL)),
                 candidat.getAdresse().getCodePostal()));
         setComposantes("localite", new ElementFormulaireJTextField("Localité", 255,
-                new AndValidation(new PasVideValidation(),new PatternValidation("^[a-z]+[ \\-']?[[a-z]+[ \\-']?]*[a-z]+$")),
+                new AndValidation(new PasVideValidation(),new PatternValidation(ConstantesRegex.REGEX_LOCALITE)),
                 candidat.getAdresse().getLocalite()));
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré",
                 new NbValidation(1,'>'),
                 candidat.getNbHeuresCoaching()));
         String[]values = {"Oui","Non"};
-        setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values));
+        setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values,
+                candidat.getDateTestValide()==null?1:0));
         try {
             setComposantes("dateTest", new ElementFormulaireJSpinnerDate("Date du test",
                     new DateValidation(candidat.getDateInscription()),
