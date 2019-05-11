@@ -14,7 +14,7 @@ public class FormulaireRechercheCoach extends PanelFormulaireBase {
     private List<Coach> listCoachs;
 
     public FormulaireRechercheCoach() {
-        setLayout(new GridLayout(1,2,25,25));
+        setLayout(new FlowLayout());
     }
     public void rafraichir(){
         removeAll();

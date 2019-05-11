@@ -17,8 +17,9 @@ public class FormulaireListingAdresse extends JPanel {
 
     public FormulaireListingAdresse(){
         listeCandidats = new JList<>();
-
-        add(listeCandidats);
+        JScrollPane scrollPane = new JScrollPane(listeCandidats,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(400,500));
+        add(scrollPane);
     }
     public void setData(Responsable responsable, Date dateDebut, Date dateFin){
         CandidatService candidatService = CandidatServiceImpl.getInstance();
@@ -31,7 +32,6 @@ public class FormulaireListingAdresse extends JPanel {
                     "Adresse: "+adresse.getNumero()+" rue de "+adresse.getRue()+" "+adresse.getCodePostal()+" "+adresse.getLocalite()+"</li></html>";
             position++;
         }
-        listeCandidats.setVisibleRowCount(6);
         listeCandidats.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listeCandidats.setListData(values);
         listeCandidats.setFont(new Font("Gras",Font.BOLD,15));

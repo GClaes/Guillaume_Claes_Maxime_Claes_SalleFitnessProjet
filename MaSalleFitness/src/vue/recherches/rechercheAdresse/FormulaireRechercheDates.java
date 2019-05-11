@@ -25,7 +25,7 @@ public class FormulaireRechercheDates extends PanelFormulaireBase {
         listResponsables = responsableService.listingResponsables();
         setComposantes("responsable",new ElementFormulaireJComboBox("Responsable",afficherResponsables()));
         setComposantes("dateDebut", new ElementFormulaireJSpinnerDate("Date début"));
-        setComposantes("dateFin", new ElementFormulaireJSpinnerDate("Date début"));
+        setComposantes("dateFin", new ElementFormulaireJSpinnerDate("Date fin"));
         getComposantes().get("dateDebut").addValidation(new DateValidation((Date)getComposantes().get("dateFin").getValue()));
         initList();
     }

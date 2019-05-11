@@ -25,6 +25,6 @@ public class ElementFormulaireJTextField extends ElementFormulaire<JTextField> {
 
     @Override
     public Object getValue() {
-        return getField().getText().toLowerCase();
+        return getField().getText();
     }
 }

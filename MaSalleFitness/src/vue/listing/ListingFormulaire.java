@@ -14,9 +14,11 @@ public class ListingFormulaire extends JPanel {
     private List<Candidat>listeCandidats;
 
     public ListingFormulaire() {
-        listing = new JList<>();
+        listing = new JList<>(new DefaultListModel<>());
         rafraichir();
-        add(listing);
+        JScrollPane scrollPane = new JScrollPane(listing,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(400,500));
+        add(scrollPane);
     }
 
     public int getIdSelect(){
@@ -39,7 +41,6 @@ public class ListingFormulaire extends JPanel {
             values[position] = "<html><li>ID: "+candidat.getNumInscription()+" | "+NomUtilitaire.setMaj(candidat.getNom())+" "+candidat.getPrenom()+"</li></html>";
             position++;
         }
-        listing.setVisibleRowCount(5);
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listing.setListData(values);
         listing.setFont(new Font("Gras",Font.BOLD,20));

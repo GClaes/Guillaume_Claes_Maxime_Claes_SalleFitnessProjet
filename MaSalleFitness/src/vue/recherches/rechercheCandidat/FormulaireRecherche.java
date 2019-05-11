@@ -8,10 +8,11 @@ import vue.validateur.PatternValidation;
 
 import java.awt.*;
 
+
 public class FormulaireRecherche extends PanelFormulaireBase {
 
     public FormulaireRecherche(){
-        setLayout(new GridLayout(1,2,25,25));
+        setLayout(new FlowLayout());
     }
     public int getId(){
         return Integer.parseInt((String)getComposantes().get("id").getValue());
@@ -21,4 +22,5 @@ public class FormulaireRecherche extends PanelFormulaireBase {
         setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+"))));
         initList();
     }
+
 }

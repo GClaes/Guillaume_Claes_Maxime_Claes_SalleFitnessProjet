@@ -14,11 +14,13 @@ import java.util.List;
 public class FormulaireListingCoach extends JPanel {
     private JList<String>listeCoachs;
     private List<Coach> coachs;
+    private JScrollPane scrollPane;
 
     public FormulaireListingCoach() {
         listeCoachs = new JList<>();
-
-        add(listeCoachs);
+        scrollPane = new JScrollPane(listeCoachs, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(400,500));
+        add(scrollPane);
     }
     public void setResponsable(Responsable responsable) {
         CoachService coachService = CoachServiceImpl.getInstance();
@@ -33,7 +35,6 @@ public class FormulaireListingCoach extends JPanel {
             values[position]+="</ul></html>";
             position++;
         }
-        listeCoachs.setVisibleRowCount(6);
         listeCoachs.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listeCoachs.setListData(values);
         listeCoachs.setFont(new Font("Gras",Font.BOLD,15));

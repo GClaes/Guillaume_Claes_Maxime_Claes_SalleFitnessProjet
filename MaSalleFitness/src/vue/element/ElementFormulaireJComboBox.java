@@ -19,6 +19,6 @@ public class ElementFormulaireJComboBox extends ElementFormulaire<JComboBox> {
         return getField().getSelectedIndex();
     }
     private void setValue(int i){
-        getField().setSelectedItem(i);
+        getField().setSelectedIndex(i);
     }
 }
