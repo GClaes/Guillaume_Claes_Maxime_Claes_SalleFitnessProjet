@@ -85,15 +85,11 @@ public class Candidat extends Personne {
     }
 
     public void setDateTestValide(Date dateTestValide) {
-        Date today = new Date();
 
-        /*
-        if (dateTestValide != null && dateInscription.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().compareTo(dateTestValide.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()) > 0) {
-            //System.out.println(dateInscription.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            //System.out.println(dateTestValide.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+        if (dateTestValide != null && dateInscription.compareTo(dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
-        */
+
         this.dateTestValide = dateTestValide;
     }
 
