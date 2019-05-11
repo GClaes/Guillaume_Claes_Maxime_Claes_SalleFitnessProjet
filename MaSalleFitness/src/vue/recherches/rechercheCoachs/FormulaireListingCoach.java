@@ -28,7 +28,8 @@ public class FormulaireListingCoach extends JPanel {
         String[]values = new String[coachs.size()];
         int position = 0;
         for(Coach coach : coachs){
-            values[position] = "<html>Coach: "+coach.getNom()+" "+coach.getPrenom()+"<br><ul>";
+            values[position] = "<html>Coach: "+coach.getNom()+" "+coach.getPrenom()+"<br>" +
+                    "Salaire hebdomadaire: "+coachService.calculSalaireHebdomadaire(coach.getMatricule())+"€"+"<br><ul>";
             for (Candidat candidat : CandidatServiceImpl.getInstance().candidatsDUnCoach(coach)){
                 values[position] += "   <li>"+"ID: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li></br>";
             }
