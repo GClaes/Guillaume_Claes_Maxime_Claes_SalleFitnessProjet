@@ -1,4 +1,4 @@
-import vue.FramePrincipale;
+import presentation.vue.FramePrincipale;
 
 public class Principal {
 
