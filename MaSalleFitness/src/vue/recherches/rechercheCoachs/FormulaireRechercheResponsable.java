@@ -14,7 +14,7 @@ public class FormulaireRechercheResponsable extends PanelFormulaireBase {
     private List<Responsable> listResponsables;
 
     public FormulaireRechercheResponsable() {
-        setLayout(new GridLayout(1,2,25,25));
+        setLayout(new GridLayout(10,2,25,25));
     }
 
     public void rafraichir(){

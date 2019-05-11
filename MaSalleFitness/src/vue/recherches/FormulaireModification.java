@@ -48,7 +48,7 @@ public class FormulaireModification extends PanelFormulaireBase {
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré",
                 new NbValidation(1,'>'),
                 candidat.getNbHeuresCoaching()));
-        String[]values = {"Non","Oui"};
+        String[]values = {"Oui","Non"};
         setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values));
         try {
             setComposantes("dateTest", new ElementFormulaireJSpinnerDate("Date du test",
@@ -76,9 +76,6 @@ public class FormulaireModification extends PanelFormulaireBase {
     public String getNumTel(){
         return (String)getComposantes().get("numTel").getValue();
     }
-    public boolean getExp(){
-        return (int)getComposantes().get("experience").getValue()==0;
-    }
     public String getLocalite() {
         return (String)getComposantes().get("localite").getValue();
     }
@@ -98,14 +95,14 @@ public class FormulaireModification extends PanelFormulaireBase {
         return (int)getComposantes().get("nbHeures").getValue();
     }
     public boolean getValiderTest(){
-        return (int)getComposantes().get("validerTest").getValue() == 1;
+        return (int)getComposantes().get("validerTest").getValue() == 0;
     }
     public Date getDateTestValide(){
         if(getValiderTest()) {
             return (Date) getComposantes().get("dateTest").getValue();
         }
         else{
-            return candidat.getDateTestValide();
+            return null;
         }
     }
     public int getNumInscription(){

@@ -14,11 +14,13 @@ import java.util.List;
 public class FormulaireListingNutri extends JPanel {
     private JList<String>listeNutris;
     private List<Nutritionniste> nutris;
+    private JScrollPane scrollPane;
 
     public FormulaireListingNutri() {
         listeNutris = new JList<>();
-
-        add(listeNutris);
+        scrollPane = new JScrollPane(listeNutris, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(400,500));
+        add(scrollPane);
     }
 
     public void setCoach(Coach coach){
@@ -34,7 +36,6 @@ public class FormulaireListingNutri extends JPanel {
             values[position]+="</ul></html>";
             position++;
         }
-        listeNutris.setVisibleRowCount(6);
         listeNutris.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listeNutris.setListData(values);
         listeNutris.setFont(new Font("Gras",Font.BOLD,15));
