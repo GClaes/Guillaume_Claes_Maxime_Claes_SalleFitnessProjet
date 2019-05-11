@@ -1,8 +1,5 @@
 package model;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 import model.exceptions.*;
@@ -85,8 +82,7 @@ public class Candidat extends Personne {
     }
 
     public void setDateTestValide(Date dateTestValide) {
-
-        if (dateTestValide != null && dateInscription.compareTo(dateTestValide) > 0) {
+        if (dateTestValide != null && DateUtilitaire.compareDate(dateInscription, dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
 
