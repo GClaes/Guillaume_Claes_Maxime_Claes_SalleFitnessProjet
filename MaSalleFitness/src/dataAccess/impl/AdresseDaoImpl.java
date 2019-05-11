@@ -56,7 +56,7 @@ public class AdresseDaoImpl implements AdresseDao {
                 return rs.getInt(1) >= 1;
             }
         } catch (SQLException e) {
-            throw new AdresseExisteException(e);
+            throw new AdresseDaoException(e);
         }
     }
 
@@ -73,7 +73,7 @@ public class AdresseDaoImpl implements AdresseDao {
             statement.setString(5, adresse.getNumero());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new AjouterAdresseException(e);
+            throw new AdresseDaoException(e);
         }
     }
 
@@ -85,7 +85,7 @@ public class AdresseDaoImpl implements AdresseDao {
             statement.setString(1, codeHash);
             return statement.executeUpdate() == 1;
         } catch (SQLException e) {
-            throw new SupprimerAdresseException(e);
+            throw new AdresseDaoException(e);
         }
     }
 
@@ -101,7 +101,7 @@ public class AdresseDaoImpl implements AdresseDao {
                 return rs.getInt(1) >= 1;
             }
         } catch (SQLException e) {
-            throw new AdresseUtiliseeException(e);
+            throw new AdresseDaoException(e);
         }
     }
 }

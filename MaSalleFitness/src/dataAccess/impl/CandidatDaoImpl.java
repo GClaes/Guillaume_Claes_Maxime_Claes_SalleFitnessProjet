@@ -3,7 +3,8 @@ package dataAccess.impl;
 import dataAccess.AdresseDao;
 import dataAccess.CandidatDao;
 import dataAccess.RowMapper;
-import dataAccess.exceptions.*;
+import dataAccess.exceptions.AdresseDaoException;
+import dataAccess.exceptions.CandidatDaoException;
 import model.*;
 
 import java.sql.Connection;
@@ -68,7 +69,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 return null;
             }
         } catch (SQLException e) {
-            throw new RechercherCandidatException(e);
+            throw new CandidatDaoException(e);
         }
     }
 
@@ -89,7 +90,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 return candidats;
             }
         } catch (SQLException e) {
-            throw new ListingException(e);
+            throw new CandidatDaoException(e);
         }
     }
 
@@ -129,10 +130,21 @@ public class CandidatDaoImpl implements CandidatDao {
 
             statement.executeUpdate();
             connection.commit();
-            connection.setAutoCommit(true);
-        } catch (SQLException e) {
-            throw new AjouterCandidatException(e);
+        } catch (SQLException | AdresseDaoException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                throw new CandidatDaoException(e1);
+            }
+            throw new CandidatDaoException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new CandidatDaoException(e);
+            }
         }
+
     }
 
     public void supprimerCandidat(int numeroInscription) {
@@ -152,7 +164,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 connection.commit();
                 connection.setAutoCommit(true);
             } catch (SQLException e) {
-                throw new SupprimerCandidatException(e);
+                throw new CandidatDaoException(e);
             }
         }
     }
@@ -203,7 +215,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 }
             }
         } catch (SQLException e) {
-            throw new ModifierCandidatException(e);
+            throw new CandidatDaoException(e);
         }
     }
 
@@ -237,7 +249,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 return candidats;
             }
         } catch (SQLException e) {
-            throw new ListingException(e);
+            throw new CandidatDaoException(e);
         }
     }
 
@@ -262,7 +274,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 return candidats;
             }
         } catch (SQLException e) {
-            throw new CandidatsDUnCoachException(e);
+            throw new CandidatDaoException(e);
         }
     }
 
@@ -287,7 +299,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 return candidats;
             }
         } catch (SQLException e) {
-            throw new CandidatsDUnNutritionniste(e);
+            throw new CandidatDaoException(e);
         }
     }
 }

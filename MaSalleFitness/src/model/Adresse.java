@@ -4,6 +4,7 @@ import model.exceptions.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.regex.Pattern;
 
 public class Adresse {
     private String code;
@@ -20,39 +21,39 @@ public class Adresse {
         genereCode();
     }
 
+    public void setLocalite(String localite) {
+        if (localite == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", localite)) {
+            throw new LocaliteException(localite);
+        }
+        this.localite = localite;
+    }
+
     public void setCodePostal(String codePostal) {
         Integer codePostalCast = Integer.parseInt(codePostal);
 
-        if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992) {
+        if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992 || !Pattern.matches("[1-9][0-9]{3}", codePostal)) {
             throw new CodePostalException(codePostal);
         }
-        this.codePostal = codePostal.toLowerCase();
-    }
-
-    public void setLocalite(String localite) {
-        if (localite == null) {
-            throw new LocaliteException(localite);
-        }
-        this.localite = localite.toLowerCase();
+        this.codePostal = codePostal;
     }
 
     public void setRue(String rue) {
-        if (rue == null) {
+        if (rue == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", rue)) {
             throw new RueException(rue);
         }
-        this.rue = rue.toLowerCase();
+        this.rue = rue;
     }
 
     public void setNumero(String numero) {
-        if (numero == null) {
+        if (numero == null || !Pattern.matches("[1-9][0-9]*[a-zA-Z0-9]{0,5}", numero)) {
             throw new NumeroException(numero);
         }
-        this.numero = numero.toLowerCase();
+        this.numero = numero;
     }
 
     public void genereCode() {
         MessageDigest m = null;
-        String adr = localite + codePostal + rue + numero;
+        String adr = localite.toLowerCase() + codePostal.toLowerCase() + rue.toLowerCase() + numero.toLowerCase();
         byte[] adrByte = adr.getBytes();
 
         try {
