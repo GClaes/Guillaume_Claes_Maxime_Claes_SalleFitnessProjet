@@ -1,6 +1,6 @@
 package dataAccess.impl;
 
-import dataAccess.exceptions.ConnectionException;
+import dataAccess.exceptions.SingletonConnectionException;
 
 import java.sql.*;
 
@@ -12,7 +12,7 @@ public class SingletonConnection {
             try {
                 uniqueConnection = DriverManager.getConnection("jdbc:mysql://localhost/sallefitness?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Europe/Paris", "root", "1234");
             } catch (SQLException e) {
-                throw new ConnectionException(e);
+                throw new SingletonConnectionException(e);
             }
         }
         return uniqueConnection;

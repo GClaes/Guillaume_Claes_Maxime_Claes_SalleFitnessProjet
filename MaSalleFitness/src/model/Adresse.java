@@ -22,10 +22,10 @@ public class Adresse {
     }
 
     public void setLocalite(String localite) {
-        if (localite == null || !Pattern.matches("[a-zA-Z]", localite)) {
+        if (localite == null) {
             throw new LocaliteException(localite);
         }
-        this.localite = localite.toLowerCase();
+        this.localite = localite;
     }
 
     public void setCodePostal(String codePostal) {
@@ -34,19 +34,21 @@ public class Adresse {
         if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992) {
             throw new CodePostalException(codePostal);
         }
-        this.codePostal = codePostal.toLowerCase();
+        this.codePostal = codePostal;
     }
 
     public void setRue(String rue) {
         if (rue == null) {
             throw new RueException(rue);
         }
+        this.rue = rue;
     }
 
     public void setNumero(String numero) {
         if (numero == null ) {
             throw new NumeroException(numero);
         }
+        this.numero = numero;
     }
 
     public void genereCode() {

@@ -3,7 +3,7 @@ package dataAccess.impl;
 import dataAccess.CandidatDao;
 import dataAccess.CoachDao;
 import dataAccess.RowMapper;
-import dataAccess.exceptions.*;
+import dataAccess.exceptions.CoachDaoException;
 import model.Coach;
 
 import java.sql.*;
@@ -46,7 +46,7 @@ public class CoachDaoImpl implements CoachDao {
                 return coachs;
             }
         } catch (SQLException e) {
-            throw new ListingException(e);
+            throw new CoachDaoException(e);
         }
     }
 
@@ -71,7 +71,7 @@ public class CoachDaoImpl implements CoachDao {
                     nbHeuresCoaching = rs.getInt(1);
                 }
             } catch (SQLException e) {
-                throw new NbHeuresCoachingUtiliseesException(e);
+                throw new CoachDaoException(e);
             }
         }
 
@@ -90,7 +90,7 @@ public class CoachDaoImpl implements CoachDao {
                 return rs.getInt(1) == 1;
             }
         } catch (SQLException e) {
-            throw new CoachExisteException(e);
+            throw new CoachDaoException(e);
         }
     }
 
@@ -108,7 +108,7 @@ public class CoachDaoImpl implements CoachDao {
                 return null;
             }
         } catch (SQLException e) {
-            throw new ObtentionCoachException(e);
+            throw new CoachDaoException(e);
         }
     }
 
@@ -137,7 +137,7 @@ public class CoachDaoImpl implements CoachDao {
                 return coachs;
             }
         } catch (SQLException e) {
-            throw new CoachsDesCandidatsInscritsParUnResponsable(e);
+            throw new CoachDaoException(e);
         }
     }
 }

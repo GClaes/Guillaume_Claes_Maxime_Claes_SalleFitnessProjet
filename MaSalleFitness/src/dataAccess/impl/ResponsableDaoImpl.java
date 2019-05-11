@@ -2,7 +2,7 @@ package dataAccess.impl;
 
 import dataAccess.ResponsableDao;
 import dataAccess.RowMapper;
-import dataAccess.exceptions.ListingException;
+import dataAccess.exceptions.ResponsableDaoException;
 import model.Responsable;
 
 import java.sql.*;
@@ -41,7 +41,7 @@ public class ResponsableDaoImpl implements ResponsableDao {
                 return responsables;
             }
         } catch (SQLException e) {
-            throw new ListingException(e);
+            throw new ResponsableDaoException(e);
         }
     }
 }

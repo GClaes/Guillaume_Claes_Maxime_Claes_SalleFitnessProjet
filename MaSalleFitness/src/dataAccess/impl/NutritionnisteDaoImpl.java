@@ -2,8 +2,7 @@ package dataAccess.impl;
 
 import dataAccess.NutritionnisteDao;
 import dataAccess.RowMapper;
-import dataAccess.exceptions.ListingException;
-import dataAccess.exceptions.NutritionnistesDesCandidatsEntrainesParUnCoach;
+import dataAccess.exceptions.NutritionnisteDaoException;
 import model.Nutritionniste;
 
 import java.sql.*;
@@ -44,7 +43,7 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
                 return nutritionnistes;
             }
         } catch (SQLException e) {
-            throw new ListingException(e);
+            throw new NutritionnisteDaoException(e);
         }
     }
 
@@ -73,7 +72,7 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
                 return nutritionnistes;
             }
         } catch (SQLException e) {
-            throw new NutritionnistesDesCandidatsEntrainesParUnCoach(e);
+            throw new NutritionnisteDaoException(e);
         }
     }
 }
