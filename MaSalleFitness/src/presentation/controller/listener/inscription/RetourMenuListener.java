@@ -1,7 +1,6 @@
 package presentation.controller.listener.inscription;
 
 import presentation.vue.inscription.Inscription;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

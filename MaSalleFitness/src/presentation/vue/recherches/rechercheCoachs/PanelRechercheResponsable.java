@@ -7,12 +7,12 @@ import presentation.controller.listener.rechercheCoachs.RetourMenuListener;
 public class PanelRechercheResponsable extends PanelBase<FormulaireRechercheResponsable> {
     private FormulaireRechercheResponsable formulaireRechercheResponsable = new FormulaireRechercheResponsable();
 
-    public PanelRechercheResponsable(ListingCoach listingCoach) {
+    public PanelRechercheResponsable(RechercheCoach rechercheCoach) {
         super("<html><h1>Selection d'un responsable</h1></html>", "Retour", "Valider");
         addFormulaire(formulaireRechercheResponsable);
 
-        setListenerBouton1(new RetourMenuListener(listingCoach));
-        setListenerBouton2(new AccesPanelListeCoachsListener(listingCoach,getFormulaire()));
+        setListenerBouton1(new RetourMenuListener(rechercheCoach));
+        setListenerBouton2(new AccesPanelListeCoachsListener(rechercheCoach,getFormulaire()));
     }
 
     public void rafraichir(){

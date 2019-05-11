@@ -1,14 +1,11 @@
-package presentation.vue.recherches.rechercheAdresse;
+package presentation.vue.listing.listingAdresse;
 
 import business.CandidatService;
 import business.impl.CandidatServiceImpl;
 import model.Adresse;
 import model.Candidat;
-import model.Responsable;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.Date;
 import java.util.List;
 
 public class FormulaireListingAdresse extends JPanel {
@@ -21,9 +18,9 @@ public class FormulaireListingAdresse extends JPanel {
         scrollPane.setPreferredSize(new Dimension(400,500));
         add(scrollPane);
     }
-    public void setData(Responsable responsable, Date dateDebut, Date dateFin){
+    public void rafraichir(){
         CandidatService candidatService = CandidatServiceImpl.getInstance();
-        candidats = candidatService.candidatsInscritsEntreDeuxDates(responsable.getNumeroTravailleur(),dateDebut, dateFin);
+        candidats = candidatService.listingCandidats();
         String []values = new String[candidats.size()];
         int position = 0;
         for(Candidat candidat: candidats){

@@ -6,13 +6,13 @@ import presentation.vue.FramePrincipale;
 import javax.swing.*;
 import java.awt.*;
 
-public class ListingCoach extends JPanel {
+public class RechercheCoach extends JPanel {
     private FramePrincipale frame;
     private CardLayout layout = new CardLayout();
     private PanelRechercheResponsable panelListeResponsable;
     private PanelListeCoachs panelListeCoachs;
 
-    public ListingCoach(FramePrincipale frame) {
+    public RechercheCoach(FramePrincipale frame) {
         this.frame = frame;
 
         this.setLayout(layout);

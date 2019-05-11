@@ -1,19 +1,18 @@
 package presentation.controller.listener.rechercheCoachs;
 
-import presentation.vue.recherches.rechercheCoachs.ListingCoach;
-
+import presentation.vue.recherches.rechercheCoachs.RechercheCoach;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RetourMenuListener implements ActionListener {
-    private ListingCoach listingCoach;
+    private RechercheCoach rechercheCoach;
 
-    public RetourMenuListener(ListingCoach listingCoach) {
-        this.listingCoach = listingCoach;
+    public RetourMenuListener(RechercheCoach rechercheCoach) {
+        this.rechercheCoach = rechercheCoach;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        listingCoach.retour();
+        rechercheCoach.retour();
     }
 }

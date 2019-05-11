@@ -1,19 +1,18 @@
 package presentation.controller.listener.rechercheAdresse;
 
-import presentation.vue.recherches.rechercheAdresse.ListingAdresse;
-
+import presentation.vue.recherches.rechercheAdresse.RechercheAdresse;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class RetourMenuListener implements ActionListener {
-    private ListingAdresse listingAdresse;
+    private RechercheAdresse rechercheAdresse;
 
-    public RetourMenuListener(ListingAdresse listingAdresse) {
-        this.listingAdresse = listingAdresse;
+    public RetourMenuListener(RechercheAdresse rechercheAdresse) {
+        this.rechercheAdresse = rechercheAdresse;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        listingAdresse.retour();
+        rechercheAdresse.retour();
     }
 }

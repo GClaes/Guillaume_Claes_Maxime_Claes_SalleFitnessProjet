@@ -5,7 +5,6 @@ import business.impl.CoachServiceImpl;
 import model.Candidat;
 import presentation.vue.recherches.FormulaireModification;
 import presentation.vue.recherches.rechercheCandidat.Recherche;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

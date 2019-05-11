@@ -2,7 +2,6 @@ package presentation.controller.listener.inscription;
 
 import presentation.vue.inscription.Inscription;
 import presentation.vue.inscription.formulaire.PanelFormulaire2;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

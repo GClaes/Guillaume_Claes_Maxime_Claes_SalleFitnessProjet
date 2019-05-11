@@ -4,7 +4,6 @@ import business.CoachService;
 import business.impl.CoachServiceImpl;
 import presentation.vue.inscription.Inscription;
 import presentation.vue.inscription.formulaire.PanelFormulaire3;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

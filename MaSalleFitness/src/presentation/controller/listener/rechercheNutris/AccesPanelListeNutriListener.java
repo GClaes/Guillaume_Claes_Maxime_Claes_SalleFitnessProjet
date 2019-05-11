@@ -2,23 +2,22 @@ package presentation.controller.listener.rechercheNutris;
 
 import model.Coach;
 import presentation.vue.recherches.rechercheNutritionnistes.FormulaireRechercheCoach;
-import presentation.vue.recherches.rechercheNutritionnistes.ListingNutritionniste;
-
+import presentation.vue.recherches.rechercheNutritionnistes.RechercheNutri;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class AccesPanelListeNutriListener implements ActionListener {
-    private ListingNutritionniste listingNutritionniste;
+    private RechercheNutri rechercheNutri;
     private FormulaireRechercheCoach formulaire;
 
-    public AccesPanelListeNutriListener(ListingNutritionniste listingNutritionniste, FormulaireRechercheCoach formulaire) {
-        this.listingNutritionniste = listingNutritionniste;
+    public AccesPanelListeNutriListener(RechercheNutri rechercheNutri, FormulaireRechercheCoach formulaire) {
+        this.rechercheNutri = rechercheNutri;
         this.formulaire = formulaire;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Coach coach = formulaire.getCoach();
-        listingNutritionniste.afficherListingNutri(coach);
+        rechercheNutri.afficherListingNutri(coach);
     }
 }

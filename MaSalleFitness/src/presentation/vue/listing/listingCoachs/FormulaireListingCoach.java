@@ -1,12 +1,10 @@
-package presentation.vue.recherches.rechercheCoachs;
+package presentation.vue.listing.listingCoachs;
 
 import business.CoachService;
 import business.impl.CandidatServiceImpl;
 import business.impl.CoachServiceImpl;
 import model.Candidat;
 import model.Coach;
-import model.Responsable;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -22,9 +20,9 @@ public class FormulaireListingCoach extends JPanel {
         scrollPane.setPreferredSize(new Dimension(400,500));
         add(scrollPane);
     }
-    public void setResponsable(Responsable responsable) {
+    public void rafraichir() {
         CoachService coachService = CoachServiceImpl.getInstance();
-        coachs = coachService.coachsDesCandidatsInscritsParUnResponsable(responsable.getNumeroTravailleur());
+        coachs = coachService.listingCoachs();
         String[]values = new String[coachs.size()];
         int position = 0;
         for(Coach coach : coachs){
