@@ -22,7 +22,7 @@ public class Adresse {
     }
 
     public void setLocalite(String localite) {
-        if (localite == null) {
+        if (localite == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", localite)) {
             throw new LocaliteException(localite);
         }
         this.localite = localite;
@@ -31,21 +31,21 @@ public class Adresse {
     public void setCodePostal(String codePostal) {
         Integer codePostalCast = Integer.parseInt(codePostal);
 
-        if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992) {
+        if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992 || !Pattern.matches("[1-9][0-9]{3}", codePostal)) {
             throw new CodePostalException(codePostal);
         }
         this.codePostal = codePostal;
     }
 
     public void setRue(String rue) {
-        if (rue == null) {
+        if (rue == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", rue)) {
             throw new RueException(rue);
         }
         this.rue = rue;
     }
 
     public void setNumero(String numero) {
-        if (numero == null ) {
+        if (numero == null || !Pattern.matches("[1-9][0-9]*[a-zA-Z0-9]{0,5}", numero)) {
             throw new NumeroException(numero);
         }
         this.numero = numero;

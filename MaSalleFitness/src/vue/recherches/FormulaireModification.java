@@ -27,7 +27,7 @@ public class FormulaireModification extends PanelFormulaireBase {
         setComposantes("sexe", new ElementFormulaireJComboBox("Sexe", valuesSexe,
                 candidat.getSexe()=='h'?0:1));
         setComposantes("dateNaissance", new ElementFormulaireJSpinnerDate("Date de naissance",
-                new PasVideValidation(),
+                new AgeValidation(),
                 candidat.getDateNaissance()));
         setComposantes("numTel",new ElementFormulaireJTextField("Numéro de téléphone", 10,
                 new OrValidation(new VideValidation(), new PatternValidation(ConstantesRegex.REGEX_NUMTEL)),
