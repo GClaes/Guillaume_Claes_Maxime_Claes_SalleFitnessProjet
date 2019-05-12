@@ -2,8 +2,8 @@ package presentation.vue.recherches;
 
 import model.Candidat;
 import presentation.vue.inscription.PanelBase;
-import presentation.controller.listener.recherche.AccesPanelModifierListener;
-import presentation.controller.listener.recherche.SupprimerCandidatListener;
+import presentation.controleurs.recherche.AccesPanelModifierListener;
+import presentation.controleurs.recherche.SupprimerCandidatListener;
 import presentation.vue.recherches.rechercheCandidat.Recherche;
 
 public class PanelCandidatInfo extends PanelBase<CandidatFormulaire> {
@@ -15,8 +15,8 @@ public class PanelCandidatInfo extends PanelBase<CandidatFormulaire> {
         super("<html><h1>Fiche du candidat recherché</h1></html>", "Supprimer","Modifier");
         this.addFormulaire(candidatFormulaire);
         this.recherche = recherche;
-        setListenerBouton1(new SupprimerCandidatListener(this));
-        setListenerBouton2(new AccesPanelModifierListener(this));
+        setListenerBoutonGauche(new SupprimerCandidatListener(this));
+        setListenerBoutonDroite(new AccesPanelModifierListener(this));
     }
 
     public void setCandidat(Candidat candidat){

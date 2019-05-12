@@ -3,7 +3,7 @@ package presentation.vue.recherches.rechercheCoachs;
 import business.ResponsableService;
 import business.impl.ResponsableServiceImpl;
 import model.Responsable;
-import presentation.vue.element.ElementFormulaireJComboBox;
+import presentation.vue.elements.ElementFormulaireJComboBox;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
 
 import java.awt.*;

@@ -1,10 +1,10 @@
 package presentation.vue.recherches.rechercheCandidat;
 
-import presentation.vue.element.ElementFormulaireJTextField;
+import presentation.vue.elements.ElementFormulaireJTextField;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
-import presentation.vue.validateur.AndValidation;
-import presentation.vue.validateur.PasVideValidation;
-import presentation.vue.validateur.PatternValidation;
+import presentation.vue.validateurs.AndValidation;
+import presentation.vue.validateurs.PasVideValidation;
+import presentation.vue.validateurs.PatternValidation;
 
 import java.awt.*;
 

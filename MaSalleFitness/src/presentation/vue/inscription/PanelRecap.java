@@ -1,6 +1,6 @@
 package presentation.vue.inscription;
 
-import presentation.controller.listener.inscription.RetourMenuListener;
+import presentation.controleurs.inscription.RetourMenuListener;
 
 import javax.swing.*;
 import java.awt.*;

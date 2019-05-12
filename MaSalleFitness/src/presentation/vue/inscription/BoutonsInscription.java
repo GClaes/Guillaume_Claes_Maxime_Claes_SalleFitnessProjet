@@ -4,24 +4,24 @@ import javax.swing.*;
 import java.awt.*;
 
 public class BoutonsInscription extends JButton {
-    private JButton bouton1;
-    private JButton bouton2;
-    public BoutonsInscription(String textBouton1, String textBouton2){
+    private JButton boutonGauche;
+    private JButton boutonDroite;
+    public BoutonsInscription(String textBoutonGauche, String textBoutonDroite){
         setLayout(new GridLayout(1,2));
-        bouton1 = new JButton(textBouton1);
-        bouton1.setFont(new Font("Gras",Font.BOLD,20));
-        bouton2 = new JButton(textBouton2);
-        bouton2.setFont(new Font("Gras",Font.BOLD,20));
+        boutonGauche = new JButton(textBoutonGauche);
+        boutonGauche.setFont(new Font("Gras",Font.BOLD,20));
+        boutonDroite = new JButton(textBoutonDroite);
+        boutonDroite.setFont(new Font("Gras",Font.BOLD,20));
 
-        add(bouton1);
-        add(bouton2);
+        add(boutonGauche);
+        add(boutonDroite);
     }
 
-    public JButton getBouton1() {
-        return bouton1;
+    public JButton getBoutonGauche() {
+        return boutonGauche;
     }
 
-    public JButton getBouton2() {
-        return bouton2;
+    public JButton getBoutonDroite() {
+        return boutonDroite;
     }
 }
