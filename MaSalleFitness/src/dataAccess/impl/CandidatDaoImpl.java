@@ -42,8 +42,8 @@ public class CandidatDaoImpl implements CandidatDao {
             candidat.setNumInscrit(res.getInt("candi.num_inscrit"));
             candidat.setMaladiesChroniques(res.getString("candi.maladies_chroniques"));
             candidat.setNumeroGSM(res.getString("candi.num_gsm"));
-            candidat.setDateTestValide(res.getDate("candi.date_test_valide"));
             candidat.setDateInscription(res.getDate("candi.date_inscription"));
+            candidat.setDateTestValide(res.getDate("candi.date_test_valide"));
             candidat.setEstDebutant(res.getBoolean("candi.debutant"));
 
             return candidat;
