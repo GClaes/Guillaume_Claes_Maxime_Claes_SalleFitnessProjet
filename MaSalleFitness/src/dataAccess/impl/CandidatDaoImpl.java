@@ -162,9 +162,19 @@ public class CandidatDaoImpl implements CandidatDao {
                     adresseDao.supprimerAdresse(candidat.getAdresse().getCode());
                 }
                 connection.commit();
-                connection.setAutoCommit(true);
-            } catch (SQLException e) {
+            } catch (SQLException | AdresseDaoException e) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    throw new CandidatDaoException(e1);
+                }
                 throw new CandidatDaoException(e);
+            } finally {
+                try {
+                    connection.setAutoCommit(true);
+                } catch (SQLException e) {
+                    throw new CandidatDaoException(e);
+                }
             }
         }
     }
@@ -207,15 +217,25 @@ public class CandidatDaoImpl implements CandidatDao {
             }
 
             statement.executeUpdate();
-            connection.commit();
-            connection.setAutoCommit(true);
             if (candidat.getAdresse().getCode().compareTo(ancienCodeAdresse) != 0) {
                 if (!adresseDao.adresseUtilisee(ancienCodeAdresse)) {
                     adresseDao.supprimerAdresse(ancienCodeAdresse);
                 }
             }
-        } catch (SQLException e) {
+            connection.commit();
+        } catch (SQLException | AdresseDaoException e) {
+            try {
+                connection.rollback();
+            } catch (SQLException e1) {
+                throw new CandidatDaoException(e1);
+            }
             throw new CandidatDaoException(e);
+        } finally {
+            try {
+                connection.setAutoCommit(true);
+            } catch (SQLException e) {
+                throw new CandidatDaoException(e);
+            }
         }
     }
 
