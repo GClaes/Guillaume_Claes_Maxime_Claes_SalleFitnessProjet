@@ -12,8 +12,8 @@ public class PanelListing extends PanelBase<ListingFormulaire> {
         super("<html><h1>Listing des candidats inscrits</h1></html>", "Retour","Afficher");
         this.listing = listing;
         addFormulaire(listingFormulaire);
-        setListenerBouton1(new AnnulerListener());
-        setListenerBouton2(new AfficherListener());
+        setListenerBoutonGauche(new AnnulerListener());
+        setListenerBoutonDroite(new AfficherListener());
     }
 
     private class AnnulerListener implements ActionListener{

@@ -3,7 +3,7 @@ package presentation.vue.recherches.rechercheNutritionnistes;
 import business.CoachService;
 import business.impl.CoachServiceImpl;
 import model.Coach;
-import presentation.vue.element.ElementFormulaireJComboBox;
+import presentation.vue.elements.ElementFormulaireJComboBox;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
 
 import java.awt.*;

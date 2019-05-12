@@ -36,11 +36,11 @@ public abstract class PanelBase<T extends JPanel> extends JPanel {
         add(boutonsInscription, BorderLayout.SOUTH);
     }
 
-    protected void setListenerBouton1(ActionListener listener){
-        boutonsInscription.getBouton1().addActionListener(listener);
+    protected void setListenerBoutonGauche(ActionListener listener){
+        boutonsInscription.getBoutonGauche().addActionListener(listener);
     }
-    protected void setListenerBouton2(ActionListener listener){
-        boutonsInscription.getBouton2().addActionListener(listener);
+    protected void setListenerBoutonDroite(ActionListener listener){
+        boutonsInscription.getBoutonDroite().addActionListener(listener);
     }
 
 

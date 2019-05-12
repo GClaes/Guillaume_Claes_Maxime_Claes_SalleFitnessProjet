@@ -3,10 +3,10 @@ package presentation.vue.recherches.rechercheAdresse;
 import business.ResponsableService;
 import business.impl.ResponsableServiceImpl;
 import model.Responsable;
-import presentation.vue.element.ElementFormulaireJComboBox;
-import presentation.vue.element.ElementFormulaireJSpinnerDate;
+import presentation.vue.elements.ElementFormulaireJComboBox;
+import presentation.vue.elements.ElementFormulaireJSpinnerDate;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
-import presentation.vue.validateur.DateValidation;
+import presentation.vue.validateurs.DateValidation;
 
 import java.awt.*;
 import java.util.Date;

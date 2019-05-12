@@ -2,12 +2,12 @@ package presentation.vue.recherches;
 
 import model.*;
 import utilitaires.ConstantesRegex;
-import presentation.vue.element.ElementFormulaireJComboBox;
-import presentation.vue.element.ElementFormulaireJSpinnerDate;
-import presentation.vue.element.ElementFormulaireJSpinnerNb;
-import presentation.vue.element.ElementFormulaireJTextField;
+import presentation.vue.elements.ElementFormulaireJComboBox;
+import presentation.vue.elements.ElementFormulaireJSpinnerDate;
+import presentation.vue.elements.ElementFormulaireJSpinnerNb;
+import presentation.vue.elements.ElementFormulaireJTextField;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
-import presentation.vue.validateur.*;
+import presentation.vue.validateurs.*;
 
 import java.awt.*;
 import java.util.Date;
@@ -47,7 +47,7 @@ public class FormulaireModification extends PanelFormulaireBase {
                 new AndValidation(new PasVideValidation(),new PatternValidation(ConstantesRegex.REGEX_LOCALITE)),
                 candidat.getAdresse().getLocalite()));
         setComposantes("nbHeures", new ElementFormulaireJSpinnerNb("Nombre d'heures de coaching désiré",
-                new NbValidation(1,'>'),
+                new NombreValidation(1, NombreValidation.Sens.PLUS_GRAND),
                 candidat.getNbHeuresCoaching()));
         String[]values = {"Oui","Non"};
         setComposantes("validerTest", new ElementFormulaireJComboBox("Valider la date du test?", values,

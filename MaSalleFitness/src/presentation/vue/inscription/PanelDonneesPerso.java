@@ -1,17 +1,17 @@
 package presentation.vue.inscription;
 
-import presentation.vue.inscription.formulaire.PanelFormulaire;
-import presentation.controller.listener.inscription.RetourMenuListener;
-import presentation.controller.listener.inscription.AccesPanelAdresseListener;
+import presentation.vue.inscription.formulaire.FormulaireDonneesPerso;
+import presentation.controleurs.inscription.RetourMenuListener;
+import presentation.controleurs.inscription.AccesPanelAdresseListener;
 
-public class PanelDonneesPerso extends PanelBase<PanelFormulaire> {
-    private PanelFormulaire panelFormulaire = new PanelFormulaire();
+public class PanelDonneesPerso extends PanelBase<FormulaireDonneesPerso> {
+    private FormulaireDonneesPerso panelFormulaire = new FormulaireDonneesPerso();
 
     public PanelDonneesPerso(Inscription inscription) {
         super("<html><h1>Inscription nouveau candidat [1/3]</h1></html>", "Annuler", "Suivant");
         addFormulaire(panelFormulaire);
-        setListenerBouton1(new RetourMenuListener(inscription));
-        setListenerBouton2(new AccesPanelAdresseListener(inscription,getFormulaire()));
+        setListenerBoutonGauche(new RetourMenuListener(inscription));
+        setListenerBoutonDroite(new AccesPanelAdresseListener(inscription,getFormulaire()));
 
     }
 

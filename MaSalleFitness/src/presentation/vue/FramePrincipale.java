@@ -28,8 +28,6 @@ public class FramePrincipale extends JFrame {
     private ListingNutri listingNutri;
     private ListingAdresse listingAdresse;
 
-    private JMenuBar menuBar;
-
     public FramePrincipale() {
         super("Ma Salle Fitness");
         this.setSize( 800, 800);
@@ -44,7 +42,7 @@ public class FramePrincipale extends JFrame {
     }
 
     public void ajoutMenu(){
-        this.setJMenuBar(new MyMenu(this));
+        this.setJMenuBar(new MaSalleFitnessMenu(this));
     }
 
     public void ajoutPanels(){

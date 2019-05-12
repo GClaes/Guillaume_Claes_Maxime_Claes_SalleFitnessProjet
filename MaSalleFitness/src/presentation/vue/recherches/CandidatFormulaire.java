@@ -1,7 +1,7 @@
 package presentation.vue.recherches;
 
 import model.Candidat;
-import presentation.vue.element.ElementFormulaireLabel;
+import presentation.vue.elements.ElementFormulaireLabel;
 import presentation.vue.inscription.formulaire.PanelFormulaireBase;
 
 import javax.swing.*;
