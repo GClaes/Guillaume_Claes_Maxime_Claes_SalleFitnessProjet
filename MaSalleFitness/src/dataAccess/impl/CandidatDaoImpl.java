@@ -2,7 +2,6 @@ package dataAccess.impl;
 
 import dataAccess.AdresseDao;
 import dataAccess.CandidatDao;
-import dataAccess.RowMapper;
 import dataAccess.exceptions.AdresseDaoException;
 import dataAccess.exceptions.CandidatDaoException;
 import model.*;
@@ -28,7 +27,7 @@ public class CandidatDaoImpl implements CandidatDao {
         return candidatDao;
     }
 
-    public static RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
+    public static final RowMapper<Candidat> rowMapper = new RowMapper<Candidat>() {
         @Override
         public Candidat map(ResultSet res) throws SQLException {
             Candidat candidat = new Candidat(

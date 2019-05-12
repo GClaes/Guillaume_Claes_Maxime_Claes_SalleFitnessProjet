@@ -9,6 +9,6 @@ public class CodePostalException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le code postal est errone et vaut " + codePostalErrone;
+        return "Le code postal est erroné et vaut " + codePostalErrone;
     }
 }

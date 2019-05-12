@@ -33,7 +33,7 @@ public class DateUtilitaire {
         return anneesDifference;
     }
 
-    public static int compareDate(Date dateUne, Date dateDeux) {
+    public static int compareDateSansHeures(Date dateUne, Date dateDeux) {
         Calendar date1 = Calendar.getInstance();
         date1.setTime(dateUne);
         Calendar date2= Calendar.getInstance();

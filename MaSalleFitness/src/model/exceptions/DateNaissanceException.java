@@ -11,6 +11,6 @@ public class DateNaissanceException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "La date de naissance est errone et vaut " + dateNaissanceErronee;
+        return "La date de naissance est erroné et vaut " + dateNaissanceErronee;
     }
 }

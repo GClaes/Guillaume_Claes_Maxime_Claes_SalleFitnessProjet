@@ -9,6 +9,6 @@ public class NomException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le nom est errone et vaut " + nomErrone;
+        return "Le nom est erroné et vaut " + nomErrone;
     }
 }

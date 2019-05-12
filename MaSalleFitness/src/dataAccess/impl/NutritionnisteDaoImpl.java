@@ -1,7 +1,6 @@
 package dataAccess.impl;
 
 import dataAccess.NutritionnisteDao;
-import dataAccess.RowMapper;
 import dataAccess.exceptions.NutritionnisteDaoException;
 import model.Nutritionniste;
 
@@ -21,7 +20,7 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
         return nutritionnisteDao;
     }
 
-    public static RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
+    public static final RowMapper<Nutritionniste> rowMapper = new RowMapper<Nutritionniste>() {
         @Override
         public Nutritionniste map(ResultSet res) throws SQLException {
             return new Nutritionniste(res.getInt("nutri.num_reference"), res.getString("nutri.nom"),

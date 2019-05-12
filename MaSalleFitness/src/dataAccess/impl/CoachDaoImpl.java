@@ -2,7 +2,6 @@ package dataAccess.impl;
 
 import dataAccess.CandidatDao;
 import dataAccess.CoachDao;
-import dataAccess.RowMapper;
 import dataAccess.exceptions.CoachDaoException;
 import model.Coach;
 
@@ -23,7 +22,7 @@ public class CoachDaoImpl implements CoachDao {
         return coachDao;
     }
 
-    public static RowMapper<Coach> rowMapper = new RowMapper<Coach>() {
+    public static final RowMapper<Coach> rowMapper = new RowMapper<Coach>() {
         @Override
         public Coach map(ResultSet res) throws SQLException {
             return new Coach(res.getInt("co.matricule"), res.getString("co.nom"),

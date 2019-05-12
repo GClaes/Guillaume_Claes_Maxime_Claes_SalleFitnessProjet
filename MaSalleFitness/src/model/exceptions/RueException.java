@@ -9,6 +9,6 @@ public class RueException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le nom de la rue est errone et vaut " + rueErronee;
+        return "Le nom de la rue est erroné et vaut " + rueErronee;
     }
 }

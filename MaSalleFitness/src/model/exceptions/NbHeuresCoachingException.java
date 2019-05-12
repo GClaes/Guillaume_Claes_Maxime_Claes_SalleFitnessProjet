@@ -9,6 +9,6 @@ public class NbHeuresCoachingException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le nombre d'heure de coaching est errone et vaut " + nbHeuresCoachingErrone;
+        return "Le nombre d'heure de coaching est erroné et vaut " + nbHeuresCoachingErrone;
     }
 }

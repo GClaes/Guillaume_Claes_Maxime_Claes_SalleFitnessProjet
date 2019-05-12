@@ -9,6 +9,6 @@ public class NumeroGSMException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le numero de gsm est errone et vaut " + numeroGSMErrone;
+        return "Le numero de gsm est erroné et vaut " + numeroGSMErrone;
     }
 }

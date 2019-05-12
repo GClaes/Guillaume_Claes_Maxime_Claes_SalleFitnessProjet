@@ -82,7 +82,7 @@ public class Candidat extends Personne {
     }
 
     public void setDateTestValide(Date dateTestValide) {
-        if (dateTestValide != null && DateUtilitaire.compareDate(dateInscription, dateTestValide) > 0) {
+        if (dateTestValide != null && DateUtilitaire.compareDateSansHeures(dateInscription, dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
 
