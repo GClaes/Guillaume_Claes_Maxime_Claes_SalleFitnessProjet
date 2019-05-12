@@ -1,9 +1,9 @@
 package presentation.vue.listing.listingAdresse;
 
+import presentation.controleurs.rechercheAdresse.EnvoyerCourrierListener;
 import presentation.controleurs.RetourMenuListener;
 import presentation.vue.FramePrincipale;
 import presentation.vue.inscription.PanelBase;
-import presentation.controleurs.rechercheAdresse.EnvoyerCourrierListener;
 
 public class ListingAdresse extends PanelBase<FormulaireListingAdresse> {
 
@@ -15,6 +15,7 @@ public class ListingAdresse extends PanelBase<FormulaireListingAdresse> {
         setListenerBoutonGauche(new RetourMenuListener(frame));
         setListenerBoutonDroite(new EnvoyerCourrierListener());
     }
+
 
 
     public void rafraichir(){

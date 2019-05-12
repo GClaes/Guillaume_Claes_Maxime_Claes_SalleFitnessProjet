@@ -1,8 +1,8 @@
 package presentation.vue.recherches.rechercheAdresse;
 
 import model.Responsable;
-import presentation.vue.inscription.PanelBase;
 import presentation.controleurs.rechercheAdresse.EnvoyerCourrierListener;
+import presentation.vue.inscription.PanelBase;
 import presentation.controleurs.rechercheAdresse.RetourMenuListener;
 
 import java.util.Date;
