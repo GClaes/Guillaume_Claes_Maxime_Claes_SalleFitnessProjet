@@ -119,7 +119,7 @@ INSERT INTO candidat (nom, prenom, date_naissance,
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
-VALUES ('Vent', 'Ami', STR_TO_DATE('21,09,1985','%d,%m,%Y'), 'f', null, null, STR_TO_DATE('11,05,2019','%d,%m,%Y'), 3, FALSE, 
+VALUES ('Vent', 'Amida', STR_TO_DATE('21,09,1985','%d,%m,%Y'), 'f', null, null, STR_TO_DATE('11,05,2019','%d,%m,%Y'), 3, FALSE, 
 		'Douleurs au mollet', 2, 1, 1, 'd18d92b334c36c99d4d42f473d490931913abf66');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 

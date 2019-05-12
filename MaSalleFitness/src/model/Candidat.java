@@ -58,8 +58,12 @@ public class Candidat extends Personne {
         this.sexe = sexe;
     }
 
-    public void setMaladiesChroniques(String maladiesChroniques) {      //Mettre une longueur pour la validation
-        this.maladiesChroniques = maladiesChroniques;
+    public void setMaladiesChroniques(String maladiesChroniques) {
+        if (maladiesChroniques != null && maladiesChroniques.trim().isEmpty()) {
+            this.maladiesChroniques = null;
+        } else {
+            this.maladiesChroniques = maladiesChroniques;
+        }
     }
 
     public void setNumeroGSM(String numeroGSM) {
@@ -74,7 +78,6 @@ public class Candidat extends Personne {
         if (dateTestValide != null && DateUtilitaire.compareDateSansHeures(dateInscription, dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
-
         this.dateTestValide = dateTestValide;
     }
 
