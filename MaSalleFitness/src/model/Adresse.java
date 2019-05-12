@@ -22,7 +22,7 @@ public class Adresse {
     }
 
     private void setLocalite(String localite) {
-        if (localite == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", localite)) {
+        if (localite == null || !Pattern.matches("^[a-zA-Z\\é\\è\\ê]+[ \\-']?[[a-zA-Z\\é\\è\\ê]+[ \\-']?]*[a-zA-Z\\é\\è\\ê]+$", localite)) {
             throw new LocaliteException(localite);
         }
         this.localite = localite;
@@ -38,7 +38,7 @@ public class Adresse {
     }
 
     private void setRue(String rue) {
-        if (rue == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", rue)) {
+        if (rue == null || !Pattern.matches("^[a-zA-Z\\é\\è\\ê]+[ \\-']?[[a-zA-Z\\é\\è\\ê]+[ \\-']?]*[a-zA-Z\\é\\è\\ê]+$", rue)) {
             throw new RueException(rue);
         }
         this.rue = rue;
