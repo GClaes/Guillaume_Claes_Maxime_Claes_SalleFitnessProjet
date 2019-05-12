@@ -7,13 +7,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Date;
 
-public class ListingAdresse extends JPanel {
+public class RechercheAdresse extends JPanel {
     private FramePrincipale frame;
     private CardLayout layout = new CardLayout();
     private PanelRechercheCandidat panelRecherche;
     private PanelListeAdresses panelListeAdresses;
 
-    public ListingAdresse(FramePrincipale frame){
+    public RechercheAdresse(FramePrincipale frame){
         this.frame = frame;
 
         this.setLayout(layout);

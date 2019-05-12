@@ -1,7 +1,6 @@
 package presentation.vue.element;
 
 import presentation.vue.validateur.Validation;
-
 import javax.swing.*;
 import java.util.Calendar;
 import java.util.Date;

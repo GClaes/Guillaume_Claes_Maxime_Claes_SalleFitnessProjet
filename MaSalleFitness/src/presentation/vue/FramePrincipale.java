@@ -3,11 +3,14 @@ package presentation.vue;
 
 import model.Candidat;
 import presentation.vue.inscription.Inscription;
-import presentation.vue.listing.Listing;
-import presentation.vue.recherches.rechercheAdresse.ListingAdresse;
+import presentation.vue.listing.listingAdresse.ListingAdresse;
+import presentation.vue.listing.listingCandidats.Listing;
+import presentation.vue.listing.listingCoachs.ListingCoach;
+import presentation.vue.listing.listingNutri.ListingNutri;
+import presentation.vue.recherches.rechercheAdresse.RechercheAdresse;
 import presentation.vue.recherches.rechercheCandidat.Recherche;
-import presentation.vue.recherches.rechercheCoachs.ListingCoach;
-import presentation.vue.recherches.rechercheNutritionnistes.ListingNutritionniste;
+import presentation.vue.recherches.rechercheCoachs.RechercheCoach;
+import presentation.vue.recherches.rechercheNutritionnistes.RechercheNutri;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +21,11 @@ public class FramePrincipale extends JFrame {
     private Inscription inscription;
     private Listing listing;
     private Recherche recherche;
+    private RechercheCoach rechercheCoach;
+    private RechercheNutri rechercheNutri;
+    private RechercheAdresse rechercheAdresse;
     private ListingCoach listingCoach;
-    private ListingNutritionniste listingNutritionniste;
+    private ListingNutri listingNutri;
     private ListingAdresse listingAdresse;
 
     private JMenuBar menuBar;
@@ -46,23 +52,28 @@ public class FramePrincipale extends JFrame {
         inscription = new Inscription(this);
         listing = new Listing(this);
         recherche = new Recherche(this);
+        rechercheCoach = new RechercheCoach(this);
+        rechercheNutri = new RechercheNutri(this);
+        rechercheAdresse = new RechercheAdresse(this);
         listingCoach = new ListingCoach(this);
-        listingNutritionniste = new ListingNutritionniste(this);
+        listingNutri = new ListingNutri(this);
         listingAdresse = new ListingAdresse(this);
 
         add(panelMenu,"menu");
         add(inscription,"inscription");
         add(listing, "listing");
         add(recherche, "recherche");
-        add(listingCoach, "coachs");
-        add(listingNutritionniste,"nutris");
-        add(listingAdresse,"adresses");
+        add(rechercheCoach, "coachs");
+        add(rechercheNutri,"nutris");
+        add(rechercheAdresse,"adresses");
+        add(listingCoach,"listCoach");
+        add(listingNutri,"listNutri");
+        add(listingAdresse,"listAdr");
     }
     public void afficherAccueil(){
         layout.show(this.getContentPane(),"menu");
     }
     public void afficherPanel(JPanel panel){
-        //reset
         if(panel instanceof Inscription) {
             inscription.rafraichir();
             layout.show(this.getContentPane(), "inscription");
@@ -75,17 +86,29 @@ public class FramePrincipale extends JFrame {
             recherche.rafraichir();
             layout.show(this.getContentPane(),"recherche");
         }
-        else if (panel instanceof ListingCoach){
-            listingCoach.rafraichir();
+        else if (panel instanceof RechercheCoach){
+            rechercheCoach.rafraichir();
             layout.show(this.getContentPane(),"coachs");
         }
-        else if (panel instanceof ListingNutritionniste){
-            listingNutritionniste.rafraichir();
+        else if (panel instanceof RechercheNutri){
+            rechercheNutri.rafraichir();
             layout.show(this.getContentPane(), "nutris");
         }
-        else if (panel instanceof ListingAdresse){
-            listingAdresse.rafraichir();
+        else if (panel instanceof RechercheAdresse){
+            rechercheAdresse.rafraichir();
             layout.show(this.getContentPane(),"adresses");
+        }
+        else if (panel instanceof ListingCoach){
+            listingCoach.rafraichir();
+            layout.show(this.getContentPane(), "listCoach");
+        }
+        else if(panel instanceof ListingNutri){
+            listingNutri.rafraichir();
+            layout.show(this.getContentPane(),"listNutri");
+        }
+        else if(panel instanceof ListingAdresse){
+            listingAdresse.rafraichir();
+            layout.show(this.getContentPane(),"listAdr");
         }
     }
 

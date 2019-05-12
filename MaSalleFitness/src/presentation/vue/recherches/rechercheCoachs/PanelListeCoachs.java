@@ -4,17 +4,16 @@ import model.Responsable;
 import presentation.vue.inscription.PanelBase;
 import presentation.controller.listener.rechercheCoachs.RetourMenuListener;
 
-public class PanelListeCoachs extends PanelBase<FormulaireListingCoach> {
-    private FormulaireListingCoach panelListingCoachFormulaire = new FormulaireListingCoach();
+public class PanelListeCoachs extends PanelBase<FormulaireTableCoach> {
 
-    public PanelListeCoachs(ListingCoach listingCoach) {
+    private FormulaireTableCoach formulaireTableCoach = new FormulaireTableCoach();
+    public PanelListeCoachs(RechercheCoach rechercheCoach) {
         super("<html><h1>Liste des coachs des candidats inscrits par ce responsable</h1></html>","Retour","");
-        addFormulaire(panelListingCoachFormulaire);
-
-        setListenerBouton1(new RetourMenuListener(listingCoach));
+        addFormulaire(formulaireTableCoach);
+        setListenerBouton1(new RetourMenuListener(rechercheCoach));
     }
 
     public void setResponsable(Responsable responsable){
-        panelListingCoachFormulaire.setResponsable(responsable);
+        formulaireTableCoach.setResponsable(responsable);
     }
 }

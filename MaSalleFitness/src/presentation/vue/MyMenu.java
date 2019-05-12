@@ -3,11 +3,14 @@ package presentation.vue;
 import presentation.vue.element.*;
 import presentation.vue.inscription.Inscription;
 import presentation.controller.listener.ListenerMenu;
-import presentation.vue.listing.Listing;
-import presentation.vue.recherches.rechercheAdresse.ListingAdresse;
+import presentation.vue.listing.listingAdresse.ListingAdresse;
+import presentation.vue.listing.listingCandidats.Listing;
+import presentation.vue.listing.listingCoachs.ListingCoach;
+import presentation.vue.listing.listingNutri.ListingNutri;
+import presentation.vue.recherches.rechercheAdresse.RechercheAdresse;
 import presentation.vue.recherches.rechercheCandidat.Recherche;
-import presentation.vue.recherches.rechercheCoachs.ListingCoach;
-import presentation.vue.recherches.rechercheNutritionnistes.ListingNutritionniste;
+import presentation.vue.recherches.rechercheCoachs.RechercheCoach;
+import presentation.vue.recherches.rechercheNutritionnistes.RechercheNutri;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -25,16 +28,19 @@ public class MyMenu extends JMenuBar {
 
         JMenu rechercheMenu = new ElementMenu("Rechercher");
         new ElementMenuItem("Rechercher un candidat", rechercheMenu, new ListenerMenu(frame,new Recherche(frame)));
-        new ElementMenuItem("Rechercher les coachs travaillant avec un responsable", rechercheMenu, new ListenerMenu(frame,new ListingCoach(frame)));
-        new ElementMenuItem("Rechercher les nutritionnistes travaillant avec un coach", rechercheMenu, new ListenerMenu(frame,new ListingNutritionniste(frame)));
-        new ElementMenuItem("Rechercher les adresses des candidats s'étant inscrits entre 2 dates", rechercheMenu, new ListenerMenu(frame,new ListingAdresse(frame)));
+        new ElementMenuItem("Rechercher les coachs travaillant avec un responsable", rechercheMenu, new ListenerMenu(frame,new RechercheCoach(frame)));
+        new ElementMenuItem("Rechercher les nutritionnistes travaillant avec un coach", rechercheMenu, new ListenerMenu(frame,new RechercheNutri(frame)));
+        new ElementMenuItem("Rechercher les adresses des candidats s'étant inscrits entre 2 dates", rechercheMenu, new ListenerMenu(frame,new RechercheAdresse(frame)));
 
 
         JMenu afficherListeMenu = new ElementMenu("Afficher");
         new ElementMenuItem("Afficher la liste des candidats", afficherListeMenu, new ListenerMenu(frame, new Listing(frame)));
+        new ElementMenuItem("Afficher la liste des coachs et leur(s) candidat(s)", afficherListeMenu, new ListenerMenu(frame, new ListingCoach(frame)));
+        new ElementMenuItem("Afficher la liste des nutritionnistes et leur(s) candidat(s)", afficherListeMenu, new ListenerMenu(frame, new ListingNutri(frame)));
+        new ElementMenuItem("Afficher la liste des adresses et leur(s) candidat(s)", afficherListeMenu, new ListenerMenu(frame, new ListingAdresse(frame)));
+
 
         JMenu optionMenu = new ElementMenu("Options");
-        //JMenuItem info = new ElementMenuItemOld("Infos",optionMenu, new ListenerMenu(this,new PanelInfo()));
         new ElementMenuItem("Quitter", optionMenu, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

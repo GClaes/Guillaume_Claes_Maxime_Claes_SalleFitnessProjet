@@ -1,10 +1,9 @@
-package presentation.vue.recherches.rechercheNutritionnistes;
+package presentation.vue.listing.listingNutri;
 
 import business.NutritionnisteService;
 import business.impl.CandidatServiceImpl;
 import business.impl.NutritionnisteServiceImpl;
 import model.Candidat;
-import model.Coach;
 import model.Nutritionniste;
 
 import javax.swing.*;
@@ -23,9 +22,9 @@ public class FormulaireListingNutri extends JPanel {
         add(scrollPane);
     }
 
-    public void setCoach(Coach coach){
+    public void rafraichir(){
         NutritionnisteService nutritionnisteService = NutritionnisteServiceImpl.getInstance();
-        nutris = nutritionnisteService.nutritionnistesDesCandidatsEntrainesParUnCoach(coach.getMatricule());
+        nutris = nutritionnisteService.listingNutritionnistes();
         String[]values = new String[nutris.size()];
         int position = 0;
         for(Nutritionniste nutritionniste: nutris){

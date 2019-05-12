@@ -1,4 +1,4 @@
-package presentation.vue.listing;
+package presentation.vue.listing.listingCandidats;
 
 import business.CandidatService;
 import business.impl.CandidatServiceImpl;

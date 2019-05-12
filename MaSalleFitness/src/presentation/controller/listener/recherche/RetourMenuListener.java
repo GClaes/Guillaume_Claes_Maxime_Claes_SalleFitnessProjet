@@ -1,7 +1,6 @@
 package presentation.controller.listener.recherche;
 
 import presentation.vue.recherches.rechercheCandidat.Recherche;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

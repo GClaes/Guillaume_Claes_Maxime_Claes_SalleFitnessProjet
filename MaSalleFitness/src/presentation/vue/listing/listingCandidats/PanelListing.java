@@ -1,4 +1,4 @@
-package presentation.vue.listing;
+package presentation.vue.listing.listingCandidats;
 
 import presentation.vue.inscription.PanelBase;
 
