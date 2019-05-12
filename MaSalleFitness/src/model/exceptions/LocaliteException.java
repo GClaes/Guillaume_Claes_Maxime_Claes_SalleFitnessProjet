@@ -9,6 +9,6 @@ public class LocaliteException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "La localite est errone et vaut " + localiteErrone;
+        return "La localite est erroné et vaut " + localiteErrone;
     }
 }

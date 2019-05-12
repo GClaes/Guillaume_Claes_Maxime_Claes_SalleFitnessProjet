@@ -1,0 +1,1 @@
+CREATE SCHEMA sallefitness DEFAULT CHARACTER SET utf8mb4;

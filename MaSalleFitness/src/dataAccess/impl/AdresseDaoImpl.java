@@ -1,7 +1,6 @@
 package dataAccess.impl;
 
 import dataAccess.AdresseDao;
-import dataAccess.RowMapper;
 import dataAccess.exceptions.*;
 import model.Adresse;
 
@@ -23,7 +22,7 @@ public class AdresseDaoImpl implements AdresseDao {
         return adresseDao;
     }
 
-    public static RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
+    public static final RowMapper<Adresse> rowMapper = new RowMapper<Adresse>() {
         @Override
         public Adresse map(ResultSet res) throws SQLException {
             Adresse adresse = new Adresse(res.getString("adr.localite"), res.getString("adr.code_postal"),
@@ -34,10 +33,8 @@ public class AdresseDaoImpl implements AdresseDao {
                 Field field = Adresse.class.getDeclaredField("code");
                 field.setAccessible(true);
                 field.set(adresse, res.getString("adr.code_hash"));
-            } catch (NoSuchFieldException e) {
-                throw new RuntimeException();
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException();
+            } catch (NoSuchFieldException | IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
 
             return adresse;

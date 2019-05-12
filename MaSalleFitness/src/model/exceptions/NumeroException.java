@@ -9,6 +9,6 @@ public class NumeroException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le numero de residence est errone et vaut " + numeroErrone;
+        return "Le numero de residence est erroné et vaut " + numeroErrone;
     }
 }

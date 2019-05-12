@@ -9,6 +9,6 @@ public class SexeException extends IllegalArgumentException {
 
     @Override
     public String getMessage() {
-        return "Le sexe est errone et vaut " + sexeErrone;
+        return "Le sexe est erroné et vaut " + sexeErrone;
     }
 }

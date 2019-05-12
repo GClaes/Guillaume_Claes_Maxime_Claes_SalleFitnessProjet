@@ -21,14 +21,14 @@ public class Adresse {
         genereCode();
     }
 
-    public void setLocalite(String localite) {
-        if (localite == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", localite)) {
+    private void setLocalite(String localite) {
+        if (localite == null || !Pattern.matches("^[a-zA-Z\\é\\è\\ê]+[ \\-']?[[a-zA-Z\\é\\è\\ê]+[ \\-']?]*[a-zA-Z\\é\\è\\ê]+$", localite)) {
             throw new LocaliteException(localite);
         }
         this.localite = localite;
     }
 
-    public void setCodePostal(String codePostal) {
+    private void setCodePostal(String codePostal) {
         Integer codePostalCast = Integer.parseInt(codePostal);
 
         if (codePostalCast == null || codePostalCast < 1000 || codePostalCast > 9992 || !Pattern.matches("[1-9][0-9]{3}", codePostal)) {
@@ -37,21 +37,21 @@ public class Adresse {
         this.codePostal = codePostal;
     }
 
-    public void setRue(String rue) {
-        if (rue == null || !Pattern.matches("^[a-zA-Z]+[ \\-']?[[a-zA-Z]+[ \\-']?]*[a-zA-Z]+$", rue)) {
+    private void setRue(String rue) {
+        if (rue == null || !Pattern.matches("^[a-zA-Z\\é\\è\\ê]+[ \\-']?[[a-zA-Z\\é\\è\\ê]+[ \\-']?]*[a-zA-Z\\é\\è\\ê]+$", rue)) {
             throw new RueException(rue);
         }
         this.rue = rue;
     }
 
-    public void setNumero(String numero) {
+    private void setNumero(String numero) {
         if (numero == null || !Pattern.matches("[1-9][0-9]*[a-zA-Z0-9]{0,5}", numero)) {
             throw new NumeroException(numero);
         }
         this.numero = numero;
     }
 
-    public void genereCode() {
+    private void genereCode() {
         MessageDigest m = null;
         String adr = localite.toLowerCase() + codePostal.toLowerCase() + rue.toLowerCase() + numero.toLowerCase();
         byte[] adrByte = adr.getBytes();
@@ -59,7 +59,7 @@ public class Adresse {
         try {
             m = MessageDigest.getInstance("SHA-1");
         } catch(NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            new RuntimeException(e);
         }
 
         this.code = convertionTableauBytesEnHexa(m.digest(adrByte));

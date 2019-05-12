@@ -1,7 +1,6 @@
 package dataAccess.impl;
 
 import dataAccess.ResponsableDao;
-import dataAccess.RowMapper;
 import dataAccess.exceptions.ResponsableDaoException;
 import model.Responsable;
 
@@ -21,7 +20,7 @@ public class ResponsableDaoImpl implements ResponsableDao {
         return responsableDao;
     }
 
-    public static RowMapper<Responsable> rowMapper = new RowMapper<Responsable>() {
+    public static final RowMapper<Responsable> rowMapper = new RowMapper<Responsable>() {
         @Override
         public Responsable map(ResultSet res) throws SQLException {
             return new Responsable(res.getInt("resp.matricule"), res.getString("resp.nom"), res.getString("resp.prenom"));

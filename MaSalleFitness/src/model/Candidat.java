@@ -58,34 +58,26 @@ public class Candidat extends Personne {
         this.sexe = sexe;
     }
 
-    public void setMaladiesChroniques(String maladiesChroniques) {      //Mettre une longueur pour la validation
-        this.maladiesChroniques = maladiesChroniques;
+    public void setMaladiesChroniques(String maladiesChroniques) {
+        if (maladiesChroniques != null && maladiesChroniques.trim().isEmpty()) {
+            this.maladiesChroniques = null;
+        } else {
+            this.maladiesChroniques = maladiesChroniques;
+        }
     }
 
     public void setNumeroGSM(String numeroGSM) {
-        if (numeroGSM != null && numeroGSM.length() != 0) {
-            if (numeroGSM.charAt(0) != '0') {
-                throw new NumeroGSMException(numeroGSM);
-            } else {
-                if (numeroGSM.charAt(1) == '4') {
-                    if (numeroGSM.length() != 10) {
-                        throw new NumeroGSMException(numeroGSM);
-                    }
-                } else {
-                    if (numeroGSM.length() != '9') {
-                        throw new NumeroGSMException(numeroGSM);
-                    }
-                }
-            }
+        if (numeroGSM != null && numeroGSM.trim().isEmpty()) {
+            this.numeroGSM = null;
+        } else {
+            this.numeroGSM = numeroGSM;
         }
-        this.numeroGSM = numeroGSM;
     }
 
     public void setDateTestValide(Date dateTestValide) {
-        if (dateTestValide != null && DateUtilitaire.compareDate(dateInscription, dateTestValide) > 0) {
+        if (dateTestValide != null && DateUtilitaire.compareDateSansHeures(dateInscription, dateTestValide) > 0) {
             throw new DateTestValideException(dateTestValide);
         }
-
         this.dateTestValide = dateTestValide;
     }
 
