@@ -30,7 +30,7 @@ public class FramePrincipale extends JFrame {
 
     public FramePrincipale() {
         super("Ma Salle Fitness");
-        this.setSize( 800, 800);
+        this.setSize( 800, 700);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(layout);
         this.setResizable(false);

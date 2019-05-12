@@ -107,12 +107,16 @@ public class FormulaireModification extends PanelFormulaireBase {
             return null;
         }
     }
+    public int getNbHeuresDiffs(){
+        return getNbHeures()-candidat.getNbHeuresCoaching();
+    }
     public int getNumInscription(){
         return candidat.getNumInscription();
     }
     public Date getDateInscription(){
         return candidat.getDateInscription();
     }
+
 
 
     public String getMaladies(){

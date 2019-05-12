@@ -23,7 +23,7 @@ public class ModifierListener implements ActionListener {
         CoachService coachService = CoachServiceImpl.getInstance();
         int nbHeuresCoachDispo = 20 - coachService.nbHeuresCoachingUtilisees(formulaire.getCoach().getMatricule());
         if(formulaire.validation()){
-            if(nbHeuresCoachDispo >= formulaire.getNbHeures()) {
+            if(nbHeuresCoachDispo >= formulaire.getNbHeuresDiffs()) {
                 Candidat candidat = new Candidat(
                         formulaire.getNbHeures(),
                         formulaire.getNom(),
