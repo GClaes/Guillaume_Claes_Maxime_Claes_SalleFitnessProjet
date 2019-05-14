@@ -1,6 +1,6 @@
 package presentation.controleurs.recherche;
 
-import presentation.vue.recherches.PanelCandidatInfo;
+import presentation.vue.modif_suppression.PanelCandidatInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
