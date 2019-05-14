@@ -24,9 +24,6 @@ public class Recherche extends JPanel {
         this.frame = frame;
 
         this.setLayout(layout);
-
-
-
     }
 
     public void retour(){
