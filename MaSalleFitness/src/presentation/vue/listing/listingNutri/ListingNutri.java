@@ -9,7 +9,7 @@ public class ListingNutri extends PanelBase<FormulaireListingNutri> {
     private FormulaireListingNutri listingNutriFormulaire = new FormulaireListingNutri();
 
     public ListingNutri(FramePrincipale frame){
-        super("<html><h1>Liste des nutritionnistes travaillant avec ce coach</h1></html>","Retour","");
+        super("<html><h1>Liste des nutritionnistes</h1></html>","Retour","");
         addFormulaire(listingNutriFormulaire);
         setListenerBoutonGauche(new RetourMenuListener(frame));
     }
