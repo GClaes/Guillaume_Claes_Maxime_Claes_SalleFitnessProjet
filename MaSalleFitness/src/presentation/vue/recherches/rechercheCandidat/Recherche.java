@@ -33,7 +33,7 @@ public class Recherche extends JPanel {
     public void recherche(int id){
         candidat = candidatService.rechercherCandidat(id);
         if(candidat == null){
-            JOptionPane.showMessageDialog(null,"Le recherche recherché n'existe pas, veuillez entrer un identifiant correct","Erreur lors de la recherche",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Le candidat recherché n'existe pas, veuillez entrer un identifiant correct","Erreur lors de la recherche",JOptionPane.ERROR_MESSAGE);
         }
         else{
             afficherCandidatInfo(candidat);

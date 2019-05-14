@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class PanelAnim extends JPanel implements Runnable {
-    private MyFrame frame;
+    private CourrierFrame frame;
     private Thread thread;
     private ImageObserver imoLettre;
     private ImageObserver imoBoite;
@@ -19,7 +19,7 @@ public class PanelAnim extends JPanel implements Runnable {
     private int nbFois = 0;
     private boolean envoi = true;
 
-    public PanelAnim(MyFrame frame){
+    public PanelAnim(CourrierFrame frame){
         setLayout(new BorderLayout());
         this.frame = frame;
         lettre = new Lettre(50,600);
