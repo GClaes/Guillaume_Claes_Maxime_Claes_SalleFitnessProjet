@@ -1,4 +1,4 @@
-package presentation.vue.listing.listingAdresse.thread;
+package presentation.vue.courrier;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

@@ -1,6 +1,6 @@
 package presentation.controleurs.rechercheAdresse;
 
-import presentation.vue.listing.listingAdresse.thread.MyFrame;
+import presentation.vue.courrier.MyFrame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
