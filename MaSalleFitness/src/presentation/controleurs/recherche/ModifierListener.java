@@ -3,7 +3,7 @@ package presentation.controleurs.recherche;
 import business.CoachService;
 import business.impl.CoachServiceImpl;
 import model.Candidat;
-import presentation.vue.recherches.FormulaireModification;
+import presentation.vue.modif_suppression.FormulaireModification;
 import presentation.vue.recherches.rechercheCandidat.Recherche;
 import javax.swing.*;
 import java.awt.event.ActionEvent;

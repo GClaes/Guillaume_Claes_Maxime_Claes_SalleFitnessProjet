@@ -1,4 +1,4 @@
-package presentation.vue.recherches;
+package presentation.vue.modif_suppression;
 
 import model.*;
 import utilitaires.ConstantesRegex;

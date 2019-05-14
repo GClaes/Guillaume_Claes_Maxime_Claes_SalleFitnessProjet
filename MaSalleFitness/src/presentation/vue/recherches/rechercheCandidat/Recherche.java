@@ -4,8 +4,8 @@ import business.CandidatService;
 import business.impl.CandidatServiceImpl;
 import model.Candidat;
 import presentation.vue.FramePrincipale;
-import presentation.vue.recherches.PanelCandidatInfo;
-import presentation.vue.recherches.PanelModification;
+import presentation.vue.modif_suppression.PanelCandidatInfo;
+import presentation.vue.modif_suppression.PanelModification;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,10 +25,7 @@ public class Recherche extends JPanel {
 
         this.setLayout(layout);
 
-        panelRecherche = new PanelRecherche(this);
-        panelCandidatInfo = new PanelCandidatInfo(this);
-        add(panelRecherche, "recherche");
-        add(panelCandidatInfo, "info");
+
 
     }
 
@@ -76,6 +73,10 @@ public class Recherche extends JPanel {
     }
 
     public void rafraichir(){
+        panelRecherche = new PanelRecherche(this);
+        panelCandidatInfo = new PanelCandidatInfo(this);
+        add(panelRecherche, "recherche");
+        add(panelCandidatInfo, "info");
         panelRecherche.rafraichir();
         layout.show(this,"recherche");
     }
