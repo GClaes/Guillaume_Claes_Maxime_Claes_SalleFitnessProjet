@@ -58,7 +58,8 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
                 "from nutritionniste nutri " +
                 "join candidat candi on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join coach co on candi.coach_matricule = co.matricule " +
-                "and co.matricule = ?";
+                "and co.matricule = ? " +
+                "order by nutri.num_reference";
 
         List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
 
