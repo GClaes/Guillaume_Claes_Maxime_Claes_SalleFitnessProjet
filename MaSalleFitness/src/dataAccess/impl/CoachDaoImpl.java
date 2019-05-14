@@ -34,7 +34,8 @@ public class CoachDaoImpl implements CoachDao {
 
     public List<Coach> listingCoachs() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from coach co";
+        String requete = "select * from coach co " +
+                "order by co.matricule";
         List<Coach> coachs = new ArrayList<Coach>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){

@@ -29,7 +29,8 @@ public class ResponsableDaoImpl implements ResponsableDao {
 
     public List<Responsable> listingResponsables() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select matricule, nom, prenom from responsable resp";
+        String requete = "select matricule, nom, prenom from responsable resp " +
+                "order by resp.matricule";
         List<Responsable> responsables = new ArrayList<Responsable>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){

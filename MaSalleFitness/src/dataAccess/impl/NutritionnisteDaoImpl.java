@@ -31,7 +31,8 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
 
     public List<Nutritionniste> listingNutritionnistes() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from nutritionniste nutri";
+        String requete = "select * from nutritionniste nutri " +
+                "order by nutri.num_reference";
         List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
