@@ -17,12 +17,6 @@ public class RechercheAdresse extends JPanel {
         this.frame = frame;
 
         this.setLayout(layout);
-
-        panelRecherche = new PanelRechercheCandidat(this);
-        panelListeAdresses = new PanelListeAdresses(this);
-
-        add(panelRecherche, "recherche");
-        add(panelListeAdresses, "listing");
     }
 
     public void retour(){
@@ -33,6 +27,10 @@ public class RechercheAdresse extends JPanel {
         layout.show(this,"listing");
     }
     public void rafraichir(){
+        panelRecherche = new PanelRechercheCandidat(this);
+        panelListeAdresses = new PanelListeAdresses(this);
+        add(panelRecherche, "recherche");
+        add(panelListeAdresses, "listing");
         panelRecherche.rafraichir();
         layout.show(this, "recherche");
     }

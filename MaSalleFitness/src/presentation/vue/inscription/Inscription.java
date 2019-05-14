@@ -22,16 +22,6 @@ public class Inscription extends JPanel {
         this.frame = frame;
         this.setLayout(layout);
 
-        panelDonneesPerso = new PanelDonneesPerso(this);
-        panelAdresse = new PanelAdresse(this);
-        panelCoaching = new PanelCoaching(this);
-        panelRecap = new PanelRecap(this);
-        add(panelDonneesPerso, "panel1");
-        add(panelAdresse, "panel2");
-        add(panelCoaching, "panel3");
-        add(panelRecap, "recap");
-
-
         data = new PersonalData();
     }
 
@@ -75,6 +65,14 @@ public class Inscription extends JPanel {
     }
 
     public void rafraichir(){
+        panelDonneesPerso = new PanelDonneesPerso(this);
+        panelAdresse = new PanelAdresse(this);
+        panelCoaching = new PanelCoaching(this);
+        panelRecap = new PanelRecap(this);
+        add(panelDonneesPerso, "panel1");
+        add(panelAdresse, "panel2");
+        add(panelCoaching, "panel3");
+        add(panelRecap, "recap");
         data = new PersonalData();
         panelDonneesPerso.rafraichir();
         panelAdresse.rafraichir();

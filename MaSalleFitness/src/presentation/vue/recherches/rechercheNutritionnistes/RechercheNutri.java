@@ -16,12 +16,6 @@ public class RechercheNutri extends JPanel {
         this.frame = frame;
 
         setLayout(layout);
-
-        panelRechercheCoach = new PanelRechercheCoach(this);
-        panelListeNutri = new PanelListeNutri(this);
-
-        add(panelRechercheCoach,"coach");
-        add(panelListeNutri,"nutri");
     }
 
     public void retour(){
@@ -32,6 +26,11 @@ public class RechercheNutri extends JPanel {
         layout.show(this,"nutri");
     }
     public void rafraichir(){
+        panelRechercheCoach = new PanelRechercheCoach(this);
+        panelListeNutri = new PanelListeNutri(this);
+        add(panelRechercheCoach,"coach");
+        add(panelListeNutri,"nutri");
+
         panelRechercheCoach.rafraichir();
         layout.show(this, "coach");
     }

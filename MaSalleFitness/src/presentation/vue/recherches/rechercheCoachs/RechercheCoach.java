@@ -17,11 +17,6 @@ public class RechercheCoach extends JPanel {
 
         this.setLayout(layout);
 
-        panelListeResponsable = new PanelRechercheResponsable(this);
-        panelListeCoachs = new PanelListeCoachs(this);
-
-        add(panelListeResponsable, "responsable");
-        add(panelListeCoachs, "coach");
     }
 
     public void afficherListingCoach(Responsable responsable){
@@ -33,6 +28,10 @@ public class RechercheCoach extends JPanel {
         frame.afficherAccueil();
     }
     public void rafraichir(){
+        panelListeResponsable = new PanelRechercheResponsable(this);
+        panelListeCoachs = new PanelListeCoachs(this);
+        add(panelListeResponsable, "responsable");
+        add(panelListeCoachs, "coach");
         panelListeResponsable.rafraichir();
         layout.show(this,"responsable");
     }
