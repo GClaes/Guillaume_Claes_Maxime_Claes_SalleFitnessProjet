@@ -101,7 +101,7 @@ public class PanelAnim extends JPanel implements Runnable {
             }
             if(!envoi) {
                 frame.dispose();
-                JOptionPane.showMessageDialog(null,"La lettre a été envoyée!","Résultat de l'envoi de lettre",1);
+                JOptionPane.showMessageDialog(null,"Envoi(s) confirmé(s)!","Résultat de l'envoi",1);
             }
         }
     }
