@@ -123,7 +123,8 @@ public class CoachDaoImpl implements CoachDao {
                 "from coach co " +
                 "join candidat candi on candi.coach_matricule = co.matricule " +
                 "join responsable resp on candi.responsable_matricule = resp.matricule " +
-                "and resp.matricule = ?";
+                "and resp.matricule = ? " +
+                "order by co.matricule";
 
         List<Coach> coachs = new ArrayList<Coach>();
 
