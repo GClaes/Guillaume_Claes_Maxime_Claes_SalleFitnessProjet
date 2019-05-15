@@ -34,7 +34,7 @@ public class CoachDaoImpl implements CoachDao {
 
     public List<Coach> listingCoachs() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from coach co " +
+        String requete = "select * from sallefitness.coach co " +
                 "order by co.matricule";
         List<Coach> coachs = new ArrayList<Coach>();
 
@@ -57,7 +57,7 @@ public class CoachDaoImpl implements CoachDao {
      */
     public int nbHeuresCoachingUtilisees(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select sum(candi.nb_heures_coaching) from candidat candi, coach co " +
+        String requete = "select sum(candi.nb_heures_coaching) from sallefitness.candidat candi, sallefitness.coach co " +
                 "where candi.coach_matricule = co.matricule " +
                 "and co.matricule = ?";
         int nbHeuresCoaching = -1;
@@ -80,7 +80,7 @@ public class CoachDaoImpl implements CoachDao {
 
     public boolean coachExiste(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select count(*) from coach where matricule = ?";
+        String requete = "select count(*) from sallefitness.coach where matricule = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
             statement.setInt(1, matriculeCoach);
@@ -96,7 +96,7 @@ public class CoachDaoImpl implements CoachDao {
 
     public Coach obtentionCoach(int matriculeCoach) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from coach co where matricule = ?";
+        String requete = "select * from sallefitness.coach co where matricule = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setInt(1, matriculeCoach);
@@ -120,9 +120,9 @@ public class CoachDaoImpl implements CoachDao {
     public List<Coach> coachsDesCandidatsInscritsParUnResponsable(int responsableMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select distinct co.matricule, co.nom, co.prenom, co.recompenses, co.salaire_horaire, co.date_debut_coaching " +
-                "from coach co " +
-                "join candidat candi on candi.coach_matricule = co.matricule " +
-                "join responsable resp on candi.responsable_matricule = resp.matricule " +
+                "from sallefitness.coach co " +
+                "join sallefitness.candidat candi on candi.coach_matricule = co.matricule " +
+                "join sallefitness.responsable resp on candi.responsable_matricule = resp.matricule " +
                 "and resp.matricule = ? " +
                 "order by co.matricule";
 

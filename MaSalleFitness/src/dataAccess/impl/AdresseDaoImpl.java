@@ -43,7 +43,7 @@ public class AdresseDaoImpl implements AdresseDao {
 
     public boolean adresseExiste(String codeHash) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select count(*) from adresse where code_hash = ?";
+        String requete = "select count(*) from sallefitness.adresse where code_hash = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, codeHash);
@@ -59,7 +59,7 @@ public class AdresseDaoImpl implements AdresseDao {
 
     public void ajouterAdresse(Adresse adresse) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "insert into adresse (code_hash, localite, code_postal, rue, numero) " +
+        String requete = "insert into sallefitness.adresse (code_hash, localite, code_postal, rue, numero) " +
                 "values (?, ?, ?, ?, ?)";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
@@ -76,7 +76,7 @@ public class AdresseDaoImpl implements AdresseDao {
 
     public boolean supprimerAdresse(String codeHash) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "delete from adresse where code_hash = ?";
+        String requete = "delete from sallefitness.adresse where code_hash = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, codeHash);
@@ -88,7 +88,7 @@ public class AdresseDaoImpl implements AdresseDao {
 
     public boolean adresseUtilisee(String codeHash) {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select count(*) from candidat where adresse_code_hash = ?";
+        String requete = "select count(*) from sallefitness.candidat where adresse_code_hash = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(requete)) {
             statement.setString(1, codeHash);
