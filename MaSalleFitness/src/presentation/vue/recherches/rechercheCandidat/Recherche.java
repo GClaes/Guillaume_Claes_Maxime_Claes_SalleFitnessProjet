@@ -23,6 +23,9 @@ public class Recherche extends JPanel {
     public Recherche(FramePrincipale frame) {
         this.frame = frame;
 
+        panelCandidatInfo = new PanelCandidatInfo(this);
+        add(panelCandidatInfo, "info");
+
         this.setLayout(layout);
     }
 
@@ -71,9 +74,7 @@ public class Recherche extends JPanel {
 
     public void rafraichir(){
         panelRecherche = new PanelRecherche(this);
-        panelCandidatInfo = new PanelCandidatInfo(this);
         add(panelRecherche, "recherche");
-        add(panelCandidatInfo, "info");
         panelRecherche.rafraichir();
         layout.show(this,"recherche");
     }
