@@ -13,7 +13,7 @@ public class CandidatFormulaire extends PanelFormulaireBase {
     }
     public void setCandidat(Candidat candidat){
         removeAll();
-        setComposantes("id",new ElementFormulaireLabel("ID", new JLabel(candidat.getNumInscription().toString())));
+        setComposantes("id",new ElementFormulaireLabel("Numéro d'inscription", new JLabel(candidat.getNumInscription().toString())));
         setComposantes("nom",new ElementFormulaireLabel("Nom", new JLabel(candidat.getNom())));
         setComposantes("prenom",new ElementFormulaireLabel("Prénom", new JLabel(candidat.getPrenom())));
         setComposantes("dateNaissance", new ElementFormulaireLabel("Date de naissance", new JLabel(candidat.getDateNaissance().toString())));

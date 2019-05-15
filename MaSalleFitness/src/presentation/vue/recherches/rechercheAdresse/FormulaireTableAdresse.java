@@ -12,7 +12,7 @@ import java.util.List;
 
 public class FormulaireTableAdresse extends JPanel{
     private JTable tableAdresse;
-    private String[]colonnes={"ID","Nom","Prénom","Rue","Numero","Code postal","Localité"};
+    private String[]colonnes={"ID","Nom","Prénom","Date d'inscription","Rue","Numero","Localité"};
     private List<Candidat>candidats;
 
     public FormulaireTableAdresse() {
@@ -31,9 +31,9 @@ public class FormulaireTableAdresse extends JPanel{
             values[numCoach][0] = candidat.getNumInscription();
             values[numCoach][1] = candidat.getNom();
             values[numCoach][2] = candidat.getPrenom();
-            values[numCoach][3] = candidat.getAdresse().getRue();
-            values[numCoach][4] = candidat.getAdresse().getNumero();
-            values[numCoach][5] = candidat.getAdresse().getCodePostal();
+            values[numCoach][3] = candidat.getDateInscription();
+            values[numCoach][4] = candidat.getAdresse().getRue();
+            values[numCoach][5] = candidat.getAdresse().getNumero();
             values[numCoach][6] = candidat.getAdresse().getLocalite();
             numCoach++;
         }

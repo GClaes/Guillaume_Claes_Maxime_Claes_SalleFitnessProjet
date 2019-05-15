@@ -23,9 +23,6 @@ public class Recherche extends JPanel {
     public Recherche(FramePrincipale frame) {
         this.frame = frame;
 
-        panelCandidatInfo = new PanelCandidatInfo(this);
-        add(panelCandidatInfo, "info");
-
         this.setLayout(layout);
     }
 
@@ -63,6 +60,8 @@ public class Recherche extends JPanel {
     }
 
     public void afficherCandidatInfo(Candidat candidat) {
+        panelCandidatInfo = new PanelCandidatInfo(this);
+        add(panelCandidatInfo, "info");
         panelCandidatInfo.setCandidat(candidat);
         layout.show(this, "info");
     }

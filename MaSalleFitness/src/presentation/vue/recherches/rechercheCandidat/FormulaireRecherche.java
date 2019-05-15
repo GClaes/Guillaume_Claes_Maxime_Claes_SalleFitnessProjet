@@ -19,7 +19,7 @@ public class FormulaireRecherche extends PanelFormulaireBase {
     }
     public void rafraichir(){
         removeAll();
-        setComposantes("id",new ElementFormulaireJTextField("Numéro d'identifiant", 30, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+"))));
+        setComposantes("id",new ElementFormulaireJTextField("Numéro d'inscription", 30, new AndValidation(new PasVideValidation(),new PatternValidation("[0-9]+"))));
         initList();
     }
 
