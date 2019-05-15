@@ -16,7 +16,7 @@ public class ListingFormulaire extends JPanel {
         listing = new JList<>(new DefaultListModel<>());
         rafraichir();
         JScrollPane scrollPane = new JScrollPane(listing,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(400,500));
+        scrollPane.setPreferredSize(new Dimension(700,500));
         add(scrollPane);
     }
 
@@ -37,7 +37,7 @@ public class ListingFormulaire extends JPanel {
         String[]values = new String[listeCandidats.size()];
         int position = 0;
         for(Candidat candidat:listeCandidats){
-            values[position] = "<html><li>ID: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li></html>";
+            values[position] = "<html><li>Numéro d'inscription: "+candidat.getNumInscription()+" | "+candidat.getNom()+" "+candidat.getPrenom()+"</li></html>";
             position++;
         }
         listing.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);

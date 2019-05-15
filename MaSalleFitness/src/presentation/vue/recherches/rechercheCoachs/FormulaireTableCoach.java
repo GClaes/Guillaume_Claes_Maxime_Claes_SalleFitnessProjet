@@ -7,6 +7,7 @@ import model.Responsable;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class FormulaireTableCoach extends JPanel {
@@ -32,7 +33,7 @@ public class FormulaireTableCoach extends JPanel {
             values[numCoach][1] = coach.getNom();
             values[numCoach][2] = coach.getPrenom();
             values[numCoach][3] = coach.getRecompenses();
-            values[numCoach][4] = coach.getDateDebutCoaching();
+            values[numCoach][4] = new SimpleDateFormat("dd-MM-yyyy").format(coach.getDateDebutCoaching().getTime());
             values[numCoach][5] = coach.getSalaireHoraire()+"€";
             values[numCoach][6] = coachService.calculSalaireHebdomadaire(coach.getMatricule())+"€";
             numCoach++;
