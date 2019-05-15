@@ -34,7 +34,7 @@ public class ModifierListener implements ActionListener {
                         formulaire.getResponsable(),
                         formulaire.getNutri(),
                         formulaire.getAdresse());
-                candidat.setNumInscrit(formulaire.getNumInscription());
+                candidat.setNumInscription(formulaire.getNumInscription());
                 candidat.setDateInscription(formulaire.getDateInscription());
                 candidat.setDateTestValide(formulaire.getDateTestValide());
 

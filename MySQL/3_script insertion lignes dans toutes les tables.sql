@@ -25,6 +25,15 @@ VALUES ('Meurdesoif','Jean');
 INSERT INTO responsable (nom, prenom) 
 VALUES ('Morrison','Maurice');
 
+INSERT INTO responsable (nom, prenom) 
+VALUES ('Youbebi','Agathe');
+
+INSERT INTO responsable (nom, prenom) 
+VALUES ('Proviste','Alain');
+
+INSERT INTO responsable (nom, prenom) 
+VALUES ('La monet','Aline');
+
 INSERT INTO adresse (code_hash, localite, code_postal, rue, numero) 
 VALUES ('15f794bdc437299d7f9ef45b19431fd481fa268e', 'Hondelange', '6780', 'Emile-Kirsch', '29');
 
@@ -57,35 +66,35 @@ INSERT INTO candidat (nom, prenom, date_naissance,
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Cook', 'Thomas', STR_TO_DATE('12,12,1995','%d,%m,%Y'), 'h', '0478121212', null, STR_TO_DATE('02,05,2019','%d,%m,%Y'), 4, TRUE, 
-		null, 1, 1, 1, 'e816db98b2d664457882f883c6985f2c92ce5ff7');
+		null, 1, 3, 1, 'e816db98b2d664457882f883c6985f2c92ce5ff7');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Neymar', 'Jean', STR_TO_DATE('10,11,1998','%d,%m,%Y'), 'h', '0495366554', null, STR_TO_DATE('09,05,2019','%d,%m,%Y'), 2, FALSE, 
-		'Scoliose', 1, 1, 1, 'a45f887198803acbc4e348d6d66f0eb5eb351045');
+		'Scoliose', 2, 1, 1, 'a45f887198803acbc4e348d6d66f0eb5eb351045');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Claes', 'Maxime', STR_TO_DATE('25,10,1995','%d,%m,%Y'), 'h', '0485747875', STR_TO_DATE('12,05,2019','%d,%m,%Y'), STR_TO_DATE('09,05,2019','%d,%m,%Y'), 1, TRUE, 
-		null, 1, 1, 1, '392f464deb8443422c19915fa2f2d1f326d73902');
+		null, 1, 3, 1, '392f464deb8443422c19915fa2f2d1f326d73902');
 
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Claes', 'Guillaume', STR_TO_DATE('20,06,1998','%d,%m,%Y'), 'h', null, STR_TO_DATE('11,05,2019','%d,%m,%Y'), STR_TO_DATE('09,05,2019','%d,%m,%Y'), 1, FALSE, 
-		null, 1, 1, 1, '392f464deb8443422c19915fa2f2d1f326d73902');
+		null, 1, 2, 1, '392f464deb8443422c19915fa2f2d1f326d73902');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Auboisdormant', 'Abel', STR_TO_DATE('05,08,1989','%d,%m,%Y'), 'f', '0476652545', null, STR_TO_DATE('06,02,2019','%d,%m,%Y'), 4, TRUE, 
-		null, 1, 1, 1, '15f794bdc437299d7f9ef45b19431fd481fa268e');
+		null, 1, 4, 1, '15f794bdc437299d7f9ef45b19431fd481fa268e');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
@@ -99,7 +108,7 @@ INSERT INTO candidat (nom, prenom, date_naissance,
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Halord', 'Ahmed', STR_TO_DATE('25,09,1993','%d,%m,%Y'), 'h', '0495897867', STR_TO_DATE('20,05,2019','%d,%m,%Y'), STR_TO_DATE('12,05,2019','%d,%m,%Y'), 6, TRUE, 
-		null, 4, 2, 3, 'e951347e9311501b21f5245bd2bf37695ce019d0');
+		null, 4, 5, 3, 'e951347e9311501b21f5245bd2bf37695ce019d0');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
@@ -120,7 +129,7 @@ INSERT INTO candidat (nom, prenom, date_naissance,
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Vent', 'Amida', STR_TO_DATE('21,09,1985','%d,%m,%Y'), 'f', null, null, STR_TO_DATE('11,05,2019','%d,%m,%Y'), 3, FALSE, 
-		'Douleurs au mollet', 2, 1, 1, 'd18d92b334c36c99d4d42f473d490931913abf66');
+		'Douleurs au mollet', 2, 3, 1, 'd18d92b334c36c99d4d42f473d490931913abf66');
 		
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
@@ -141,7 +150,7 @@ INSERT INTO candidat (nom, prenom, date_naissance,
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Cepcion', 'Alex', STR_TO_DATE('12,05,2003','%d,%m,%Y'), 'h', '0478987855', STR_TO_DATE('12,05,2019','%d,%m,%Y'), STR_TO_DATE('12,05,2019','%d,%m,%Y'), 4, TRUE, 
-		'Anémie', 3, 1, 3, 'e816db98b2d664457882f883c6985f2c92ce5ff7');
+		'Anémie', 3, 4, 3, 'e816db98b2d664457882f883c6985f2c92ce5ff7');
 
 INSERT INTO candidat (nom, prenom, date_naissance, 
 					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
@@ -155,5 +164,18 @@ INSERT INTO candidat (nom, prenom, date_naissance,
                     debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
                     nutritionniste_num_reference, adresse_code_hash) 
 VALUES ('Vent', 'Enemida', STR_TO_DATE('06,09,1998','%d,%m,%Y'), 'f', '0498654595', STR_TO_DATE('12,05,2019','%d,%m,%Y'), STR_TO_DATE('12,05,2019','%d,%m,%Y'), 2, FALSE, 
-		null, 1, 1, 2, 'd18d92b334c36c99d4d42f473d490931913abf66');
+		null, 1, 3, 2, 'd18d92b334c36c99d4d42f473d490931913abf66');
 		
+INSERT INTO candidat (nom, prenom, date_naissance, 
+					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
+                    debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
+                    nutritionniste_num_reference, adresse_code_hash) 
+VALUES ('Verse', 'Alain', STR_TO_DATE('20,06,2001','%d,%m,%Y'), 'h', null, null, STR_TO_DATE('11,04,2019','%d,%m,%Y'), 3, TRUE, 
+		null, 2, 4, 3, '36877eb2c9634b0b3d4cd19ff510c283719fa7ef');
+		
+INSERT INTO candidat (nom, prenom, date_naissance, 
+					sexe, num_gsm, date_test_valide, date_inscription, nb_heures_coaching, 
+                    debutant, maladies_chroniques, coach_matricule, responsable_matricule, 
+                    nutritionniste_num_reference, adresse_code_hash) 
+VALUES ('Bande', 'Ana', STR_TO_DATE('29,11,1989','%d,%m,%Y'), 'f', '0478126578', STR_TO_DATE('02,05,2019','%d,%m,%Y'), STR_TO_DATE('18,04,2019','%d,%m,%Y'), 4, FALSE, 
+		'Diabète', 1, 5, 1, 'bf53f617c62ddf8947ac648be30e8755934e3f29');

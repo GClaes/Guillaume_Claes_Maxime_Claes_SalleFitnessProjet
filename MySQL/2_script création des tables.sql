@@ -41,7 +41,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
 CREATE TABLE candidat (
-	num_inscrit INT NOT NULL AUTO_INCREMENT,
+	num_inscription INT NOT NULL AUTO_INCREMENT,
 	nom VARCHAR(50) NOT NULL,
 	prenom VARCHAR(50) NOT NULL,
 	date_naissance DATE NOT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE candidat (
 	responsable_matricule INT NOT NULL,
 	nutritionniste_num_reference INT NOT NULL,
 	adresse_code_hash VARCHAR(50) NOT NULL,
-	PRIMARY KEY (num_inscrit),
+	PRIMARY KEY (num_inscription),
 	FOREIGN KEY (coach_matricule) references coach(matricule),
 	FOREIGN KEY (responsable_matricule) references responsable(matricule),
 	FOREIGN KEY (nutritionniste_num_reference) references nutritionniste(num_reference),
