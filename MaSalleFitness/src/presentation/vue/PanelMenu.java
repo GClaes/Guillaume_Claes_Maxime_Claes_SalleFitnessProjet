@@ -12,7 +12,6 @@ public class PanelMenu extends JPanel {
     private ImageObserver imo;
 
     public PanelMenu(){
-
     }
     public void paintComponent(Graphics g){
         dessinerFond(g);
