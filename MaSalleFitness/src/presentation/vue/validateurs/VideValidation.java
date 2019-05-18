@@ -6,6 +6,6 @@ public class VideValidation implements Validation {
 
     @Override
     public boolean valider(Object o) {
-        return o==null || o.equals("");
+        return o==null || o.toString().trim().equals("");
     }
 }
