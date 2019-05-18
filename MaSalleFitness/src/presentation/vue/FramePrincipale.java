@@ -30,7 +30,7 @@ public class FramePrincipale extends JFrame {
 
     public FramePrincipale() {
         super("Ma Salle Fitness");
-        this.setSize( 800, 700);
+        this.setSize( 800, 800);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(layout);
         this.setResizable(false);
@@ -40,7 +40,6 @@ public class FramePrincipale extends JFrame {
 
         this.setVisible(true);
     }
-
     public void ajoutMenu(){
         this.setJMenuBar(new MaSalleFitnessMenu(this));
     }
