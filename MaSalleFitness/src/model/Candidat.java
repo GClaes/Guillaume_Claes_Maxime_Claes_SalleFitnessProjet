@@ -19,7 +19,7 @@ public class Candidat extends Personne {
     private Responsable responsable;
     private Nutritionniste nutritionniste;
     private Adresse adresse;
-    private final int AGE_MINIMUM = 16;
+    public static final int AGE_MINIMUM = 16;
 
     public Candidat(Integer nbHeuresCoaching, String nom, String prenom, Date dateNaissance, char sexe, Coach coach, Responsable responsable, Nutritionniste nutritionniste, Adresse adresse) {
         super(nom, prenom);
@@ -33,7 +33,7 @@ public class Candidat extends Personne {
         this.adresse = adresse;
     }
 
-    public void setNumInscrit(int numero) {
+    public void setNumInscription(int numero) {
         this.numInscription = numero;
     }
 

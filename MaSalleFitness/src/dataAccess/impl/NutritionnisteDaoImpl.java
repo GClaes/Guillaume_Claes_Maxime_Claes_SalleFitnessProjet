@@ -31,7 +31,7 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
 
     public List<Nutritionniste> listingNutritionnistes() {
         Connection connection = SingletonConnection.getInstance();
-        String requete = "select * from nutritionniste nutri " +
+        String requete = "select * from sallefitness.nutritionniste nutri " +
                 "order by nutri.num_reference";
         List<Nutritionniste> nutritionnistes = new ArrayList<Nutritionniste>();
 
@@ -55,9 +55,9 @@ public class NutritionnisteDaoImpl implements NutritionnisteDao {
     public List<Nutritionniste> nutritionnistesDesCandidatsEntrainesParUnCoach(int coachMatricule) {
         Connection connection = SingletonConnection.getInstance();
         String requete = "select distinct nutri.num_reference, nutri.nom, nutri.prenom, nutri.avis " +
-                "from nutritionniste nutri " +
-                "join candidat candi on candi.nutritionniste_num_reference = nutri.num_reference " +
-                "join coach co on candi.coach_matricule = co.matricule " +
+                "from sallefitness.nutritionniste nutri " +
+                "join sallefitness.candidat candi on candi.nutritionniste_num_reference = nutri.num_reference " +
+                "join sallefitness.coach co on candi.coach_matricule = co.matricule " +
                 "and co.matricule = ? " +
                 "order by nutri.num_reference";
 

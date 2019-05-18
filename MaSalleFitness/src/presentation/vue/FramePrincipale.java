@@ -40,7 +40,6 @@ public class FramePrincipale extends JFrame {
 
         this.setVisible(true);
     }
-
     public void ajoutMenu(){
         this.setJMenuBar(new MaSalleFitnessMenu(this));
     }
