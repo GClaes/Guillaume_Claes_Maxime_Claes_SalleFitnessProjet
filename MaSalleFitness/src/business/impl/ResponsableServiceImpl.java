@@ -8,7 +8,7 @@ import model.Responsable;
 import java.util.List;
 
 public class ResponsableServiceImpl implements ResponsableService {
-    private final ResponsableDao responsableDao = ResponsableDaoImpl.getInstance();
+    private ResponsableDao responsableDao = ResponsableDaoImpl.getInstance();
     private static ResponsableService responsableService;
 
     private ResponsableServiceImpl() { }

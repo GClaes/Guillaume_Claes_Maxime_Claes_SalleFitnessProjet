@@ -8,7 +8,7 @@ import model.Nutritionniste;
 import java.util.List;
 
 public class NutritionnisteServiceImpl implements NutritionnisteService {
-    private final NutritionnisteDao nutritionnisteDao = NutritionnisteDaoImpl.getInstance();
+    private NutritionnisteDao nutritionnisteDao = NutritionnisteDaoImpl.getInstance();
     private static NutritionnisteService nutritionnisteService;
 
     private NutritionnisteServiceImpl() { }

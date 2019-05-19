@@ -1,4 +1,4 @@
-CREATE SCHEMA sallefitness DEFAULT CHARACTER SET utf8mb4;
+CREATE SCHEMA sallefitness;
 
 CREATE TABLE sallefitness.adresse (
 	code_hash VARCHAR(40),

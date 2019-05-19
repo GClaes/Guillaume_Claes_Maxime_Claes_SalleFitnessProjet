@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CandidatServiceImpl implements CandidatService {
-    private final CandidatDao candidatDao = CandidatDaoImpl.getInstance();
+    private CandidatDao candidatDao = CandidatDaoImpl.getInstance();
     private static CandidatService candidatService;
 
     private CandidatServiceImpl() { }

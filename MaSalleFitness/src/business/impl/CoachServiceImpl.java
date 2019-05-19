@@ -8,7 +8,7 @@ import model.Coach;
 import java.util.List;
 
 public class CoachServiceImpl implements CoachService {
-    private final CoachDao coachDao = CoachDaoImpl.getInstance();
+    private CoachDao coachDao = CoachDaoImpl.getInstance();
     private static CoachService coachService;
 
     private CoachServiceImpl() { }
