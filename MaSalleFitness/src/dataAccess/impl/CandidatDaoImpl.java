@@ -79,7 +79,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join sallefitness.responsable resp on candi.responsable_matricule = resp.matricule " +
                 "join sallefitness.nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join sallefitness.adresse adr on candi.adresse_code_hash = adr.code_hash " +
-                "order by candi.num_inscription";
+                "order by candi.nom, candi.prenom";
         List<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
@@ -257,7 +257,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join sallefitness.adresse adr on candi.adresse_code_hash = adr.code_hash " +
                 "and candi.date_inscription between ? and ?" +
                 "and resp.matricule = ? " +
-                "order by candi.num_inscription";
+                "order by candi.date_inscription, candi.nom, candi.prenom";
         List<Candidat> candidats = new ArrayList<Candidat>();
 
         try (PreparedStatement statement = connection.prepareStatement(requete)){
@@ -284,7 +284,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join sallefitness.nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join sallefitness.adresse adr on candi.adresse_code_hash = adr.code_hash " +
                 "where candi.coach_matricule = ? " +
-                "order by candi.num_inscription";
+                "order by candi.nom, candi.prenom";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
@@ -310,7 +310,7 @@ public class CandidatDaoImpl implements CandidatDao {
                 "join sallefitness.nutritionniste nutri on candi.nutritionniste_num_reference = nutri.num_reference " +
                 "join sallefitness.adresse adr on candi.adresse_code_hash = adr.code_hash " +
                 "where candi.nutritionniste_num_reference = ? " +
-                "order by candi.num_inscription";
+                "order by candi.nom, candi.prenom";
 
         List<Candidat> candidats = new ArrayList<Candidat>();
 
