@@ -59,19 +59,11 @@ public class Candidat extends Personne {
     }
 
     public void setMaladiesChroniques(String maladiesChroniques) {
-        if (maladiesChroniques != null && maladiesChroniques.trim().isEmpty()) {
-            this.maladiesChroniques = null;
-        } else {
-            this.maladiesChroniques = maladiesChroniques;
-        }
+        this.maladiesChroniques = (maladiesChroniques != null && maladiesChroniques.trim().isEmpty()) ? null : maladiesChroniques;
     }
 
     public void setNumeroGSM(String numeroGSM) {
-        if (numeroGSM != null && numeroGSM.trim().isEmpty()) {
-            this.numeroGSM = null;
-        } else {
-            this.numeroGSM = numeroGSM;
-        }
+        this.numeroGSM = (numeroGSM != null && numeroGSM.trim().isEmpty()) ? null : numeroGSM;
     }
 
     public void setDateTestValide(Date dateTestValide) {
